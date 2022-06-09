@@ -1,0 +1,8 @@
+db.sqlite3
+
+*.env
+*.sql
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
