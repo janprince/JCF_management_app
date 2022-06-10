@@ -10,7 +10,7 @@
     <div class="container">
 
       <div class="account-logo">
-        <a href="dashboard.html"><img src="{% static 'msystem/img/logo2.png' %}" alt="Dreamguy's Technologies"></a>
+        <a href="dashboard.html"><img src="{% static 'msystem/img/logo.png' %}" width="500" alt="Jan Cosmic Foundation"></a>
       </div>
 
       <div class="account-box">
@@ -18,12 +18,11 @@
           <h3 class="account-title">Login</h3>
           <p class="account-subtitle">Access to our dashboard</p>
 
-          <form class="needs-validation custom-form mt-4 pt-2" novalidate method="get"
-                action="http://127.0.0.1:8000/">
+          <form class="needs-validation custom-form mt-4 pt-2" novalidate method="post" action="{% url 'msystem:login' %}">
+            {% csrf_token %}
             <div class="form-group">
               <label for="useremail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="useremail" placeholder="Enter email" required
-                     value="admin@example.com">
+              <input type="email" class="form-control" id="useremail" placeholder="Enter email" name="useremail" required >
               <div class="invalid-feedback">
                 Please Enter Email
               </div>
@@ -40,8 +39,7 @@
                 </div>
               </div>
               <div class="position-relative">
-                <input type="password" class="form-control" id="password" placeholder="Enter password" required
-                       value="123456">
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
                 <div class="invalid-feedback">
                   Please Enter Password
                 </div>
@@ -52,7 +50,7 @@
               <button class="btn btn-primary account-btn" type="submit">Login</button>
             </div>
             <div class="account-footer">
-              <p>Don't have an account yet? <a href="auth-register.html">Register</a></p>
+              <p>Don't have an account yet? <a href="" >Register</a></p>
             </div>
           </form>
 
