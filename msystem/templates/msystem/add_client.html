@@ -27,209 +27,131 @@
 
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
-            <form>
+            <form method="get" action="/">
+              <!-- Main -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text">
+                    <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" name="name">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label"> Date of Birth <span class="text-danger">*</span></label>
+                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="dob"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-form-label">Phone<span class="text-danger">*</span></label>
+                        <input class="form-control floating" type="number" name="phone">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-form-label">Telephone</label>
+                        <input class="form-control floating" type="number" name="telephone">
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label">Last Name</label>
-                    <input class="form-control" type="text">
+                    <label class="col-form-label">Profession</label>
+                    <input class="form-control floating" type="text" name="profession">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label">Username <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text">
+                    <label class="col-form-label">Residence</label>
+                    <input class="form-control" type="text" name="residence">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                    <input class="form-control floating" type="email">
+                    <label class="col-form-label">Country</label>
+                    <input class="form-control" type="text" name="country" list="countries">
+                      <datalist id="countries">
+                        <option value="Ghana">
+                        <option value="UK">
+                      </datalist>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label">Password</label>
-                    <input class="form-control" type="password">
+                    <label class="col-form-label">Hometown</label>
+                    <input class="form-control floating" type="text" name="hometown">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label">Confirm Password</label>
-                    <input class="form-control" type="password">
+                    <label class="col-form-label">Religion</label>
+                    <input class="form-control" type="text" name="religion">
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Client ID <span class="text-danger">*</span></label>
-                    <input class="form-control floating" type="text">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-form-label">Request Information</label>
+                    <div class="">
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Phone </label>
-                    <input class="form-control" type="text">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-form-label">Dr. Jan's Remark</label>
+                    <div class="">
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Company Name</label>
-                    <input class="form-control" type="text">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-form-label">Solution</label>
+                    <div class="">
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="table-responsive m-t-15">
-                <table class="table table-striped custom-table">
-                  <thead>
-                  <tr>
-                    <th>Module Permission</th>
-                    <th class="text-center">Read</th>
-                    <th class="text-center">Write</th>
-                    <th class="text-center">Create</th>
-                    <th class="text-center">Delete</th>
-                    <th class="text-center">Import</th>
-                    <th class="text-center">Export</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>Projects</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tasks</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chat</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estimates</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Invoices</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Timing Sheets</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+
+              <!-- Checkboxes -->
+              <div class="form-group ">
+                <label class="col-form-label">Role</label>
+                <div class="row">
+                  <div class="checkbox col-md-3">
+                    <label>
+                      <input type="checkbox" name="roles" value="client"> Client
+                    </label>
+                  </div>
+                  <div class="checkbox col-md-3">
+                    <label>
+                      <input type="checkbox" name="roles" value="student"> Student
+                    </label>
+                  </div>
+                  <div class="checkbox col-md-3">
+                    <label>
+                      <input type="checkbox" name="roles" value="employee"> Employee
+                    </label>
+                  </div>
+                  <div class="checkbox col-md-3">
+                    <label>
+                      <input type="checkbox" name="roles" value="rep"> Representative
+                    </label>
+                  </div>
+                </div>
               </div>
+
+              <!-- Submit button -->
               <div class="submit-section">
                 <button class="btn btn-primary submit-btn mb-5">Submit</button>
               </div>
+
             </form>
           </div>
         </div>

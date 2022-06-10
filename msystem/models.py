@@ -6,7 +6,7 @@
 #     date_added = models.DateField(auto_now_add=True)
 #     full_name = models.CharField(max_length=255)
 #     date_of_birth = models.DateField(blank=True)
-#     contact = models.IntegerField(max_length=255)
+#     phone = models.IntegerField(max_length=255)
 #     profession = models.CharField(max_length=255, blank=True)
 #     telephone = models.IntegerField(max_length=255, blank=True)
 #     religion = models.CharField(max_length=255, default="N/A")
