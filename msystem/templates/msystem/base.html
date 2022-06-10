@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Register | JCF Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="JCF" name="author"/>
+
+    <!--  styles  -->
+    <link rel="shortcut icon" href="{% static 'mysystem/images/favicon.html' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'msystem/img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/line-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/plugins/alertify/alertify.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/plugins/lightbox/glightbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/plugins/c3-chart/c3.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/plugins/toastr/toatr.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/fullcalendar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/plugins/summernote/dist/summernote-bs4.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/css/style.css' %}">
+
+  </head>
+
+  <body class="{% block body_class %}{% endblock body_class%}">
+    {% block main %}
+    {% endblock main %}
+
+    <!--  javascript files  -->
+    <script src="{% static 'msystem/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'msystem/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'msystem/js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'msystem/js/select2.min.js' %}"></script>
+    <script src="{% static 'msystem/js/moment.min.js' %}"></script>
+    <script src="{% static 'msystem/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'msystem/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+    <script src="{% static 'msystem/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'msystem/js/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'msystem/js/jquery.fullcalendar.js' %}"></script>
+    <script src="{% static 'msystem/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'msystem/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'msystem/js/validation.init.js' %}"></script>
+    <script src="{% static 'msystem/js/app.js' %}"></script>
+  </body>
+</html>
