@@ -27,19 +27,19 @@
 
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
-            <form method="get" action="/">
+            <form method="get" action="{% url 'msystem:add_person' %}" id="addClientForm">
+
               <!-- Main -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="name">
+                    <input class="form-control" type="text" name="name" required>
                   </div>
                 </div>
-
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="col-form-label"> Date of Birth <span class="text-danger">*</span></label>
+                    <label class="col-form-label"> Date of Birth </label>
                     <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="dob"></div>
                   </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Phone<span class="text-danger">*</span></label>
-                        <input class="form-control floating" type="number" name="phone">
+                        <input class="form-control floating" type="number" name="phone" required>
                       </div>
                     </div>
 
@@ -98,7 +98,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Request Information</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="request_info"></textarea>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Dr. Jan's Remark</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="remark"></textarea>
                     </div>
                   </div>
                 </div>
@@ -114,7 +114,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Solution</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="solution"></textarea>
                     </div>
                   </div>
                 </div>
