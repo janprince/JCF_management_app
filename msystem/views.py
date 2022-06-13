@@ -12,7 +12,7 @@ from django.contrib import messages
 # Create your views here.
 @login_required(login_url='/login/')
 def index(request):
-    return render(request, "msystem/add_person.html")
+    return render(request, "msystem/clients.html")
 
 
 @login_required(login_url='/login/')
@@ -60,7 +60,7 @@ def add_person(request):
         p.save()
         messages.success(request, "Record Created Successfully")
 
-        return render(request, "msystem/add_person.html")
+        return HttpResponseRedirect(reverse("msystem:clients"))
     else:
         return render(request, "msystem/add_person.html")
 
@@ -117,7 +117,7 @@ def update_person(request, person_id):
 
         messages.success(request, "Record Updated Successfully")
 
-        return render(request, "msystem/add_person.html")
+        return HttpResponseRedirect(reverse("msystem:clients"))
     else:
         # Get person
         person = Person.objects.get(id=person_id)
@@ -143,6 +143,25 @@ def update_person(request, person_id):
         }
         print(context['dob'])
         return render(request, "msystem/add_person.html", context)
+
+
+def clients(request):
+    p = Person.objects.filter(is_client=True).order_by("id")
+
+    # if there's a search query, filter p
+    if "q" in request.GET:
+        q = request.GET['q']
+        print("====================================================")
+        p = Person.objects.filter(is_client=True).filter(full_name__icontains=q).order_by("id")
+
+    context = {
+        "clients": p,
+    }
+    return render(request, "msystem/clients.html", context)
+
+
+def client_detail(request, client_id):
+    pass
 
 
 def login_view(request):
