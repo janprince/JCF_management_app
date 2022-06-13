@@ -5,14 +5,14 @@
       <div class="page-header">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="page-title">{%if update%}Update Record{%else%}Add Person{% endif %}</h3>
+            <h3 class="page-title">Update Record</h3>
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">{%if update%}Update Client{%else%}Add Client{% endif %}</li>
+              <li class="breadcrumb-item active">Update Client</li>
             </ul>
           </div>
           <div class="col-auto float-end ms-auto">
-            <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#edit_client"><i
+            <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_client"><i
                     class="fa fa-plus"></i> Add Client</a>
             <div class="view-icons">
               <a href="clients" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
@@ -27,20 +27,20 @@
 
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
-            <form method="post" action="{%if update%}{% url 'msystem:update_person' id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm">
+            <form method="post" action="{% url 'msystem:add_person' %}" id="addClientForm">
             {% csrf_token %}
               <!-- Main -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="full_name" {% if full_name %} value="{{full_name}}" {% endif %} required>
+                    <input class="form-control" type="text" name="name" value="{{name}}" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label"> Date of Birth </label>
-                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="date_of_birth" {% if dob %} value="{{dob}}" {% endif %}></div>
+                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="dob" value="{{dob}}"></div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -48,14 +48,14 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Phone<span class="text-danger">*</span></label>
-                        <input class="form-control floating" type="number" name="phone" required {% if phone %} value="{{phone}}" {% endif %}>
+                        <input class="form-control floating" type="number" name="phone" value="{{phone}}" required>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Telephone</label>
-                        <input class="form-control floating" type="number" name="telephone" {% if telephone %} value="{{telephone}}" {% endif %}>
+                        <input class="form-control floating" type="number" name="telephone">
                       </div>
                     </div>
                   </div>
@@ -63,19 +63,19 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Profession</label>
-                    <input class="form-control floating" type="text" name="profession" {% if profession %} value="{{profession}}" {% endif %}>
+                    <input class="form-control floating" type="text" value="profession" name="profession">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Residence</label>
-                    <input class="form-control" type="text" name="residence" {% if residence %} value="{{residence}}" {% endif %}>
+                    <input class="form-control" type="text" value="{{residence}}" name="residence">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Country</label>
-                    <input class="form-control" value="Ghana" type="text" name="country" list="countries" {% if country %} value="{{country}}" {% endif %}>
+                    <input class="form-control" type="text" value="{{country}}" name="country" list="countries">
                       <datalist id="countries">
                         <option value="Ghana">
                         <option value="UK">
@@ -85,20 +85,20 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Hometown</label>
-                    <input class="form-control floating" type="text" name="hometown" {% if hometown %} value="{{hometown}}" {% endif %}>
+                    <input class="form-control floating" type="text" value="{{hometown}}" name="hometown">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Religion</label>
-                    <input class="form-control" value="Christianity" type="text" name="religion" {% if religion %} value="{{religion}}" {% endif %}>
+                    <input class="form-control" value="{{religion}}" type="text" name="religion">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label class="col-form-label">Request Information</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="request_info">{% if request_info %} {{request_info}} {% endif %}</textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="request_info">{{request_info}}</textarea>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Dr. Jan's Remark</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="remark">{% if remark %} {{remark}} {% endif %}</textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="remark"{{remark}}></textarea>
                     </div>
                   </div>
                 </div>
@@ -114,7 +114,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Solution</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="solution">{% if solution %} {{solution}} {% endif %}</textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="solution">{{solution}}</textarea>
                     </div>
                   </div>
                 </div>
@@ -126,16 +126,12 @@
                 <div class="row">
                   <div class="checkbox col-md-6">
                     <label>
-                      {%if update%}
-                      <input type="checkbox" name="roles" value="is_client" {% if is_client %} checked {% endif %}> Client
-                      {% else %}
-                      <input type="checkbox" name="roles" value="is_client" checked> Client
-                      {% endif %}
+                      <input type="checkbox" name="roles" value="client" {% if is_client %}checked{% endif %}> Client
                     </label>
                   </div>
                   <div class="checkbox col-md-6">
                     <label>
-                      <input type="checkbox" name="roles" value="is_student" {% if is_student %} checked {% endif %}> Student
+                      <input type="checkbox" name="roles" value="student" {% if is_student %}checked{% endif %}> Student
                     </label>
                   </div>
 
