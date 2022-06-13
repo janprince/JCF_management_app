@@ -122,11 +122,16 @@ def update_person(request, person_id):
         # Get person
         person = Person.objects.get(id=person_id)
 
+        try:
+            dob = str(datetime.datetime.strftime(person.date_of_birth, '%d/%m/%Y'))
+        except:
+            dob=""
+
         context = {
             "update": True,
             "id": person.id,
             "full_name": person.full_name,
-            "dob": str(datetime.datetime.strftime(person.date_of_birth, '%d/%m/%Y')),
+            "dob": dob,
             "phone": person.phone,
             "telephone": person.telephone,
             "profession": person.profession,
