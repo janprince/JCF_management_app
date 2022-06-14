@@ -149,7 +149,7 @@ def update_person(request, person_id):
         print(context['dob'])
         return render(request, "msystem/add_person.html", context)
 
-
+@login_required(login_url='/login/')
 def clients(request):
     p = Person.objects.filter(is_client=True).order_by("id")
 
@@ -165,8 +165,14 @@ def clients(request):
     return render(request, "msystem/clients.html", context)
 
 
-def client_detail(request, client_id):
-    pass
+def client_profile(request, client_id):
+    p = Person.objects.get(id=client_id)
+
+    context = {
+        'client': p,
+    }
+
+    return render(request, 'msystem/client_profile.html', context)
 
 
 def login_view(request):

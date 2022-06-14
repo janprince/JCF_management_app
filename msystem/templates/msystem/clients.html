@@ -66,10 +66,10 @@
               <tr>
                 <td>
                   <h2 class="table-avatar">
-                    <a href="clients_profile" class="avatar"><img
+                    <a href="{% url 'msystem:client_profile' client.id %}" class="avatar"><img
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
                             alt=""></a>
-                    <a href="clients_profile">{{ client.full_name }}</a>
+                    <a href="{% url 'msystem:client_profile' client.id %}">{{ client.full_name }}</a>
                   </h2>
                 </td>
                 <td>{{ client.phone }}</td>
