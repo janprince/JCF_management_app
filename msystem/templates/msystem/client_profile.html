@@ -1,7 +1,6 @@
 {% extends "msystem/index.html"%}
 {% load static %}
 
-
 {% block content %}
 
 <div class="page-header">
@@ -136,9 +135,9 @@
           <div class="row row-sm">
             {% if client.datafiles %}
               {% for file in client.datafiles.all %}
-                <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
                   <div class="card card-file">
-                    <div class="dropdown-file">
+                    <div class="dropdown-file dropdown profile-action">
                       <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
                       <div class="dropdown-menu dropdown-menu-right">
                         <a href="#" class="dropdown-item">View Details</a>
@@ -148,14 +147,14 @@
                         <a href="#" class="dropdown-item">Delete</a>
                       </div>
                     </div>
-                    <div class="card-file-thumb">
-                      <i class="fa fa-file-word-o"></i>
+                    <div class="card-file-thumb " style="background-color: #f5f5f5; color: #777; font-size: 48px; height: 120px; margin: 5px; text-align: center; padding: 20px">
+                      <i class="fa fa-file-word-o "></i>
                     </div>
                     <div class="card-body">
-                      <h6><a href="">{{ file.file.name }}</a></h6>
+                      <a href="{{ file.file.url }}"><h6 style="color: #1f1f1f">{{ file.file.name|slice:"11:" }}</h6></a>
                       <span>12mb</span>
                     </div>
-                    <div class="card-footer">9 Aug 1:17 PM</div>
+<!--                    <div class="card-footer">9 Aug 1:17 PM</div>-->
                   </div>
                 </div>
               {% endfor %}
