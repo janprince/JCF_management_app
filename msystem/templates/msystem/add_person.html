@@ -27,14 +27,14 @@
 
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
-            <form method="post" action="{%if update%}{% url 'msystem:update_person' id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm" enctype="multipart/form-data">
+            <form method="post" action="{%if update%}{% url 'msystem:update_person' person.id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm" enctype="multipart/form-data">
             {% csrf_token %}
               <!-- Main -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" name="full_name" {% if full_name %} value="{{full_name}}" {% endif %} required>
+                    <input class="form-control" type="text" name="full_name" {% if person.full_name %} value="{{person.full_name}}" {% endif %} required>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -48,7 +48,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Phone<span class="text-danger">*</span></label>
-                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" name="phone" required {% if phone %} value="{{phone}}" {% endif %}>
+                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" name="phone" required {% if person.phone %} value="{{person.phone}}" {% endif %}>
                         <span class="validity"></span>
                       </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Telephone</label>
-                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" name="telephone" {% if telephone %} value="{{telephone}}" {% endif %}>
+                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" name="telephone" {% if person.telephone %} value="{{person.telephone}}" {% endif %}>
                       </div>
                     </div>
                   </div>
@@ -64,19 +64,19 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Profession</label>
-                    <input class="form-control floating" type="text" name="profession" {% if profession %} value="{{profession}}" {% endif %}>
+                    <input class="form-control floating" type="text" name="profession" {% if person.profession %} value="{{person.profession}}" {% endif %}>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Residence</label>
-                    <input class="form-control" type="text" name="residence" {% if residence %} value="{{residence}}" {% endif %}>
+                    <input class="form-control" type="text" name="residence" {% if person.residence %} value="{{person.residence}}" {% endif %}>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Country</label>
-                    <input class="form-control" value="Ghana" type="text" name="country" list="countries" {% if country %} value="{{country}}" {% endif %}>
+                    <input class="form-control" value="Ghana" type="text" name="country" list="countries" {% if person.country %} value="{{country}}" {% endif %}>
                       <datalist id="countries">
                         <option value="Ghana">
                         <option value="UK">
@@ -86,20 +86,20 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Hometown/Region</label>
-                    <input class="form-control floating" type="text" name="hometown" {% if hometown %} value="{{hometown}}" {% endif %}>
+                    <input class="form-control floating" type="text" name="hometown" {% if person.hometown %} value="{{person.hometown}}" {% endif %}>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Religion</label>
-                    <input class="form-control" value="Christianity" type="text" name="religion" {% if religion %} value="{{religion}}" {% endif %}>
+                    <input class="form-control" value="Christianity" type="text" name="religion" {% if person.religion %} value="{{person.religion}}" {% endif %}>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label class="col-form-label">Request Information</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="request_info">{% if request_info %} {{request_info}} {% endif %}</textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="request_info">{% if person.request_info %} {{ person.request_info}} {% endif %}</textarea>
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Dr. Jan's Remark</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="remark">{% if remark %} {{remark}} {% endif %}</textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="remark">{% if person.remark %} {{person.remark}} {% endif %}</textarea>
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
                   <div class="form-group row">
                     <label class="col-form-label">Solution</label>
                     <div class="">
-                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="solution">{% if solution %} {{solution}} {% endif %}</textarea>
+                    <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="solution">{% if person.solution %} {{person.solution}} {% endif %}</textarea>
                     </div>
                   </div>
                 </div>
@@ -124,6 +124,16 @@
                     <label class="col-form-label">File Input (Additional Data)</label>
                     <div class="">
                       <input class="form-control" type="file" name="datafile" multiple>
+                    </div>
+                    <div class="mt-4">
+                      {% if person.datafiles %}
+                      <h4>Attached Files</h4>
+                      <ul>
+                        {% for file in person.datafiles.all %}
+                        <li>{{ file.file.name|slice:"11:"}}</li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -136,7 +146,7 @@
                   <div class="checkbox col-md-6">
                     <label>
                       {%if update%}
-                      <input type="checkbox" name="roles" value="is_client" {% if is_client %} checked {% endif %}> Client
+                      <input type="checkbox" name="roles" value="is_client" {% if person.is_client %} checked {% endif %}> Client
                       {% else %}
                       <input type="checkbox" name="roles" value="is_client" checked> Client
                       {% endif %}
@@ -144,7 +154,7 @@
                   </div>
                   <div class="checkbox col-md-6">
                     <label>
-                      <input type="checkbox" name="roles" value="is_student" {% if is_student %} checked {% endif %}> Student
+                      <input type="checkbox" name="roles" value="is_student" {% if person.is_student %} checked {% endif %}> Student
                     </label>
                   </div>
 
@@ -169,247 +179,247 @@
 {% block modals %}
 
     <!-- Edit client modal -->
-    <div id="edit_client" class="modal custom-modal fade" role="dialog">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Edit Client</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                    <input class="form-control" value="Barry" type="text">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Last Name</label>
-                    <input class="form-control" value="Cuda" type="text">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Username <span class="text-danger">*</span></label>
-                    <input class="form-control" value="barrycuda" type="text">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                    <input class="form-control floating" value="barrycuda@example.com" type="email">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Password</label>
-                    <input class="form-control" value="barrycuda" type="password">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Confirm Password</label>
-                    <input class="form-control" value="barrycuda" type="password">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Client ID <span class="text-danger">*</span></label>
-                    <input class="form-control floating" value="CLT-0001" type="text">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Phone </label>
-                    <input class="form-control" value="9876543210" type="text">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-form-label">Company Name</label>
-                    <input class="form-control" type="text" value="Global Technologies">
-                  </div>
-                </div>
-              </div>
-              <div class="table-responsive m-t-15">
-                <table class="table table-striped custom-table">
-                  <thead>
-                  <tr>
-                    <th>Module Permission</th>
-                    <th class="text-center">Read</th>
-                    <th class="text-center">Write</th>
-                    <th class="text-center">Create</th>
-                    <th class="text-center">Delete</th>
-                    <th class="text-center">Import</th>
-                    <th class="text-center">Export</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>Projects</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tasks</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chat</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estimates</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Invoices</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Timing Sheets</td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                    <td class="text-center">
-                      <input checked="" type="checkbox">
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="submit-section">
-                <button class="btn btn-primary submit-btn">Save</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--    <div id="edit_client" class="modal custom-modal fade" role="dialog">-->
+<!--      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="modal-header">-->
+<!--            <h5 class="modal-title">Edit Client</h5>-->
+<!--            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">-->
+<!--              <span aria-hidden="true">&times;</span>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="modal-body">-->
+<!--            <form>-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>-->
+<!--                    <input class="form-control" value="Barry" type="text">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Last Name</label>-->
+<!--                    <input class="form-control" value="Cuda" type="text">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Username <span class="text-danger">*</span></label>-->
+<!--                    <input class="form-control" value="barrycuda" type="text">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Email <span class="text-danger">*</span></label>-->
+<!--                    <input class="form-control floating" value="barrycuda@example.com" type="email">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Password</label>-->
+<!--                    <input class="form-control" value="barrycuda" type="password">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Confirm Password</label>-->
+<!--                    <input class="form-control" value="barrycuda" type="password">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Client ID <span class="text-danger">*</span></label>-->
+<!--                    <input class="form-control floating" value="CLT-0001" type="text">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Phone </label>-->
+<!--                    <input class="form-control" value="9876543210" type="text">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <div class="form-group">-->
+<!--                    <label class="col-form-label">Company Name</label>-->
+<!--                    <input class="form-control" type="text" value="Global Technologies">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="table-responsive m-t-15">-->
+<!--                <table class="table table-striped custom-table">-->
+<!--                  <thead>-->
+<!--                  <tr>-->
+<!--                    <th>Module Permission</th>-->
+<!--                    <th class="text-center">Read</th>-->
+<!--                    <th class="text-center">Write</th>-->
+<!--                    <th class="text-center">Create</th>-->
+<!--                    <th class="text-center">Delete</th>-->
+<!--                    <th class="text-center">Import</th>-->
+<!--                    <th class="text-center">Export</th>-->
+<!--                  </tr>-->
+<!--                  </thead>-->
+<!--                  <tbody>-->
+<!--                  <tr>-->
+<!--                    <td>Projects</td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>Tasks</td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>Chat</td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>Estimates</td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>Invoices</td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>Timing Sheets</td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                    <td class="text-center">-->
+<!--                      <input checked="" type="checkbox">-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  </tbody>-->
+<!--                </table>-->
+<!--              </div>-->
+<!--              <div class="submit-section">-->
+<!--                <button class="btn btn-primary submit-btn">Save</button>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <!-- Delete client modal -->
-    <div class="modal custom-modal fade" id="delete_client" role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="form-header">
-              <h3>Delete Client</h3>
-              <p>Are you sure want to delete?</p>
-            </div>
-            <div class="modal-btn delete-action">
-              <div class="row">
-                <div class="col-6">
-                  <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-                </div>
-                <div class="col-6">
-                  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--    <div class="modal custom-modal fade" id="delete_client" role="dialog">-->
+<!--      <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="modal-body">-->
+<!--            <div class="form-header">-->
+<!--              <h3>Delete Client</h3>-->
+<!--              <p>Are you sure want to delete?</p>-->
+<!--            </div>-->
+<!--            <div class="modal-btn delete-action">-->
+<!--              <div class="row">-->
+<!--                <div class="col-6">-->
+<!--                  <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>-->
+<!--                </div>-->
+<!--                <div class="col-6">-->
+<!--                  <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
 {% endblock modals %}

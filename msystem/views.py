@@ -151,21 +151,8 @@ def update_person(request, person_id):
 
         context = {
             "update": True,
-            "id": person.id,
-            "full_name": person.full_name,
+            "person": person,
             "dob": dob,
-            "phone": person.phone,
-            "telephone": person.telephone,
-            "profession": person.profession,
-            "residence": person.residence,
-            "country": person.country,
-            "hometown": person.hometown,
-            "religion": person.religion,
-            "request_info": person.request_info,
-            "remark": person.remark,
-            "solution": person.solution,
-            "is_client": person.is_client,
-            "is_student": person.is_student,
 
         }
         print(context['dob'])
