@@ -186,7 +186,7 @@ def clients(request):
     }
     return render(request, "msystem/clients.html", context)
 
-
+@login_required(login_url='/login/')
 def client_profile(request, client_id):
     p = Person.objects.get(id=client_id)
 
@@ -206,7 +206,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, "Login Successful")
-            return HttpResponseRedirect(reverse("msystem:index"))
+            return HttpResponseRedirect(reverse("msystem:clients"))
         else:
             messages.warning(request, "Invalid email or password")
             context = {

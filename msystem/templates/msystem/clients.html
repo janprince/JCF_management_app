@@ -53,6 +53,7 @@
             <table class="table table-striped custom-table datatable">
               <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Country</th>
@@ -64,6 +65,7 @@
               <tbody>
               {% for client in clients %}
               <tr>
+                <td><span class="d-none">-</span>{{ client.id }}</td>
                 <td>
                   <h2 class="table-avatar">
                     <a href="{% url 'msystem:client_profile' client.id %}" class="avatar"><img
