@@ -18,8 +18,13 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ["id", 'person', 'role', 'salary']
 
 
+class DataFileAdmin(admin.ModelAdmin):
+    list_display = ["id", 'person', 'file']
+
+
 # Register your models here.
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Rep, RepAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Booking, BookingAdmin)
+admin.site.register(DataFile, DataFileAdmin)

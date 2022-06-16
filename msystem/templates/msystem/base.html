@@ -46,5 +46,33 @@
     <script src="{% static 'msystem/js/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'msystem/js/validation.init.js' %}"></script>
     <script src="{% static 'msystem/js/app.js' %}"></script>
+    <div class="sidebar-overlay"></div>
+    <div id="toolbarContainer"></div>
+
+    {% if messages %}
+    <div id="toast-container" class="toast-container toast-top-right">
+      {% for message in messages %}
+      <div class="toast toast-{{message.tags}}" aria-live="polite" style="display: block; opacity: 1">
+        <div class="toast-title">Status</div>
+        <div class="toast-message">{{ message }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(hideToast, 5000)
+        });
+
+        function hideToast() {
+            const element = document.querySelector(".toast");
+            // element.style.display = "none";
+            element.remove();
+        }
+    </script>
+
+
   </body>
 </html>

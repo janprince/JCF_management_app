@@ -58,6 +58,17 @@ def add_person(request):
         if 'is_student' in roles: p.is_student = True
         if 'is_client' in roles: p.is_client = True
         p.save()
+
+        # check for uploaded files
+        if request.FILES:
+            print("==========================================================")
+            print(request.FILES)
+            files = request.FILES.getlist('datafile')  # since upload could be multiple
+            for file in files:
+                print(file)
+                d = DataFile(person=p, file=file)
+                d.save()
+
         messages.success(request, "Record Created Successfully")
 
         return HttpResponseRedirect(reverse("msystem:clients"))
@@ -114,6 +125,17 @@ def update_person(request, person_id):
         else: p.is_client = False
 
         p.save()
+
+        # check for uploaded files
+        if request.FILES:
+            print("==========================================================")
+            print(request.FILES)
+            files = request.FILES.getlist('datafile')       # since upload could be multiple
+            for file in files:
+                print(file)
+                d = DataFile(person=p, file=file)
+                d.save()
+
 
         messages.success(request, "Record Updated Successfully")
 
@@ -183,8 +205,10 @@ def login_view(request):
         user = authenticate(request, username=user.username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, "Login Successful")
             return HttpResponseRedirect(reverse("msystem:index"))
         else:
+            messages.warning(request, "Invalid email or password")
             context = {
                 'error': "Invalid email or password",
             }

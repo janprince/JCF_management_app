@@ -296,7 +296,7 @@
             <a href="clients"><i class="la la-book"></i> <span>Appointments</span></a>
           </li>
           <li class="">
-            <a href="clients"><i class="la la-users"></i> <span>Clients</span></a>
+            <a href="{% url 'msystem:clients' %}"><i class="la la-users"></i> <span>Clients</span></a>
           </li>
           <li class="">
             <a href="clients"><i class="la la-chalkboard-teacher"></i> <span>Students</span></a>
@@ -310,7 +310,7 @@
             <span>Clients</span>
           </li>
           <li class="active">
-            <a href="clients"><i class="la la-users"></i> <span>All Clients</span></a>
+            <a href="{% url 'msystem:clients' %}"><i class="la la-users"></i> <span>All Clients</span></a>
           </li>
           <li class="submenu">
             <a href="#"><i class="la la-book-medical"></i> <span>Booking</span> <span class="menu-arrow"></span></a>

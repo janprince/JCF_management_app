@@ -27,7 +27,7 @@
 
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
-            <form method="post" action="{%if update%}{% url 'msystem:update_person' id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm">
+            <form method="post" action="{%if update%}{% url 'msystem:update_person' id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm" enctype="multipart/form-data">
             {% csrf_token %}
               <!-- Main -->
               <div class="row">
@@ -48,14 +48,15 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Phone<span class="text-danger">*</span></label>
-                        <input class="form-control floating" type="number" name="phone" required {% if phone %} value="{{phone}}" {% endif %}>
+                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" name="phone" required {% if phone %} value="{{phone}}" {% endif %}>
+                        <span class="validity"></span>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="col-form-label">Telephone</label>
-                        <input class="form-control floating" type="number" name="telephone" {% if telephone %} value="{{telephone}}" {% endif %}>
+                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" name="telephone" {% if telephone %} value="{{telephone}}" {% endif %}>
                       </div>
                     </div>
                   </div>
@@ -115,6 +116,14 @@
                     <label class="col-form-label">Solution</label>
                     <div class="">
                     <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" form="addClientForm" name="solution">{% if solution %} {{solution}} {% endif %}</textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-form-label">File Input (Additional Data)</label>
+                    <div class="">
+                      <input class="form-control" type="file" name="datafile" multiple>
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 {% extends "msystem/index.html"%}
 {% load static %}
 
+
 {% block content %}
 
 <div class="page-header">
@@ -88,9 +89,10 @@
   <div class="row user-tabs">
     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
       <ul class="nav nav-tabs nav-tabs-bottom">
-        <li class="nav-item col-sm-3"><a class="nav-link active" data-bs-toggle="tab" href="#requestinfo">Request Information</a>
+        <li class="nav-item col-sm-3"><a class="nav-link active" data-bs-toggle="tab" href="#requestinfo">Request Info</a>
         </li>
-        <li class="nav-item col-sm-3"><a class="nav-link" data-bs-toggle="tab" href="#remark">Remark / Solution</a></li>
+        <li class="nav-item col-sm-3"><a class="nav-link" data-bs-toggle="tab" href="#remark">Remark/Solution</a></li>
+        <li class="nav-item col-sm-3"><a class="nav-link" data-bs-toggle="tab" href="#files">Data Files</a></li>
         <li class="nav-item col-sm-3"><a class="nav-link" data-bs-toggle="tab" href="#tasks">Tasks</a></li>
       </ul>
     </div>
@@ -123,6 +125,41 @@
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Files -->
+      <div id="files" class="tab-pane fade">
+        <div>
+          <h4>Files</h4>
+          <div class="row row-sm">
+            {% if client.datafiles %}
+              {% for file in client.datafiles.all %}
+                <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                  <div class="card card-file">
+                    <div class="dropdown-file">
+                      <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item">View Details</a>
+                        <a href="#" class="dropdown-item">Share</a>
+                        <a href="#" class="dropdown-item">Download</a>
+                        <a href="#" class="dropdown-item">Rename</a>
+                        <a href="#" class="dropdown-item">Delete</a>
+                      </div>
+                    </div>
+                    <div class="card-file-thumb">
+                      <i class="fa fa-file-word-o"></i>
+                    </div>
+                    <div class="card-body">
+                      <h6><a href="">{{ file.file.name }}</a></h6>
+                      <span>12mb</span>
+                    </div>
+                    <div class="card-footer">9 Aug 1:17 PM</div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -173,6 +210,7 @@
         </div>
       </div>
 
+      <!-- Tasks Tab -->
       <div id="tasks" class="tab-pane fade">
         <div class="project-task">
           <ul class="nav nav-tabs nav-tabs-top nav-justified mb-0">

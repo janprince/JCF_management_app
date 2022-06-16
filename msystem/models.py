@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Person
@@ -24,6 +25,12 @@ class Person(models.Model):
 
     def __str__(self):
         return f"{self.full_name}"
+
+
+# File Attachment
+class DataFile(models.Model):
+    person = models.ForeignKey(Person, related_name="datafiles", on_delete=models.RESTRICT)
+    file = models.FileField(upload_to="data-files")
 
 
 # JCF Representative
