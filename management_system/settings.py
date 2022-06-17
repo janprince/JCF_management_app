@@ -16,6 +16,9 @@ import environ
 
 env = environ.Env()
 
+# reads .env file
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -78,18 +81,25 @@ WSGI_APPLICATION = 'management_system.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ['DATABASE_ENGINE'],
-        'NAME': BASE_DIR / os.environ['DATABASE_NAME'] if DEBUG else os.environ['DATABASE_NAME'],
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", },
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': os.environ['DATABASE_HOST'],
-        'PORT': os.environ['DATABASE_PORT']
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ['DATABASE_ENGINE'],
+            'NAME': os.environ['DATABASE_NAME'],
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ['DATABASE_ENGINE'],
+            'NAME': os.environ['DATABASE_NAME'],
+            'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", },
+            'USER': os.environ['DATABASE_USER'],
+            'PASSWORD': os.environ['DATABASE_PASSWORD'],
+            'HOST': os.environ['DATABASE_HOST'],
+            'PORT': os.environ['DATABASE_PORT']
+        }
+    }
 
 
 
