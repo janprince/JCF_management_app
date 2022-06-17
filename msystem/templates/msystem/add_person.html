@@ -1,6 +1,8 @@
 {% extends "msystem/index.html"%}
 {% load static %}
 
+{% block title %}{% if update %}Update Client{% else %}Add Clients{% endif %}{% endblock title %}
+
 {% block content %}
       <div class="page-header">
         <div class="row align-items-center">
