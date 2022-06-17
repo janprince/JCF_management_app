@@ -9,7 +9,7 @@
   <div class="header">
 
     <div class="header-left">
-      <a href="dashboard" class="logo">
+      <a href="{% url 'msystem:index' %}" class="logo">
         <img src="{% static 'msystem/img/logo.png' %}" width="40"
              height="40" alt="">
       </a>
@@ -40,31 +40,6 @@
             <input class="form-control" type="text" placeholder="Search here">
             <button class="btn" type="submit"><i class="fa fa-search"></i></button>
           </form>
-        </div>
-      </li>
-
-      <li class="nav-item dropdown has-arrow flag-nav">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">
-          <img src="https://smarthr-ci.dreamguystech.com/template/purple/public/assets/img/flags/us.png" alt=""
-               height="20"> <span>English</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a href="javascript:void(0);" class="dropdown-item">
-            <img src="https://smarthr-ci.dreamguystech.com/template/purple/public/assets/img/flags/us.png" alt=""
-                 height="16"> English
-          </a>
-          <a href="javascript:void(0);" class="dropdown-item">
-            <img src="https://smarthr-ci.dreamguystech.com/template/purple/public/assets/img/flags/fr.png" alt=""
-                 height="16"> French
-          </a>
-          <a href="javascript:void(0);" class="dropdown-item">
-            <img src="https://smarthr-ci.dreamguystech.com/template/purple/public/assets/img/flags/es.png" alt=""
-                 height="16"> Spanish
-          </a>
-          <a href="javascript:void(0);" class="dropdown-item">
-            <img src="https://smarthr-ci.dreamguystech.com/template/purple/public/assets/img/flags/de.png" alt=""
-                 height="16"> German
-          </a>
         </div>
       </li>
 
@@ -265,13 +240,13 @@
       <li class="nav-item dropdown has-arrow main-drop">
         <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
           <span class="user-img"><img
-                  src="https://smarthr-ci.dreamguystech.com/template/purple/public/assets/img/profiles/avatar-21.jpg" alt="">
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png" alt="">
           <span class="status online"></span></span>
           <span>Admin</span>
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="profile">My Profile</a>
-          <a class="dropdown-item" href="settings">Settings</a>
+          <a class="dropdown-item" href="">My Profile</a>
+          <a class="dropdown-item" href="">Settings</a>
           <a class="dropdown-item" href="{% url 'msystem:logout' %}">Logout</a>
         </div>
       </li>

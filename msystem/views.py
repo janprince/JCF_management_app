@@ -12,7 +12,7 @@ from django.contrib import messages
 # Create your views here.
 @login_required(login_url='/login/')
 def index(request):
-    return render(request, "msystem/clients.html")
+    return HttpResponseRedirect(reverse("msystem:clients"))
 
 
 @login_required(login_url='/login/')
