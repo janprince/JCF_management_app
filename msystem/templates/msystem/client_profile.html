@@ -134,7 +134,7 @@
             {% if client.datafiles %}
               {% for file in client.datafiles.all %}
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                  <div class="card card-file">
+                  <div class="card card-file h-100">
                     <div class="dropdown-file dropdown profile-action">
                       <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
                       <div class="dropdown-menu dropdown-menu-right">
@@ -145,11 +145,21 @@
                         <a href="#" class="dropdown-item">Delete</a>
                       </div>
                     </div>
-                    <div class="card-file-thumb " style="background-color: #f5f5f5; color: #777; font-size: 48px; height: 120px; margin: 5px; text-align: center; padding: 20px">
-                      <i class="fa fa-file-word-o "></i>
-                    </div>
+                    {% if ".jpg" in file.file.name or ".png" in file.file.name %}
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#{{file.file.name |slice:'11:16'}}_{{forloop.counter}}">{{file.file.get_extension}}
+                        <div class="card-file-thumb " style="background-color: #f5f5f5; color: #777; font-size: 48px; height: 120px; margin: 5px; text-align: center; padding: 20px">
+                          <i class="fa fa-file-image-o "></i>
+                        </div>
+                      </a>
+                    {%else%}
+                      <a href="{{ file.file.url }}">
+                        <div class="card-file-thumb " style="background-color: #f5f5f5; color: #777; font-size: 48px; height: 120px; margin: 5px; text-align: center; padding: 20px">
+                          <i class="fa fa-file-word-o "></i>
+                        </div>
+                      </a>
+                    {% endif %}
                     <div class="card-body">
-                      <a href="{{ file.file.url }}"><h6 style="color: #1f1f1f">{{ file.file.name|slice:"11:" }}</h6></a>
+                      <h6 style="color: #1f1f1f">{{ file.file.name|slice:"11:" }}</h6>
                       <span>12mb</span>
                     </div>
 <!--                    <div class="card-footer">9 Aug 1:17 PM</div>-->
@@ -558,5 +568,32 @@
 
 
 {% block modals %}
+
+    <!-- Modal for images -->
+    {% if client.datafiles %}
+      {% for file in client.datafiles.all %}
+        {% if ".jpg" in file.file.name or ".png" in file.file.name  %}
+          <div id="{{file.file.name |slice:'11:16'}}_{{forloop.counter}}" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{file.file.name|slice:"11:"}}</h5>
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div>
+                    <img src="{{file.file.url}}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      {%endif%}
+    {% endfor %}
+  {% endif %}
+
+<!--<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_client"><i class="fa fa-plus"></i> Add Client</a>-->
 
 {% endblock modals %}

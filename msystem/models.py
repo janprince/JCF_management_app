@@ -32,6 +32,11 @@ class DataFile(models.Model):
     person = models.ForeignKey(Person, related_name="datafiles", on_delete=models.RESTRICT)
     file = models.FileField(upload_to="data-files")
 
+    def extension(self):
+        import os
+        name, extension = os.path.splitext(self.file.name)
+        return extension
+
 
 # JCF Representative
 class Rep(models.Model):
