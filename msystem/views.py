@@ -29,6 +29,8 @@ def add_person(request):
         country = request.POST.get("country")
         hometown = request.POST['hometown']
         religion = request.POST["religion"]
+        gender = request.POST['gender']
+        referral = request.POST['referral']
         request_info = request.POST["request_info"]
         remark = request.POST["remark"]
         solution = request.POST["solution"]
@@ -44,11 +46,13 @@ def add_person(request):
         p = Person(full_name=full_name,
                    phone=phone,
                    date_of_birth=dob,
+                   gender=gender,
                    telephone=telephone,
                    profession=profession,
                    residence=residence,
                    country=country,
                    hometown=hometown,
+                   referral=referral,
                    religion=religion,
                    request_info=request_info,
                    remark=remark,
@@ -91,6 +95,8 @@ def update_person(request, person_id):
         country = request.POST["country"]
         hometown = request.POST['hometown']
         religion = request.POST["religion"]
+        gender = request.POST['gender']
+        referral = request.POST['referral']
         request_info = request.POST["request_info"]
         remark = request.POST["remark"]
         solution = request.POST["solution"]
@@ -103,19 +109,22 @@ def update_person(request, person_id):
             dob = None
 
         # Create a model instance
-        Person.objects.filter(id=person_id).update(full_name=full_name,
-                   phone=phone,
-                   date_of_birth=dob,
-                   telephone=telephone,
-                   profession=profession,
-                   residence=residence,
-                   country=country,
-                   hometown=hometown,
-                   religion=religion,
-                   request_info=request_info,
-                   remark=remark,
-                   solution=solution
-            )
+        Person.objects.filter(id=person_id).update(
+            full_name=full_name,
+            phone=phone,
+            date_of_birth=dob,
+            telephone=telephone,
+            gender=gender,
+            referral=referral,
+            profession=profession,
+            residence=residence,
+            country=country,
+            hometown=hometown,
+            religion=religion,
+            request_info=request_info,
+            remark=remark,
+            solution=solution
+        )
         # Get person
         p = Person.objects.get(id=person_id)
 

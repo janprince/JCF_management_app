@@ -3,7 +3,7 @@ from .models import *
 
 
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ['id', "full_name", "phone", "country", "is_client", "is_student"]
+    list_display = ['id', "full_name", "gender", "phone", "country", "is_client", "is_student"]
 
 
 class RepAdmin(admin.ModelAdmin):

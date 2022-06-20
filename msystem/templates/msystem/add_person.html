@@ -26,7 +26,6 @@
 
       <div class="container">
 
-
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
             <form method="post" action="{%if update%}{% url 'msystem:update_person' person.id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm" enctype="multipart/form-data">
@@ -71,6 +70,16 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
+                    <label class="col-form-label">Gender</label>
+                    <input  class="form-control floating" list="genders" name="gender" {% if person.gender %} value="{{person.gender}}" {% endif %}>
+                    <datalist id="genders">
+                      <option value="Male">
+                      <option value="Female">
+                    </datalist>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
                     <label class="col-form-label">Residence</label>
                     <input class="form-control" type="text" name="residence" {% if person.residence %} value="{{person.residence}}" {% endif %}>
                   </div>
@@ -95,6 +104,12 @@
                   <div class="form-group">
                     <label class="col-form-label">Religion</label>
                     <input class="form-control" value="Christianity" type="text" name="religion" {% if person.religion %} value="{{person.religion}}" {% endif %}>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Referral</label>
+                    <input class="form-control" type="text" name="referral" {% if person.referral %} value="{{person.referral}}" {% endif %}>
                   </div>
                 </div>
                 <div class="col-md-12">

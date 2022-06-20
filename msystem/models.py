@@ -4,8 +4,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Person
 class Person(models.Model):
+    GENDERS = [("Male", "Male"), ("Female", "Female")]
     date_added = models.DateField(auto_now_add=True)
     full_name = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255, choices=GENDERS, blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
     phone = models.CharField(max_length=255)
     profession = models.CharField(max_length=255, blank=True)
