@@ -167,6 +167,7 @@ def update_person(request, person_id):
         print(context['dob'])
         return render(request, "msystem/add_person.html", context)
 
+
 @login_required(login_url='/login/')
 def clients(request):
     p = Person.objects.filter(is_client=True).order_by("id")
@@ -182,6 +183,7 @@ def clients(request):
     }
     return render(request, "msystem/clients.html", context)
 
+
 @login_required(login_url='/login/')
 def client_profile(request, client_id):
     p = Person.objects.get(id=client_id)
@@ -191,6 +193,23 @@ def client_profile(request, client_id):
     }
 
     return render(request, 'msystem/client_profile.html', context)
+
+
+def students(request):
+    studs = Person.objects.filter(is_student=True).order_by("id")
+
+    # if there's a search query, filter p
+    if "q" in request.GET:
+        q = request.GET['q']
+        print("====================================================")
+        studs = Person.objects.filter(is_student=True).filter(full_name__icontains=q).order_by("id")
+
+    context = {
+        "clients": studs,
+        "page": "students"
+    }
+    return render(request, "msystem/students.html", context)
+    pass
 
 
 def login_view(request):

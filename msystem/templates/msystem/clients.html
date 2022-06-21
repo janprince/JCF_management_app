@@ -7,10 +7,10 @@
       <div class="page-header">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="page-title">Clients</h3>
+            <h3 class="page-title">{% block page-title %}Clients{% endblock page-title %}</h3>
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">Clients</li>
+              <li class="breadcrumb-item active">{% block breadcrumb %}Clients {% endblock breadcrumb %}</li>
             </ul>
           </div>
           <div class="col-auto float-end ms-auto">
@@ -24,12 +24,12 @@
         </div>
       </div>
 
-      <form class="row filter-row" method="get" action="{% url 'msystem:clients' %}">
+      <form class="row filter-row" method="get" {% block search_action %}action="{% url 'msystem:clients' %}"{% endblock search_action %}>
 
           <div class="col-sm-6 col-md-4">
             <div class="form-group form-focus">
               <input type="text" class="form-control floating" name="q">
-              <label class="focus-label">Client Name</label>
+              <label class="focus-label">Name</label>
             </div>
           </div>
           <div class="col-sm-6 col-md-4">
