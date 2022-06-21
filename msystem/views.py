@@ -145,7 +145,7 @@ def update_person(request, person_id):
                 d = DataFile(person=p, file=file)
                 d.save()
 
-
+        # feedback
         messages.success(request, "Record Updated Successfully")
 
         return HttpResponseRedirect(reverse("msystem:clients"))
@@ -195,6 +195,7 @@ def client_profile(request, client_id):
     return render(request, 'msystem/client_profile.html', context)
 
 
+@login_required(login_url='/login/')
 def students(request):
     studs = Person.objects.filter(is_student=True).order_by("id")
 
@@ -210,6 +211,34 @@ def students(request):
     }
     return render(request, "msystem/students.html", context)
     pass
+
+
+def book_client(request, client_id):
+    client = Person.objects.get(id=client_id)
+
+    if request.method == "POST":
+        appointment_date = request.POST["appointment_date"]
+        mode = request.POST["mode"]
+
+        # parse date
+        try:
+            appointment_date = datetime.datetime.strptime(appointment_date, "%d/%m/%Y").date()
+        except:
+            appointment_date = None
+
+        a = Appointment(person=client, mode=mode, date=appointment_date)
+        a.save()
+
+        # feedback
+        messages.success(request, "Appointment Booked Successfully")
+
+        return HttpResponseRedirect(reverse("msystem:clients"))
+
+    context = {
+        "client": client,
+    }
+
+    return render(request, "msystem/book_client.html", context)
 
 
 def login_view(request):

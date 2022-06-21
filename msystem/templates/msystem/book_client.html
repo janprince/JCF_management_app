@@ -1,0 +1,95 @@
+{% extends "msystem/index.html"%}
+{% load static %}
+
+{% block title %}{% if update %}Update Client{% else %}Add Clients{% endif %}{% endblock title %}
+
+{% block content %}
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title">Set Appointment</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+              <li class="breadcrumb-item active">Set Appointment</li>
+            </ul>
+          </div>
+<!--          <div class="col-auto float-end ms-auto">-->
+<!--            <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#edit_client"><i-->
+<!--                    class="fa fa-plus"></i> Add Client</a>-->
+<!--            <div class="view-icons">-->
+<!--              <a href="clients" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>-->
+<!--              <a href="clients_list" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+
+      <div class="container">
+
+        <div class="account-box " id="add_client">
+          <div class="account-wrapper">
+            <form method="post" action="{% url 'msystem:book_client' client.id %}" id="addClientForm" enctype="multipart/form-data">
+            {% csrf_token %}
+              <!-- Main -->
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" value="{{client.full_name}}" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-form-label">Phone</label>
+                        <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" value="{{client.phone}}" disabled>
+                        <span class="validity"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-form-label">Country</label>
+                        <input class="form-control floating" type="text" value="{{client.country}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label"> Appointment Date<span class="text-danger">*</span></label>
+                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="appointment_date" required></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Mode <span class="text-danger">*</span></label>
+                    <input  class="form-control floating" list="modes" name="mode" required>
+                    <datalist id="modes">
+                      <option value="Onsite">
+                      <option value="Remote">
+                    </datalist>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Submit button -->
+              <div class="submit-section">
+                <button class="btn btn-primary submit-btn mb-5">Book</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+{% endblock content %}
+
+
+
+{% block modals %}
+{% endblock modals %}

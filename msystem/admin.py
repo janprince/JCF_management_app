@@ -10,8 +10,8 @@ class RepAdmin(admin.ModelAdmin):
     list_display = ['id', 'person', 'country']
 
 
-class BookingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'person', 'date', 'modes']
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'person', 'date', 'mode', "done"]
 
 
 class EmployeeAdmin(admin.ModelAdmin):
@@ -26,5 +26,5 @@ class DataFileAdmin(admin.ModelAdmin):
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Rep, RepAdmin)
 admin.site.register(Employee, EmployeeAdmin)
-admin.site.register(Booking, BookingAdmin)
+admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(DataFile, DataFileAdmin)

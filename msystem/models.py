@@ -60,9 +60,14 @@ class Employee(models.Model):
         return f"{self.person.full_name}"
 
 
-class Booking(models.Model):
-    MODES = [("REMOTE", "Remote"), ("ONSITE", "Onsite")]
-    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="bookings")
-    modes = models.CharField(max_length=255, choices=MODES)
+class Appointment(models.Model):
+    MODES = [("Remote", "Remote"), ("Onsite", "Onsite")]
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="appointments")
+    mode = models.CharField(max_length=255, choices=MODES)
     date = models.DateField()
+    done = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Appointment: {self.person.full_name}"
+
 
