@@ -77,7 +77,7 @@ def add_person(request):
 
         return HttpResponseRedirect(reverse("msystem:clients"))
     else:
-        return render(request, "msystem/add_person.html")
+        return render(request, "msystem/modify_person.html")
 
 
 @login_required(login_url='/login/')
@@ -165,7 +165,7 @@ def update_person(request, person_id):
 
         }
         print(context['dob'])
-        return render(request, "msystem/add_person.html", context)
+        return render(request, "msystem/modify_person.html", context)
 
 
 @login_required(login_url='/login/')
