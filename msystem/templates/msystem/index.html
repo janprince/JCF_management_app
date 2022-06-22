@@ -267,14 +267,14 @@
 <!--          <li class="">-->
 <!--            <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span></a>-->
 <!--          </li>-->
-<!--          <li class="">-->
-<!--            <a href="clients"><i class="la la-book"></i> <span>Appointments</span></a>-->
-<!--          </li>-->
           <li class="{% if 'clients' in request.path %}active{% endif %}">
             <a href="{% url 'msystem:clients' %}"><i class="la la-users"></i> <span>Clients</span></a>
           </li>
           <li  class="{% if 'students' in request.path %}active{% endif %}">
             <a href="{% url 'msystem:students' %}"><i class="la la-chalkboard-teacher"></i> <span>Students</span></a>
+          </li>
+          <li class="{% if 'appointments' in request.path %}active{% endif %}">
+            <a href="{% url 'msystem:appointments' %}"><i class="la la-book"></i> <span>Appointments</span></a>
           </li>
 <!--          <li class="">-->
 <!--            <a href="clients"><i class="la la-institution"></i> <span>Reps</span></a>-->

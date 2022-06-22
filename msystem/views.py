@@ -232,13 +232,28 @@ def book_client(request, client_id):
         # feedback
         messages.success(request, "Appointment Booked Successfully")
 
-        return HttpResponseRedirect(reverse("msystem:clients"))
+        return HttpResponseRedirect(reverse("msystem:appointments"))
 
     context = {
         "client": client,
     }
 
     return render(request, "msystem/book_client.html", context)
+
+
+def appointments(request):
+    a = Appointment.objects.filter(done=False).order_by("id")
+
+    # if there's a search query, filter p
+    if "q" in request.GET:
+        q = request.GET['q']
+        print("====================================================")
+        a = Appointment.objects.filter(done=False, person__full_name__icontains=q).order_by("id")
+
+    context = {
+        "appointments": a,
+    }
+    return render(request, "msystem/appointments.html", context)
 
 
 def login_view(request):
