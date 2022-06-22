@@ -7,20 +7,12 @@
       <div class="page-header">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="page-title">Set Appointment</h3>
+            <h3 class="page-title">{% if appointment %}Update Appointment {% else %} Set Appointment {% endif %}</h3>
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">Set Appointment</li>
+              <li class="breadcrumb-item active">{% if appointment %}Update Appointment {% else %} Set Appointment {% endif %}</li>
             </ul>
           </div>
-<!--          <div class="col-auto float-end ms-auto">-->
-<!--            <a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#edit_client"><i-->
-<!--                    class="fa fa-plus"></i> Add Client</a>-->
-<!--            <div class="view-icons">-->
-<!--              <a href="clients" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>-->
-<!--              <a href="clients_list" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>-->
-<!--            </div>-->
-<!--          </div>-->
         </div>
       </div>
 
@@ -28,7 +20,7 @@
 
         <div class="account-box " id="add_client">
           <div class="account-wrapper">
-            <form method="post" action="{% url 'msystem:book_client' client.id %}" id="addClientForm" enctype="multipart/form-data">
+            <form method="post" action="{% if appointment %} {% url 'msystem:change_appointment' appointment.id %}{% else %} {% url 'msystem:book_client' client.id %} {% endif %}" id="addClientForm" enctype="multipart/form-data">
             {% csrf_token %}
               <!-- Main -->
               <div class="row">
@@ -60,13 +52,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label"> Appointment Date<span class="text-danger">*</span></label>
-                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="appointment_date" required></div>
+                    <div class="cal-icon"><input class="form-control datetimepicker" type="text" name="appointment_date" {% if appointment %} value="{{ap_date}}" {% endif %} required></div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-form-label">Mode <span class="text-danger">*</span></label>
-                    <input  class="form-control floating" list="modes" name="mode" required>
+                    <input  class="form-control floating" list="modes" name="mode" required {% if appointment %} value="{{ appointment.mode }}" {% endif %}>
                     <datalist id="modes">
                       <option value="Onsite">
                       <option value="Remote">
@@ -78,7 +70,7 @@
 
               <!-- Submit button -->
               <div class="submit-section">
-                <button class="btn btn-primary submit-btn mb-5">Book</button>
+                <button class="btn btn-primary submit-btn mb-5">{% if appointment %} Update Appointment {% else %} Book Appointment {% endif %}</button>
               </div>
 
             </form>

@@ -94,13 +94,38 @@
                             class="material-icons">more_vert</i></a>
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="{% url 'msystem:update_person' client.id %}" data-bs-toggle="" data-bs-target=""><i
-                              class="fa fa-pencil m-r-5"></i> Edit</a>
-                      <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_client"><i
-                              class="fa fa-trash-o m-r-5"></i> Delete</a>
+                              class="fa fa-pencil m-r-5"></i>Edit</a>
+                      <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_client_{{client.id}}" id="deleteModal"><i
+                          class="fa fa-trash-o m-r-5"></i>Delete</a>
                     </div>
                   </div>
                 </td>
               </tr>
+
+
+              <!-- Delete client modal -->
+              <div class="modal custom-modal fade" id="delete_client_{{client.id}}" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="form-header">
+                        <h3>Delete Client</h3>
+                        <p>Are you sure want to delete?</p>
+                      </div>
+                      <div class="modal-btn delete-action">
+                        <div class="row">
+                          <div class="col-6">
+                            <a href="{% url 'msystem:delete_client' client.id %}" class="btn btn-primary continue-btn">Delete</a>
+                          </div>
+                          <div class="col-6">
+                            <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {% endfor %}
               </tbody>
             </table>
@@ -113,7 +138,7 @@
 
 {% block modals %}
 
-      <!-- Add client modal -->
+    <!-- Add client modal -->
     <div id="add_client" class="modal custom-modal fade" role="dialog">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -565,7 +590,7 @@
             <div class="modal-btn delete-action">
               <div class="row">
                 <div class="col-6">
-                  <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+                  <a href="javascript:document.querySelector('#deleteModal').target.href" class="btn btn-primary continue-btn">Delete</a>
                 </div>
                 <div class="col-6">
                   <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>

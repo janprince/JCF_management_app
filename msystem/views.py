@@ -9,6 +9,7 @@ import datetime
 from django.contrib import messages
 
 
+
 # Create your views here.
 @login_required(login_url='/login/')
 def index(request):
@@ -108,7 +109,7 @@ def update_person(request, person_id):
         except:
             dob = None
 
-        # Create a model instance
+        # Update a model instance
         Person.objects.filter(id=person_id).update(
             full_name=full_name,
             phone=phone,
@@ -164,7 +165,6 @@ def update_person(request, person_id):
             "dob": dob,
 
         }
-        print(context['dob'])
         return render(request, "msystem/modify_person.html", context)
 
 
@@ -193,6 +193,18 @@ def client_profile(request, client_id):
     }
 
     return render(request, 'msystem/client_profile.html', context)
+
+
+def delete_client(request, client_id):
+    c = Person.objects.get(id=client_id)
+    try:
+        c.delete()
+        # feedback
+        messages.success(request, f"{c.full_name} deleted")
+    except:
+        messages.warning(request, f"Deletion Failed")
+
+    return HttpResponseRedirect(reverse("msystem:clients"))
 
 
 @login_required(login_url='/login/')
@@ -254,6 +266,44 @@ def appointments(request):
         "appointments": a,
     }
     return render(request, "msystem/appointments.html", context)
+
+
+def change_appointment(request, ap_id):
+    ap = Appointment.objects.get(id=ap_id)
+    client = ap.person
+
+    if request.method == "POST":
+        appointment_date = request.POST["appointment_date"]
+        mode = request.POST["mode"]
+
+        # parse date
+        try:
+            appointment_date = datetime.datetime.strptime(appointment_date, "%d/%m/%Y").date()
+        except:
+            appointment_date = None
+
+        Appointment.objects.filter(id=ap_id).update(
+            mode=mode,
+            date=appointment_date
+        )
+
+        # feedback
+        messages.success(request, "Appointment Updated Successfully")
+
+        return HttpResponseRedirect(reverse("msystem:appointments"))
+
+    try:
+        ap_date = str(datetime.datetime.strftime(ap.date, '%d/%m/%Y'))
+    except:
+        ap_date = ""
+
+    context = {
+        "appointment": ap,
+        "ap_date": ap_date,
+        "client": client,
+    }
+
+    return render(request, "msystem/book_client.html", context)
 
 
 def login_view(request):
