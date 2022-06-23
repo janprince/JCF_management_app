@@ -46,6 +46,10 @@
     <script src="{% static 'msystem/js/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'msystem/js/validation.init.js' %}"></script>
     <script src="{% static 'msystem/js/app.js' %}"></script>
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+
     <div class="sidebar-overlay"></div>
     <div id="toolbarContainer"></div>
 

@@ -95,37 +95,13 @@
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="{% url 'msystem:update_person' client.id %}" data-bs-toggle="" data-bs-target=""><i
                               class="fa fa-pencil m-r-5"></i>Edit</a>
-                      <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_client_{{client.id}}" id="deleteModal"><i
+                      <a class="dropdown-item delete_anchor" href="#" data-bs-toggle="modal" data-bs-target="#delete_client" data-link="{% url 'msystem:delete_client' client.id %}"><i
                           class="fa fa-trash-o m-r-5"></i>Delete</a>
                     </div>
                   </div>
                 </td>
               </tr>
 
-
-              <!-- Delete client modal -->
-              <div class="modal custom-modal fade" id="delete_client_{{client.id}}" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <div class="form-header">
-                        <h3>Delete Client</h3>
-                        <p>Are you sure want to delete?</p>
-                      </div>
-                      <div class="modal-btn delete-action">
-                        <div class="row">
-                          <div class="col-6">
-                            <a href="{% url 'msystem:delete_client' client.id %}" class="btn btn-primary continue-btn">Delete</a>
-                          </div>
-                          <div class="col-6">
-                            <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               {% endfor %}
               </tbody>
             </table>
@@ -590,7 +566,7 @@
             <div class="modal-btn delete-action">
               <div class="row">
                 <div class="col-6">
-                  <a href="javascript:document.querySelector('#deleteModal').target.href" class="btn btn-primary continue-btn">Delete</a>
+                  <a href="" class="btn btn-primary continue-btn" id="delete_btn">Delete</a>
                 </div>
                 <div class="col-6">
                   <a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -602,4 +578,21 @@
       </div>
     </div>
 
+
 {% endblock modals %}
+
+{% block extra_scripts %}
+
+    <!-- Script to pass data into delete model -->
+    <script type="text/javascript">
+      $('#delete_client').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var deleteHref = $(e.relatedTarget).data('link');
+          console.log(deleteHref)
+
+          const delete_btn = document.querySelector("#delete_btn")
+          delete_btn.href = deleteHref;
+      });
+    </script>
+{% endblock extra_scripts %}
