@@ -25,8 +25,8 @@ class Person(models.Model):
     is_client = models.BooleanField(blank=True, default=True)
     is_student = models.BooleanField(default=False)
 
-    # class Meta:
-    #     unique_together = ["full_name", "phone"]
+    class Meta:
+        unique_together = ["full_name", "phone"]
 
     def __str__(self):
         return f"{self.full_name}"
