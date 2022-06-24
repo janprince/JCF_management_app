@@ -10,7 +10,6 @@ from django.contrib import messages
 from django.db import IntegrityError
 
 
-# Create your views here.
 @login_required(login_url='/login/')
 def index(request):
     return HttpResponseRedirect(reverse("msystem:clients"))
@@ -193,17 +192,23 @@ def clients(request):
 @login_required(login_url='/login/')
 def client_profile(request, client_id):
     p = Person.objects.get(id=client_id)
-    p_appointments = p.appointments.filter(done=False)
-    print(p_appointments)
+
+    # get client's appointment due toady, if any;
+    try:
+        p_appointment = p.appointments.get(done=False, date=date.today())
+    except:
+        p_appointment = None
+    print(p_appointment)
 
     context = {
         'client': p,
-
+        'client_has_appointment': p_appointment
     }
 
     return render(request, 'msystem/client_profile.html', context)
 
 
+@login_required(login_url='/login/')
 def delete_client(request, client_id):
     c = Person.objects.get(id=client_id)
     try:
@@ -234,6 +239,7 @@ def students(request):
     pass
 
 
+@login_required(login_url='/login/')
 def book_client(request, client_id):
     client = Person.objects.get(id=client_id)
 
@@ -266,9 +272,10 @@ def book_client(request, client_id):
     return render(request, "msystem/book_client.html", context)
 
 
+@login_required(login_url='/login/')
 def appointments(request):
     a = Appointment.objects.filter(done=False).order_by("id")
-
+    # a = Appointment.objects.filter(date__gte=date.today()).order_by('id')
     # if there's a search query, filter p
     if "q" in request.GET:
         q = request.GET['q']
@@ -281,6 +288,7 @@ def appointments(request):
     return render(request, "msystem/appointments.html", context)
 
 
+@login_required(login_url='/login/')
 def change_appointment(request, ap_id):
     ap = Appointment.objects.get(id=ap_id)
     client = ap.person
@@ -319,6 +327,7 @@ def change_appointment(request, ap_id):
     return render(request, "msystem/book_client.html", context)
 
 
+@login_required(login_url='/login/')
 def delete_appointment(request, ap_id):
     a = Appointment.objects.get(id=ap_id)
 
@@ -332,6 +341,7 @@ def delete_appointment(request, ap_id):
     return HttpResponseRedirect(reverse("msystem:appointments"))
 
 
+@login_required(login_url='/login/')
 def mark_appointment(request, ap_id):
     a = Appointment.objects.get(id=ap_id)
     a.done = True

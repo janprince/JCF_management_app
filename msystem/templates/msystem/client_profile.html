@@ -36,7 +36,13 @@
                   <h3 class="user-name m-t-0">{{ client.full_name }}</h3>
                   <h4 class="company-role m-t-0 mb-0 text-muted">{{ client.profession }}</h4>
                   <div class="staff-id">Client ID : {{ client.id }}</div>
-                  <div class="staff-msg"><a href="" class="btn btn-custom">Print Record </a></div>
+                  <div class="staff-msg">
+                    {% if client_has_appointment %}
+                      <a href="{% url 'msystem:mark_appointment' client_has_appointment.id %}" class="btn btn-custom">Complete Appointment</a>
+                    {% else %}
+                      <a href="" class="btn btn-custom">Print Record</a>
+                    {% endif %}
+                  </div>
                 </div>
               </div>
               <div class="col-md-7">

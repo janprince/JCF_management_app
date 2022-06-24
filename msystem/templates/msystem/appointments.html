@@ -65,7 +65,7 @@
                 </td>
                 <td>{{ ap.person.phone }}</td>
                 <td>{{ ap.mode }}</td>
-                <td>{{ ap.date }}</td>
+                <td>{% if ap.is_today %}{{ ap.date }} <strong class="text-success ">(Today)</strong> {% else %} {{ ap.date }} {% endif %} </td>
                 <td>{{ap.person.country}}</td>
                 <td class="text-end">
                   <div class="dropdown dropdown-action">

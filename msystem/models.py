@@ -1,5 +1,5 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
+from datetime import date
 
 
 # Person
@@ -77,4 +77,6 @@ class Appointment(models.Model):
     def __str__(self):
         return f"Appointment: {self.person.full_name}"
 
-
+    @property
+    def is_today(self):
+        return self.date == date.today()
