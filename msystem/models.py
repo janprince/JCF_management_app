@@ -58,7 +58,7 @@ class Employee(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE)
     role = models.CharField(max_length=255, blank=True)
     duties = models.TextField(blank=True)
-    salary = models.IntegerField(blank=True, null=True)
+    salary = models.CharField(blank=True, max_length=255, default="000")
 
     def __str__(self):
         return f"{self.person.full_name}"

@@ -352,6 +352,74 @@ def mark_appointment(request, ap_id):
     return HttpResponseRedirect(reverse("msystem:appointments"))
 
 
+@login_required(login_url='/login/')
+def employees(request):
+    emps = Employee.objects.all()
+
+    # if there's a search query, filter p
+    if "q" in request.GET:
+        q = request.GET['q']
+        emps = Employee.objects.filter(person__full_name__icontains=q).order_by("id")
+
+    context = {
+        "employees": emps,
+    }
+    return render(request, "msystem/employees.html", context)
+
+
+@login_required(login_url='/login/')
+def add_employee(request, person_id):
+    person = Person.objects.get(id=person_id)
+
+    if request.method == "POST":
+        role = request.POST["role"]
+        duties = request.POST["duties"]
+        salary = request.POST["salary"]
+
+        emp = Employee(person=person, role=role, duties=duties, salary=salary)
+        emp.save()
+
+        # feedback
+        messages.success(request, "Employee Added")
+
+        return HttpResponseRedirect(reverse("msystem:employees"))
+
+    context = {
+        "person": person,
+    }
+
+    return render(request, "msystem/add_employee.html", context)
+
+
+@login_required(login_url='/login/')
+def update_employee(request, emp_id):
+    emp = Employee.objects.get(id=emp_id)
+    person = emp.person
+
+    if request.method == "POST":
+        role = request.POST["role"]
+        duties = request.POST["duties"]
+        salary = request.POST["salary"]
+
+        Employee.objects.filter(id=emp_id).update(
+            role=role,
+            duties=duties,
+            salary=salary,
+        )
+
+        # feedback
+        messages.success(request, f"Employee #{emp.id} Updated")
+
+        return HttpResponseRedirect(reverse("msystem:employees"))
+
+    context = {
+        "employee": emp,
+        "person": person,
+    }
+
+    return render(request, "msystem/add_employee.html", context)
+
+
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get("useremail")

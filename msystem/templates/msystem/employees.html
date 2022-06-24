@@ -1,0 +1,92 @@
+{% extends "msystem/index.html"%}
+{% load static %}
+
+{% block title %}Employees{% endblock title %}
+
+{% block content %}
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title">Employees</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+              <li class="breadcrumb-item active">Employees</li>
+            </ul>
+          </div>
+          <div class="col-auto float-end ms-auto">
+            <a href="{% url 'msystem:clients' %}" class="btn add-btn" ><i
+                    class="fa fa-plus"></i> Add Employee</a>
+<!--            <div class="view-icons">-->
+<!--              <a href="clients" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>-->
+<!--              <a href="clients_list" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>-->
+<!--            </div>-->
+          </div>
+        </div>
+      </div>
+
+      <form class="row filter-row" method="get" action="{% url 'msystem:employees' %}">
+
+          <div class="col-sm-6 col-md-8">
+            <div class="form-group form-focus">
+              <input type="text" class="form-control floating" name="q">
+              <label class="focus-label">Name</label>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="d-grid">
+              <button href="#" class="btn btn-success" type="submit"> Search </button>
+            </div>
+          </div>
+
+      </form>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-striped custom-table datatable">
+              <thead>
+              <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Salary</th>
+                <th class="text-end">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for employee in employees %}
+              <tr>
+                <td><span class="d-none">-</span>{{ employee.id }}</td>
+                <td>
+                  <h2 class="table-avatar">
+                    <a href="{% url 'msystem:client_profile' employee.person.id %}" class="avatar"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
+                            alt=""></a>
+                    <a href="{% url 'msystem:client_profile' employee.person.id %}">{{employee.person.full_name }}</a>
+                  </h2>
+                </td>
+                <td>{{ employee.person.phone }}</td>
+                <td>{{employee.role}}</td>
+                <td>{{ employee.salary }}</td>
+                <td class="text-end">
+                  <div class="dropdown dropdown-action">
+                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i
+                            class="material-icons">more_vert</i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="{% url 'msystem:update_employee' employee.id %}" data-bs-toggle="" data-bs-target=""><i
+                              class="fa fa-pencil m-r-5"></i>Edit</a>
+<!--                      <a class="dropdown-item delete_anchor" href="#" data-bs-toggle="modal" data-bs-target="#delete_client" data-link="{% url 'msystem:delete_client' employee.person.id %}"><i-->
+<!--                          class="fa fa-trash-o m-r-5"></i>Delete</a>-->
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+{% endblock content %}
