@@ -332,8 +332,6 @@ def mark_appointment(request, ap_id):
     return HttpResponseRedirect(reverse("msystem:appointments"))
 
 
-
-
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get("useremail")

@@ -13,6 +13,8 @@ urlpatterns = [
     path("clients/delete/<int:client_id>", views.delete_client, name="delete_client"),
     path("appointments/", views.appointments, name="appointments"),
     path("appointments/change/<int:ap_id>", views.change_appointment, name="change_appointment"),
+    path("appointments/delete/<int:ap_id>", views.delete_appointment, name="delete_appointment"),
+    path("appointments/mark/<int:ap_id>", views.mark_appointment, name="mark_appointment"),
     path("login/", views.login_view, name='login'),
     path("logout/", views.logout_view, name='logout'),
 ]
