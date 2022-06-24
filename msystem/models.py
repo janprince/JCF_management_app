@@ -54,6 +54,7 @@ class Rep(models.Model):
 class Employee(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE)
     role = models.CharField(max_length=255, blank=True)
+    duties = models.TextField(blank=True)
     salary = models.IntegerField(blank=True, null=True)
 
     def __str__(self):

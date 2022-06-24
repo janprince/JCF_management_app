@@ -187,9 +187,12 @@ def clients(request):
 @login_required(login_url='/login/')
 def client_profile(request, client_id):
     p = Person.objects.get(id=client_id)
+    p_appointments = p.appointments.filter(done=False)
+    print(p_appointments)
 
     context = {
         'client': p,
+
     }
 
     return render(request, 'msystem/client_profile.html', context)
@@ -304,6 +307,31 @@ def change_appointment(request, ap_id):
     }
 
     return render(request, "msystem/book_client.html", context)
+
+
+def delete_appointment(request, ap_id):
+    a = Appointment.objects.get(id=ap_id)
+
+    try:
+        a.delete()
+        # feedback
+        messages.success(request, f"Appointment with {a.person.full_name} deleted")
+    except:
+        messages.warning(request, f"Deletion Failed")
+
+    return HttpResponseRedirect(reverse("msystem:appointments"))
+
+
+def mark_appointment(request, ap_id):
+    a = Appointment.objects.get(id=ap_id)
+    a.done = True
+    a.save()
+
+    messages.success(request, f"Appointment #{ap_id} marked complete")
+
+    return HttpResponseRedirect(reverse("msystem:appointments"))
+
+
 
 
 def login_view(request):
