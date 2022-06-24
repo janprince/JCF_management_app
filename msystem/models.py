@@ -57,7 +57,7 @@ class Rep(models.Model):
 class Employee(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE)
     role = models.CharField(max_length=255, blank=True)
-
+    duties = models.TextField(blank=True)
     salary = models.CharField(blank=True, max_length=255, default="000")
 
     def __str__(self):
@@ -71,8 +71,6 @@ class Appointment(models.Model):
     date = models.DateField()
     done = models.BooleanField(default=False)
 
-    class Meta:
-        unique_together = ["person", "date"]
 
     def __str__(self):
         return f"Appointment: {self.person.full_name}"
