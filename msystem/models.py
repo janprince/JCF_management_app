@@ -71,6 +71,8 @@ class Appointment(models.Model):
     date = models.DateField()
     done = models.BooleanField(default=False)
 
+    class Meta:
+        unique_together = ["person", "date"]
 
     def __str__(self):
         return f"Appointment: {self.person.full_name}"
