@@ -7,7 +7,7 @@ from django.urls import reverse
 from .models import *
 import datetime
 from django.contrib import messages
-
+from django.db import IntegrityError
 
 
 # Create your views here.
@@ -62,7 +62,13 @@ def add_person(request):
 
         if 'is_student' in roles: p.is_student = True
         if 'is_client' in roles: p.is_client = True
-        p.save()
+
+        # handling errors - duplicate Person instance
+        try:
+            p.save()
+        except IntegrityError:
+            messages.warning(request, "Profile Already Exists")
+            return HttpResponseRedirect(reverse("msystem:clients"))
 
         # check for uploaded files
         if request.FILES:
@@ -241,8 +247,12 @@ def book_client(request, client_id):
         except:
             appointment_date = None
 
-        a = Appointment(person=client, mode=mode, date=appointment_date)
-        a.save()
+        try:
+            a = Appointment(person=client, mode=mode, date=appointment_date)
+            a.save()
+        except IntegrityError:
+            messages.warning(request, "Appointment already exists.")
+            return HttpResponseRedirect(reverse("msystem:appointments"))
 
         # feedback
         messages.success(request, "Appointment Booked Successfully")
