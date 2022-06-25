@@ -69,21 +69,36 @@ def add_person(request):
             messages.warning(request, "Profile Already Exists")
             return HttpResponseRedirect(reverse("msystem:clients"))
 
-        # check for uploaded files
-        if request.FILES:
-            print("==========================================================")
-            print(request.FILES)
-            files = request.FILES.getlist('datafile')  # since upload could be multiple
-            for file in files:
-                print(file)
-                d = DataFile(person=p, file=file)
-                d.save()
+        # add_datafiles
+        add_datafiles(request, p)
 
         messages.success(request, "Record Created Successfully")
 
         return HttpResponseRedirect(reverse("msystem:clients"))
     else:
         return render(request, "msystem/modify_person.html")
+
+
+def add_datafiles(request, person):
+    # check for uploaded files
+    if request.FILES:
+        print("==========================================================")
+        print(request.FILES)
+        files = request.FILES.getlist('datafile')  # since upload could be multiple
+        for file in files:
+            print(file)
+            d = DataFile(person=person, file=file)
+            d.save()
+
+
+def add_client_files(request, person_id):
+    person = Person.objects.get(id=person_id)
+
+    if request.method == "POST":
+        add_datafiles(request, person)
+        print("slfvi55555555555555555555555555555555555555555555555555555555555555555")
+
+    return  HttpResponseRedirect(reverse("msystem:clients"))
 
 
 @login_required(login_url='/login/')
@@ -141,15 +156,8 @@ def update_person(request, person_id):
 
         p.save()
 
-        # check for uploaded files
-        if request.FILES:
-            print("==========================================================")
-            print(request.FILES)
-            files = request.FILES.getlist('datafile')       # since upload could be multiple
-            for file in files:
-                print(file)
-                d = DataFile(person=p, file=file)
-                d.save()
+        # add datafiles
+        add_datafiles(request, p)
 
         # feedback
         messages.success(request, "Record Updated Successfully")

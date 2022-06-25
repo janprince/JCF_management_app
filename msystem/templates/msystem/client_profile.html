@@ -175,6 +175,20 @@
             {% endif %}
           </div>
         </div>
+
+        <div class="col-md-12">
+          <form class="form-group row" method="post" action="{% url 'msystem:add_datafiles' client.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="col-form-label">File Input (Additional Data)</label>
+            <div class="col-md-8">
+              <input class="form-control" type="file" name="datafile" multiple>
+            </div>
+
+            <div class="col-md-4">
+              <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <!-- Remark/Solution Tab -->
