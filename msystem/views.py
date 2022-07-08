@@ -17,6 +17,9 @@ def index(request):
 
 @login_required(login_url='/login/')
 def add_person(request):
+    """
+    Add a new person to the system
+    """
     if request.method == "POST":
         # TODO: change to post
         # Get all url arguments
@@ -80,7 +83,7 @@ def add_person(request):
 
 
 def add_datafiles(request, person):
-    # check for uploaded files
+    # check if request object comes with any uploaded files
     if request.FILES:
         print("==========================================================")
         print(request.FILES)
@@ -92,18 +95,21 @@ def add_datafiles(request, person):
 
 
 def add_client_files(request, person_id):
+    """Add additional files to a client"""
+
     person = Person.objects.get(id=person_id)
 
     if request.method == "POST":
         add_datafiles(request, person)
-        print("slfvi55555555555555555555555555555555555555555555555555555555555555555")
 
-    return  HttpResponseRedirect(reverse("msystem:clients"))
+    return HttpResponseRedirect(reverse("msystem:clients"))
 
 
 @login_required(login_url='/login/')
 def update_person(request, person_id):
-
+    """
+    Update a person's details
+    """
     if request.method == "POST":
 
         # Get all POST data
@@ -218,6 +224,9 @@ def client_profile(request, client_id):
 
 @login_required(login_url='/login/')
 def delete_client(request, client_id):
+    """
+    Delete a client
+    """
     c = Person.objects.get(id=client_id)
     try:
         c.delete()
@@ -231,6 +240,9 @@ def delete_client(request, client_id):
 
 @login_required(login_url='/login/')
 def students(request):
+    """
+    Renders all students
+    """
     studs = Person.objects.filter(is_student=True).order_by("id")
 
     # if there's a search query, filter p
@@ -284,10 +296,10 @@ def book_client(request, client_id):
 def appointments(request):
     a = Appointment.objects.filter(done=False).order_by("id")
     # a = Appointment.objects.filter(date__gte=date.today()).order_by('id')
-    # if there's a search query, filter p
+
+    # if there's a search query, filter a
     if "q" in request.GET:
         q = request.GET['q']
-        print("====================================================")
         a = Appointment.objects.filter(done=False, person__full_name__icontains=q).order_by("id")
 
     context = {
@@ -351,6 +363,9 @@ def delete_appointment(request, ap_id):
 
 @login_required(login_url='/login/')
 def mark_appointment(request, ap_id):
+    """
+    Mark an appointment as done
+    """
     a = Appointment.objects.get(id=ap_id)
     a.done = True
     a.save()
