@@ -259,6 +259,7 @@ def students(request):
     pass
 
 
+# ================================= Appointments =================================
 @login_required(login_url='/login/')
 def book_client(request, client_id):
     client = Person.objects.get(id=client_id)
@@ -375,6 +376,7 @@ def mark_appointment(request, ap_id):
     return HttpResponseRedirect(reverse("msystem:appointments"))
 
 
+# ================================ Employees ===================================
 @login_required(login_url='/login/')
 def employees(request):
     emps = Employee.objects.all()
@@ -443,6 +445,7 @@ def update_employee(request, emp_id):
     return render(request, "msystem/add_employee.html", context)
 
 
+# ========================= Accounts Management ================================
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get("useremail")

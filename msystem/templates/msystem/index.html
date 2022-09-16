@@ -277,7 +277,7 @@
             <a href="{% url 'msystem:appointments' %}"><i class="la la-book"></i> <span>Appointments</span></a>
           </li>
 
-          {% if request.user.username == "drjan" or request.user.username == "janprince"%}
+          {% if request.user.username == "drjan" or request.user.username == "janprince" %}
           <li class="{% if 'employees' in request.path %}active{% endif %}">
             <a href="{% url 'msystem:employees' %}"><i class="la la-user"></i> <span>Employees</span></a>
           </li>
