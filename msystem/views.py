@@ -10,9 +10,20 @@ from django.contrib import messages
 from django.db import IntegrityError
 
 
+# =========================== Dashboards ========================================
+@login_required(login_url='/login/')
+def analytics(request):
+    return render(request, "msystem/dash/analytics.html")
+
+
+@login_required(login_url='/login/')
+def finance(request):
+    pass
+
+
 @login_required(login_url='/login/')
 def index(request):
-    return HttpResponseRedirect(reverse("msystem:clients"))
+    return HttpResponseRedirect(reverse("msystem:analytics"))
 
 
 @login_required(login_url='/login/')
@@ -200,7 +211,7 @@ def clients(request):
     context = {
         "clients": p,
     }
-    return render(request, "msystem/clients.html", context)
+    return render(request, "msystem/lists/clients.html", context)
 
 
 @login_required(login_url='/login/')
@@ -448,7 +459,7 @@ def update_employee(request, emp_id):
 # ========================= Accounts Management ================================
 def login_view(request):
     if request.method == "POST":
-        email = request.POST.get("useremail")
+        email = request.POST.get("emailaddress")
         password = request.POST.get("password")
         user = User.objects.get(email=email)
         user = authenticate(request, username=user.username, password=password)
@@ -457,7 +468,7 @@ def login_view(request):
             messages.success(request, "Login Successful")
             return HttpResponseRedirect(reverse("msystem:clients"))
         else:
-            messages.warning(request, "Invalid email or password")
+            messages.error(request, "Invalid email or password. Please try Again.")
             context = {
                 'error': "Invalid email or password",
             }

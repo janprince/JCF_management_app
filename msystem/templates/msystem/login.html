@@ -5,61 +5,102 @@
 
 {% block body_class %} account-page {% endblock %}
 
-
-{% block main %}
-<div class="main-wrapper">
-  <div class="account-content">
+{% block body %}
+<body class="loading authentication-bg" data-layout-config='{"darkMode":false}'>
+<div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-4 col-lg-5">
 
-      <div class="account-logo">
-        <a href="dashboard.html"><img src="{% static 'msystem/img/logo.png' %}" width="500" alt="Jan Cosmic Foundation"></a>
-      </div>
+                <!-- card -->
+                <div class="card">
 
-      <div class="account-box">
-        <div class="account-wrapper">
-          <h3 class="account-title">Login</h3>
-          <p class="account-subtitle">Access to our dashboard</p>
+                    <!-- Logo -->
+                    <div class="card-header pt-4 pb-4 text-center bg-primary">
+                        <a href="index.html">
+                            <span><img src="{% static 'msystem/assets/images/logo.png' %}" alt="" height="18"></span>
+                        </a>
+                    </div>
 
-          <form class="needs-validation custom-form mt-4 pt-2" novalidate method="post" action="{% url 'msystem:login' %}">
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="useremail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="useremail" placeholder="Enter email" name="useremail" required >
-              <div class="invalid-feedback">
-                Please Enter Email
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col">
-                  <label for="userpassword" class="form-label">Password</label>
+                    <div class="card-body p-4">
+
+                        <div class="text-center w-75 m-auto">
+                            <h4 class="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
+                            <p class="text-muted mb-4">Enter your email address and password to access admin panel.</p>
+                        </div>
+
+                        <form method="post" action="{% url 'msystem:login' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="emailaddress" class="form-label">Email address</label>
+                                <input class="form-control" type="email" id="emailaddress" required=""
+                                       placeholder="Enter your email" name="emailaddress" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="#" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password" class="form-control"
+                                           placeholder="Enter your password" name="password" required>
+                                    <div class="input-group-text" data-password="false">
+                                        <span class="password-eye"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
+                                    <label class="form-check-label" for="checkbox-signin">Remember me</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 mb-0 text-center">
+                                <button class="btn btn-primary" type="submit"> Log In</button>
+                            </div>
+
+                        </form>
+                    </div> <!-- end card-body -->
                 </div>
-                <div class="col-auto">
-                  <a class="text-muted" href="auth-recoverpw.html">
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
-              <div class="position-relative">
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
-                <div class="invalid-feedback">
-                  Please Enter Password
-                </div>
-                <span class="fa fa-eye-slash" id="toggle-password"></span>
-              </div>
-            </div>
-            <div class="form-group text-center">
-              <button class="btn btn-primary account-btn" type="submit">Login</button>
-            </div>
-            <div class="account-footer">
-              <p>Don't have an account yet? <a href="" >Register</a></p>
-            </div>
-          </form>
+                <!-- end card -->
 
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Don't have an account? <a href="pages-register.html"
+                                                                        class="text-muted ms-1"><b>Sign Up</b></a></p>
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end col -->
         </div>
-      </div>
+        <!-- end row -->
     </div>
-  </div>
+    <!-- end container -->
 </div>
+<!-- end page -->
 
-{% endblock main%}
+<footer class="footer footer-alt">
+    2018 -
+    <script>document.write(new Date().getFullYear())</script>
+    © Hyper - Coderthemes.com
+</footer>
+
+    <!-- bundle -->
+    <script src="{% static 'msystem/assets/js/vendor.min.js' %}"></script>
+    <script src="{% static 'msystem/assets/js/app.min.js' %}"></script>
+
+    <!-- notification toasts js -->
+    <script src="assets/js/pages/demo.toastr.js"></script>
+    <!-- -->
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>$.NotificationApp.send("","{{ message }}","bottom-right","white","{{ message.tags }}")</script>
+        {% endfor %}
+    {% endif %}
+
+
+</body>
+{% endblock body %}

@@ -4,6 +4,7 @@ from . import views
 app_name = "msystem"
 urlpatterns = [
     path("", views.index, name="index"),
+    path("analytics/", views.analytics, name="analytics"),
     path("clients/", views.clients, name="clients"),
     path("students/", views.students, name="students"),
     path("clients/profile/<int:client_id>", views.client_profile, name="client_profile"),
