@@ -1,0 +1,83 @@
+{% extends 'msystem/datatables/datatable_base.html' %}
+{% load static %}
+
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <a href="{% url 'msystem:clients' %}" type="button" class="btn btn-warning mb-2 me-2">
+                        <i class="mdi mdi-account-plus me-1"></i> Add Employee
+                    </a>
+                </div>
+                <h4 class="page-title">Employees</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="" id="basic-datatable-preview">
+                        <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                            <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Salary</th>
+                                <th>Student</th>
+                                <th style="width: 125px;">Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for employee in employees %}
+                            <tr>
+                                <td><span class="d-none">-</span>{{ employee.id }}</td>
+                                <td>
+                                    <!--                                    <i class="uil-user mr-3"></i>-->
+                                    <a class="text-decoration-none text-black"
+                                       href="{% url 'msystem:client_profile' employee.person.id %}">{{ employee.person.full_name }}</a>
+                                    <!--                                    <span>{{ client.full_name }}</span>-->
+                                </td>
+                                <td>{{ employee.person.phone }}</td>
+                                <td>{{employee.role}}</td>
+                                <td>{{ employee.salary }}</td>
+                                <td>
+                                    {% if employee.person.is_student %}
+                                    <i class="mdi mdi-check-circle text-success"></i>
+                                    {% else %}
+                                    <i class="mdi mdi-close-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'msystem:update_person' employee.person.id %}" class="action-icon"> <i
+                                            class="mdi mdi-square-edit-outline"></i></a>
+                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                            class="mdi mdi-delete"></i></a>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div> <!-- end preview-->
+
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div> <!-- end row-->
+
+</div> <!-- container -->
+
+{% endblock main_content %}

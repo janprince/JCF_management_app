@@ -1,0 +1,212 @@
+{% extends 'msystem/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <button type="button" class="btn btn-danger mb-2 me-2">
+                        <i class="mdi mdi-account-plus me-1"></i> Add Client
+                    </button>
+                </div>
+                <h4 class="page-title">Clients</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <!-- Form row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="" id="form-row-preview">
+                        <form method="post" action="{%if update%}{% url 'msystem:update_person' person.id %}{%else%}{% url 'msystem:add_person' %}{% endif %}" id="addClientForm" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row g-2">
+                                <!-- Full Name -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="inputName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="inputName" placeholder="Name" name="full_name" {% if person.full_name %} value="{{person.full_name}}" {% endif %} required>
+                                </div>
+
+                                <!-- Date of Birth -->
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="datePicker">Date of Birth</label>
+                                    <input type="text" class="form-control date" id="datePicker"
+                                           data-toggle="date-picker" data-single-date-picker="true" name="date_of_birth" {% if dob %} value="{{dob}}" {% endif %}>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <!-- Phone and Telephone -->
+                                <div class="mb-3 col-md-6">
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
+                                            <label for="inputPhone" class="form-label">Phone</label>
+                                            <input type="tel" class="form-control" id="inputPhone" placeholder="Phone"
+                                                   required inputmode="numeric" pattern="[0-9+ ]*" name="phone" {% if person.phone %} value="{{person.phone}}" {% endif %}>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputTelephone" class="form-label">Telephone</label>
+                                            <input type="tel" class="form-control" id="inputTelephone"
+                                                   placeholder="Telephone" inputmode="numeric" pattern="[0-9+ ]*" name="telephone" {% if person.telephone %} value="{{person.telephone}}" {% endif %}>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Profession -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="inputProfession" class="form-label">Profession</label>
+                                    <input type="text" class="form-control" id="inputProfession"
+                                           placeholder="Profession" name="profession" {% if person.profession %} value="{{person.profession}}" {% endif %}>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <!-- Gender -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="selectGender" class="form-label">Gender</label>
+                                    <select class="form-select" id="selectGender" name="gender">
+                                        {% if person.gender == "Male" %}
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        {% elif person.gender == "Female" %}
+                                        <option>Female</option>
+                                        <option>Male</option>
+                                        {% else %}
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+
+                                <!-- Residence -->
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="inputResidence">Residence</label>
+                                    <input type="text" class="form-control" id="inputResidence" placeholder="Residence" name="residence" {% if person.residence %} value="{{person.residence}}" {% endif %}>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <!-- Country -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="inputCountry" class="form-label">Country</label>
+                                    <input type="email" class="form-control" id="inputCountry" placeholder="Country"
+                                           list="countries" name="country"  {% if person.country %} value="{{country}}" {% endif %}>
+                                    <datalist id="countries">
+                                        <option value="Ghana"></option>
+                                        <option value="USA"></option>
+                                        <option value="United Kingdom"></option>
+                                        <option value="Germany"></option>
+                                        <option value="Italy"></option>
+                                    </datalist>
+                                </div>
+                                <!-- Hometown / Region -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="inputRegion" class="form-label">Hometown/Region</label>
+                                    <input type="text" class="form-control" id="inputRegion"
+                                           placeholder="Region" name="hometown" {% if person.hometown %} value="{{person.hometown}}" {% endif %}>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <!-- Religion -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="selectReligion" class="form-label">Religion</label>
+                                    <select class="form-select" id="selectReligion" name="religion">
+                                        {% if person.religion %} <option>{{person.religion}}</option> {% endif %}
+                                        <option>Christianity</option>
+                                        <option>Islam</option>
+                                        <option>Traditional</option>
+                                        <option>Hinduism</option>
+                                        <option>Buddhism</option>
+                                        <option>Other</option>
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <!-- Referral -->
+                                <div class="mb-3 col-md-6">
+                                    <label for="inputReferral" class="form-label">Referral</label>
+                                    <input type="text" class="form-control" id="inputReferral" list="referrals" name="referral" placeholder="How did you hear about Dr. Jan?" {% if person.referral %} value="{{person.referral}}" {% endif %}>
+                                    <datalist id="referrals">
+                                        <option value="Social Media"></option>
+                                        <option value="Youtube"></option>
+                                        <option value="A Friend"></option>
+                                        <option value="Google"></option>
+                                        <option value="Website"></option>
+                                    </datalist>
+                                </div>
+                            </div>
+
+                            <!-- Request Info -->
+                            <div class="mb-3">
+                                <label for="textareaInfo" class="form-label">Request Information</label>
+                                <textarea class="form-control" id="textareaInfo" rows="5" form="addClientForm" name="request_info">{% if person.request_info %} {{ person.request_info}} {% endif %}</textarea>
+                            </div>
+
+                            <!-- Remark -->
+                            <div class="mb-3">
+                                <label for="textareaRemark" class="form-label">Dr. Jan's Remark</label>
+                                <textarea class="form-control" id="textareaRemark" rows="5" form="addClientForm" name="remark">{% if person.remark %} {{person.remark}} {% endif %}</textarea>
+                            </div>
+
+                            <!-- Solution -->
+                            <div class="mb-3">
+                                <label for="textareaSolution" class="form-label">Solution</label>
+                                <textarea class="form-control" id="textareaSolution" rows="5" placeholder="Enter text here" form="addClientForm" name="solution">{% if person.solution %} {{person.solution}} {% endif %}</textarea>
+                            </div>
+
+                            <!-- File Input -->
+                            <div class="mb-3">
+                                <label for="fileinput" class="form-label">File Input (Additional Data)</label>
+                                <input type="file" id="fileinput" class="form-control" name="datafile" multiple>
+                                <div class="mt-4">
+                                    {% if person.datafiles %}
+                                    <h4>Attached Files</h4>
+                                    <ul>
+                                        {% for file in person.datafiles.all %}
+                                        <li>{{ file.file.name|slice:"11:"}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Checkboxes -->
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="customCheck3" name="roles" value="is_client" checked>
+                                    <label class="form-check-label" for="customCheck3" >Client</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="customCheck4" name="roles" value="is_student" {% if person.is_student %} checked {% endif %}>
+                                    <label class="form-check-label" for="customCheck4">Student</label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">{% if update %}Update Record {% else %} Submit {% endif %}</button>
+                            </div>
+                        </form>
+                    </div> <!-- end preview-->
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+
+</div> <!-- container -->
+
+{% endblock main_content %}
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}

@@ -90,7 +90,7 @@ def add_person(request):
 
         return HttpResponseRedirect(reverse("msystem:clients"))
     else:
-        return render(request, "msystem/modify_person.html")
+        return render(request, "msystem/forms/add_client.html")
 
 
 def add_datafiles(request, person):
@@ -211,7 +211,7 @@ def clients(request):
     context = {
         "clients": p,
     }
-    return render(request, "msystem/lists/clients.html", context)
+    return render(request, "msystem/datatables/clients.html", context)
 
 
 @login_required(login_url='/login/')
@@ -230,7 +230,7 @@ def client_profile(request, client_id):
         'client_has_appointment': p_appointment
     }
 
-    return render(request, 'msystem/client_profile.html', context)
+    return render(request, 'msystem/client_profile2.html', context)
 
 
 @login_required(login_url='/login/')
@@ -266,7 +266,7 @@ def students(request):
         "clients": studs,
         "page": "students"
     }
-    return render(request, "msystem/students.html", context)
+    return render(request, "msystem/datatables/students.html", context)
     pass
 
 
@@ -400,7 +400,7 @@ def employees(request):
     context = {
         "employees": emps,
     }
-    return render(request, "msystem/employees.html", context)
+    return render(request, "msystem/datatables/employees.html", context)
 
 
 @login_required(login_url='/login/')
