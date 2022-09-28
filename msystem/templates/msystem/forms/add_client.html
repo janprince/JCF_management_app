@@ -40,10 +40,9 @@
                                 </div>
 
                                 <!-- Date of Birth -->
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6 position-relative" id="datepicker1">
                                     <label class="form-label" for="datePicker">Date of Birth</label>
-                                    <input type="text" class="form-control date" id="datePicker"
-                                           data-toggle="date-picker" data-single-date-picker="true" name="date_of_birth" {% if dob %} value="{{dob}}" {% endif %}>
+                                    <input type="text" id="datePicker" data-date-format="dd/mm/yyyy" class="form-control" data-provide="datepicker" data-date-container="#datepicker1" name="date_of_birth" {% if dob %} value="{{dob}}" {% endif %}>
                                 </div>
                             </div>
 

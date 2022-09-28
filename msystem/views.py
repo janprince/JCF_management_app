@@ -195,7 +195,7 @@ def update_person(request, person_id):
             "dob": dob,
 
         }
-        return render(request, "msystem/modify_person.html", context)
+        return render(request, "msystem/forms/add_client.html", context)
 
 
 @login_required(login_url='/login/')
@@ -466,7 +466,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, "Login Successful")
-            return HttpResponseRedirect(reverse("msystem:clients"))
+            return HttpResponseRedirect(reverse("msystem:analytics"))
         else:
             messages.error(request, "Invalid email or password. Please try Again.")
             context = {
