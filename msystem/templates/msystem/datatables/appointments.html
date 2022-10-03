@@ -12,10 +12,10 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <a href="{% url 'msystem:clients' %}" type="button" class="btn btn-warning mb-2 me-2">
-                        <i class="mdi mdi-account-plus me-1"></i> Add Employee
+                        <i class="mdi mdi-account-plus me-1"></i> Add Appointment
                     </a>
                 </div>
-                <h4 class="page-title">Employees</h4>
+                <h4 class="page-title">Appoinments</h4>
             </div>
         </div>
     </div>
@@ -30,38 +30,32 @@
                         <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                             <tr>
-                                <th>Employee ID</th>
+                                <th>Booking ID</th>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                <th>Role</th>
-                                <th>Salary</th>
-                                <th>Student</th>
+                                <th>Mode</th>
+                                <th>Appointment Date</th>
+                                <th>Country</th>
                                 <th style="width: 125px;">Action</th>
                             </tr>
                             </thead>
-
                             <tbody>
-                            {% for employee in employees %}
+                            {% for ap in appointments %}
                             <tr>
-                                <td><span class="d-none">-</span>{{ employee.id }}</td>
+                                <td><span class="d-none">-</span>{{ ap.id }}</td>
                                 <td>
                                     <!--                                    <i class="uil-user mr-3"></i>-->
                                     <a class="text-decoration-none text-body"
-                                       href="{% url 'msystem:client_profile' employee.person.id %}">{{ employee.person.full_name }}</a>
+                                       href="{% url 'msystem:client_profile' ap.person.id %}">{{ ap.person.full_name }}</a>
                                     <!--                                    <span>{{ client.full_name }}</span>-->
                                 </td>
-                                <td>{{ employee.person.phone }}</td>
-                                <td>{{employee.role}}</td>
-                                <td>{{ employee.salary }}</td>
-                                <td>
-                                    {% if employee.person.is_student %}
-                                    <i class="mdi mdi-check-circle text-success"></i>
-                                    {% else %}
-                                    <i class="mdi mdi-close-circle text-danger"></i>
-                                    {% endif %}
+                                <td>{{ ap.person.phone }}</td>
+                                <td>{{ ap.mode }}</td>
+                                <td>{% if ap.is_today %}{{ ap.date }} <strong class="text-success ">(Today)</strong> {% else %} {{ ap.date }} {% endif %}
                                 </td>
+                                <td>{{ap.person.country}}</td>
                                 <td>
-                                    <a href="{% url 'msystem:update_employee' employee.id %}" class="action-icon"> <i
+                                    <a href="{% url 'msystem:change_appointment' ap.id %}" class="action-icon"> <i
                                             class="mdi mdi-square-edit-outline"></i></a>
                                     <a href="javascript:void(0);" class="action-icon"> <i
                                             class="mdi mdi-delete"></i></a>
@@ -70,6 +64,7 @@
                             </tr>
                             {% endfor %}
                             </tbody>
+
                         </table>
                     </div> <!-- end preview-->
 

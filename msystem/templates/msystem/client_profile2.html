@@ -15,12 +15,12 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                        <li class="breadcrumb-item active">Profile 2</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">JCF</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Clients</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Profile 2</h4>
+                <h4 class="page-title">Profile</h4>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <div class="card text-center">
                 <!-- Info -->
                 <div class="card-body">
-                    <img src="{% static 'msystem/assets/images/users/avatar-1.jpg' %}"
+                    <img src="{% static 'msystem/assets/images/profile.jpg' %}"
                          class="rounded-circle avatar-lg img-thumbnail"
                          alt="profile-image">
 
@@ -50,17 +50,19 @@
                     <div class="text-start mt-3">
                         <h4 class="font-13 text-uppercase">About Me :</h4>
 
-                        <p class="text-muted mb-2 font-13">
-                            <strong>Mobile :</strong><span class="ms-2">{{ client.phone }}</span>
+                        <p class="text-muted mb-2 font-13 row">
+                            <strong class="col-4">Mobile :</strong>
+                            <span class="ms-2 col-6">{{ client.phone }}</span>
                         </p>
 
-                        <p class="text-muted mb-2 font-13">
-                            <strong>Date of Birth :</strong> <span class="ms-2 ">{{ client.date_of_birth }}</span>
+                        <p class="text-muted mb-2 font-13 row">
+                            <strong class="col-4">Date of Birth :</strong>
+                            <span class="ms-2 col-6">{{ client.date_of_birth }}</span>
                         </p>
 
-                        <p class="text-muted mb-2 font-13">
-                            <strong>Student Status :</strong>
-                            <span class="ms-2 ">
+                        <p class="text-muted mb-2 font-13 row">
+                            <strong class="col-4">Student Status :</strong>
+                            <span class="ms-2 col-6">
                                 {% if client.is_student %}
                                 <i class="mdi mdi-check-circle text-success"></i>
                                 {% else %}
@@ -69,16 +71,19 @@
                             </span>
                         </p>
 
-                        <p class="text-muted mb-1 font-13">
-                            <strong>Gender :</strong> <span class="ms-2">{{ client.gender }}</span>
+                        <p class="text-muted mb-1 font-13 row">
+                            <strong class="col-4">Gender :</strong>
+                            <span class="ms-2 col-6">{{ client.gender }}</span>
                         </p>
 
-                        <p class="text-muted mb-1 font-13">
-                            <strong>Email :</strong> <span class="ms-2">N/A</span>
+                        <p class="text-muted mb-1 font-13 row">
+                            <strong class="col-4">Email :</strong>
+                            <span class="ms-2 col-6">N/A</span>
                         </p>
 
-                        <p class="text-muted mb-1 font-13">
-                            <strong>Address :</strong> <span class="ms-2">{{ client.residence }}</span>
+                        <p class="text-muted mb-1 font-13 row">
+                            <strong class="col-4">Address :</strong>
+                            <span class="ms-2 col-6">{{ client.residence }}</span>
                         </p>
                     </div>
 
@@ -248,9 +253,13 @@
                                       action="{% url 'msystem:add_datafiles' client.id %}"
                                       enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <div class="col-8">
-                                        <label for="formFileMultiple" class="form-label">File Input (Additional
+                                    <div class="col-12">
+                                       <label for="formFileMultiple" class="form-label">File Input (Additional
                                             Data)</label>
+                                    </div>
+
+                                    <div class="col-8">
+
                                         <input class="form-control" type="file" name="datafile"
                                                id="formFileMultiple" multiple>
                                     </div>

@@ -13,7 +13,14 @@ from django.db import IntegrityError
 # =========================== Dashboards ========================================
 @login_required(login_url='/login/')
 def analytics(request):
-    return render(request, "msystem/dash/analytics.html")
+    clients_count = Person.objects.filter(is_client=True).count()
+    students_count = Person.objects.filter(is_student=True).count()
+
+    context = {
+        "client_count": clients_count,
+        "student_count": students_count,
+    }
+    return render(request, "msystem/dash/analytics.html", context)
 
 
 @login_required(login_url='/login/')
@@ -113,7 +120,7 @@ def add_client_files(request, person_id):
     if request.method == "POST":
         add_datafiles(request, person)
 
-    return HttpResponseRedirect(reverse("msystem:clients"))
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(person_id,)))
 
 
 @login_required(login_url='/login/')
@@ -301,7 +308,7 @@ def book_client(request, client_id):
         "client": client,
     }
 
-    return render(request, "msystem/book_client.html", context)
+    return render(request, "msystem/forms/add_appointment.html", context)
 
 
 @login_required(login_url='/login/')
@@ -317,7 +324,7 @@ def appointments(request):
     context = {
         "appointments": a,
     }
-    return render(request, "msystem/appointments.html", context)
+    return render(request, "msystem/datatables/appointments.html", context)
 
 
 @login_required(login_url='/login/')
@@ -356,7 +363,7 @@ def change_appointment(request, ap_id):
         "client": client,
     }
 
-    return render(request, "msystem/book_client.html", context)
+    return render(request, "msystem/forms/add_appointment.html", context)
 
 
 @login_required(login_url='/login/')
@@ -424,7 +431,7 @@ def add_employee(request, person_id):
         "person": person,
     }
 
-    return render(request, "msystem/add_employee.html", context)
+    return render(request, "msystem/forms/add_employee.html", context)
 
 
 @login_required(login_url='/login/')
@@ -453,7 +460,7 @@ def update_employee(request, emp_id):
         "person": person,
     }
 
-    return render(request, "msystem/add_employee.html", context)
+    return render(request, "msystem/forms/add_employee.html", context)
 
 
 # ========================= Accounts Management ================================

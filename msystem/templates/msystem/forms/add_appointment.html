@@ -1,0 +1,104 @@
+{% extends 'msystem/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <button type="button" class="btn btn-danger mb-2 me-2">
+                        <i class="mdi mdi-account-plus me-1"></i> Clients
+                    </button>
+                </div>
+                <h4 class="page-title">Add Appointment</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <!-- Form row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="" id="form-row-preview">
+                        <form method="post"
+                              action="{% if appointment %} {% url 'msystem:change_appointment' appointment.id %}{% else %} {% url 'msystem:book_client' client.id %} {% endif %}"
+                              id="addClientForm" enctype="multipart/form-data" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Full Name <span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" value="{{client.full_name}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Phone</label>
+                                                <input class="form-control floating" type="tel" inputmode="numeric"
+                                                       pattern="[0-9+ ]*" value="{{client.phone}}" disabled>
+                                                <span class="validity"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Country</label>
+                                                <input class="form-control floating" type="text"
+                                                       value="{{client.country}}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative" id="datepicker1">
+
+                                        <label class="col-form-label" for="datePicker">Appointment Date</label>
+                                        <input type="text" id="datePicker" data-date-format="dd/mm/yyyy"
+                                               class="form-control" data-provide="datepicker"
+                                               data-date-container="#datepicker1" name="appointment_date" {% if appointment %} value="{{ap_date}}" {% endif %} required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Mode <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="selectGender" name="mode" required {% if appointment %} value="{{ appointment.mode }}" {% endif %}>
+                                            <option>Onsite</option>
+                                            <option>Remote</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-primary">{% if appointment %} Update Appointment {%else %} Book Appointment {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- end preview-->
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+
+</div> <!-- container -->
+
+{% endblock main_content %}
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}

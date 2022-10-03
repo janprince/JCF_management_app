@@ -3,7 +3,7 @@
 
 {% block extra_css %}
 <!-- third party css -->
-    <link href="{% static 'msystem/assets/css/vendor/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'msystem/assets/css/vendor/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
 <!-- third party css end -->
 {% endblock extra_css %}
 
@@ -36,12 +36,82 @@
     <!-- end page title -->
 
     <div class="row">
+        <div class="col-xxl-3 col-sm-6">
+            <div class="card widget-flat">
+                <div class="card-body">
+                    <div class="float-end">
+                        <i class="mdi mdi-book-account-outline widget-icon bg-danger rounded-circle text-white"></i>
+                    </div>
+                    <h5 class="text-muted fw-normal mt-0" title="Revenue">Pending Appointments</h5>
+                    <h3 class="mt-3 mb-3">19</h3>
+                    <p class="mb-0 text-muted">
+                                            <span class="badge bg-info me-1">
+                                                <i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
+                        <span class="text-nowrap">Since last month</span>
+                    </p>
+                </div>
+            </div>
+        </div> <!-- end col-->
+
+        <div class="col-xxl-3 col-sm-6">
+            <div class="card widget-flat">
+                <div class="card-body">
+                    <div class="float-end">
+                        <i class="mdi mdi-pulse widget-icon"></i>
+                    </div>
+                    <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
+                    <h3 class="mt-3 mb-3">+ 30.56%</h3>
+                    <p class="mb-0 text-muted">
+                                            <span class="text-success me-2">
+                                                <i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
+                        <span class="text-nowrap">Since last month</span>
+                    </p>
+                </div>
+            </div>
+        </div> <!-- end col-->
+
+        <div class="col-xxl-3 col-sm-6">
+            <div class="card widget-flat bg-success text-white">
+                <div class="card-body">
+                    <div class="float-end">
+                        <i class="mdi mdi-account-multiple widget-icon bg-white text-success"></i>
+                    </div>
+                    <h6 class="text-uppercase mt-0" title="Customers">Clients</h6>
+                    <h3 class="mt-3 mb-3">{{client_count}}</h3>
+                    <p class="mb-0">
+                                            <span class="badge badge-light-lighten me-1">
+                                                <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
+                        <span class="text-nowrap">Since last month</span>
+                    </p>
+                </div>
+            </div>
+        </div> <!-- end col-->
+
+        <div class="col-xxl-3 col-sm-6">
+            <div class="card widget-flat bg-primary text-white">
+                <div class="card-body">
+                    <div class="float-end">
+                        <i class="mdi mdi-school-outline widget-icon bg-light-lighten rounded-circle text-white"></i>
+                    </div>
+                    <h5 class="fw-normal mt-0" title="Revenue">Students</h5>
+                    <h3 class="mt-3 mb-3 text-white">{{student_count}}</h3>
+                    <p class="mb-0">
+                                            <span class="badge bg-info me-1">
+                                                <i class="mdi mdi-arrow-up-bold"></i> 17.26%</span>
+                        <span class="text-nowrap">Since last month</span>
+                    </p>
+                </div>
+            </div>
+        </div> <!-- end col-->
+    </div>
+
+    <div class="row">
         <div class="col-xl-3 col-lg-4">
             <div class="card tilebox-one">
                 <div class="card-body">
                     <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Active Users</h6>
-                    <h2 class="my-2" id="active-users-count">121</h2>
+                    <h6 class="text-uppercase mt-0">Clients</h6>
+                    <h2 class="my-2">{{ client_count }}</h2>
                     <p class="mb-0 text-muted">
                         <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span>
                         <span class="text-nowrap">Since last month</span>
@@ -52,9 +122,9 @@
 
             <div class="card tilebox-one">
                 <div class="card-body">
-                    <i class='uil uil-window-restore float-end'></i>
-                    <h6 class="text-uppercase mt-0">Views per minute</h6>
-                    <h2 class="my-2" id="active-views-count">560</h2>
+                    <i class='uil uil-users-alt float-end'></i>
+                    <h6 class="text-uppercase mt-0">Students</h6>
+                    <h2 class="my-2">{{student_count}}</h2>
                     <p class="mb-0 text-muted">
                         <span class="text-danger me-2"><span class="mdi mdi-arrow-down-bold"></span> 1.08%</span>
                         <span class="text-nowrap">Since previous week</span>
@@ -67,9 +137,11 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i class="mdi mdi-arrow-right"></i></h3>
+                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i
+                                    class="mdi mdi-arrow-right"></i></h3>
                         </div>
-                        <img class="ms-3" src="assets/images/email-campaign.svg" width="92" alt="Generic placeholder image">
+                        <img class="ms-3" src="assets/images/email-campaign.svg" width="92"
+                             alt="Generic placeholder image">
                     </div>
                 </div>
                 <!-- end card-body -->
@@ -81,7 +153,8 @@
                 <div class="card-body">
                     <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        Property HY1xx is not receiving hits. Either your site is not receiving any sessions or it is not tagged correctly.
+                        Property HY1xx is not receiving hits. Either your site is not receiving any sessions or it is
+                        not tagged correctly.
                     </div>
                     <ul class="nav float-end d-none d-lg-flex">
                         <li class="nav-item">
@@ -119,7 +192,7 @@
                         <h4 class="header-title">Sessions by country</h4>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                               data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -154,7 +227,7 @@
                         <h4 class="header-title">Views Per Minute</h4>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop p-0"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                               data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -169,41 +242,41 @@
                     <div class="table-responsive mt-3">
                         <table class="table table-sm mb-0 font-13">
                             <thead>
-                                <tr>
-                                    <th>Page</th>
-                                    <th>Views</th>
-                                    <th>Bounce Rate</th>
-                                </tr>
+                            <tr>
+                                <th>Page</th>
+                                <th>Views</th>
+                                <th>Bounce Rate</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="javascript:void(0);" class="text-muted">/hyper/dashboard-analytics</a>
-                                    </td>
-                                    <td>25</td>
-                                    <td>87.5%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="javascript:void(0);" class="text-muted">/hyper/dashboard-crm</a>
-                                    </td>
-                                    <td>15</td>
-                                    <td>21.48%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="javascript:void(0);" class="text-muted">/ubold/dashboard</a>
-                                    </td>
-                                    <td>10</td>
-                                    <td>63.59%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="javascript:void(0);" class="text-muted">/minton/home</a>
-                                    </td>
-                                    <td>7</td>
-                                    <td>56.12%</td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0);" class="text-muted">/hyper/dashboard-analytics</a>
+                                </td>
+                                <td>25</td>
+                                <td>87.5%</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0);" class="text-muted">/hyper/dashboard-crm</a>
+                                </td>
+                                <td>15</td>
+                                <td>21.48%</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0);" class="text-muted">/ubold/dashboard</a>
+                                </td>
+                                <td>10</td>
+                                <td>63.59%</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0);" class="text-muted">/minton/home</a>
+                                </td>
+                                <td>7</td>
+                                <td>56.12%</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -218,7 +291,7 @@
                         <h4 class="header-title">Sessions by Browser</h4>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop p-0"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                               data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -240,7 +313,7 @@
                         <h4 class="header-title">Sessions by Operating System</h4>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle arrow-none card-drop p-0"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                               data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -283,57 +356,57 @@
                     <div class="table-responsive">
                         <table class="table table-sm table-centered mb-0 font-14">
                             <thead class="table-light">
-                                <tr>
-                                    <th>Channel</th>
-                                    <th>Visits</th>
-                                    <th style="width: 40%;"></th>
-                                </tr>
+                            <tr>
+                                <th>Channel</th>
+                                <th>Visits</th>
+                                <th style="width: 40%;"></th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Direct</td>
-                                    <td>2,050</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 65%; height: 20px;" aria-valuenow="65"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Organic Search</td>
-                                    <td>1,405</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar bg-info" role="progressbar"
-                                                style="width: 45%; height: 20px;" aria-valuenow="45"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Refferal</td>
-                                    <td>750</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar bg-warning" role="progressbar"
-                                                style="width: 30%; height: 20px;" aria-valuenow="30"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Social</td>
-                                    <td>540</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar bg-danger" role="progressbar"
-                                                style="width: 25%; height: 20px;" aria-valuenow="25"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>Direct</td>
+                                <td>2,050</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: 65%; height: 20px;" aria-valuenow="65"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Organic Search</td>
+                                <td>1,405</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-info" role="progressbar"
+                                             style="width: 45%; height: 20px;" aria-valuenow="45"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Refferal</td>
+                                <td>750</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-warning" role="progressbar"
+                                             style="width: 30%; height: 20px;" aria-valuenow="30"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Social</td>
+                                <td>540</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-danger" role="progressbar"
+                                             style="width: 25%; height: 20px;" aria-valuenow="25"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div> <!-- end table-responsive-->
@@ -350,57 +423,57 @@
                     <div class="table-responsive">
                         <table class="table table-sm table-centered mb-0 font-14">
                             <thead class="table-light">
-                                <tr>
-                                    <th>Network</th>
-                                    <th>Visits</th>
-                                    <th style="width: 40%;"></th>
-                                </tr>
+                            <tr>
+                                <th>Network</th>
+                                <th>Visits</th>
+                                <th style="width: 40%;"></th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Facebook</td>
-                                    <td>2,250</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 65%; height: 20px;" aria-valuenow="65"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Instagram</td>
-                                    <td>1,501</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 45%; height: 20px;" aria-valuenow="45"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Twitter</td>
-                                    <td>750</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 30%; height: 20px;" aria-valuenow="30"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>LinkedIn</td>
-                                    <td>540</td>
-                                    <td>
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: 25%; height: 20px;" aria-valuenow="25"
-                                                aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>Facebook</td>
+                                <td>2,250</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: 65%; height: 20px;" aria-valuenow="65"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Instagram</td>
+                                <td>1,501</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: 45%; height: 20px;" aria-valuenow="45"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Twitter</td>
+                                <td>750</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: 30%; height: 20px;" aria-valuenow="30"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>LinkedIn</td>
+                                <td>540</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar"
+                                             style="width: 25%; height: 20px;" aria-valuenow="25"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div> <!-- end table-responsive-->
@@ -417,33 +490,33 @@
                     <div class="table-responsive">
                         <table class="table table-sm table-centered mb-0 font-14">
                             <thead class="table-light">
-                                <tr>
-                                    <th>Duration (Secs)</th>
-                                    <th style="width: 30%;">Sessions</th>
-                                    <th style="width: 30%;">Views</th>
-                                </tr>
+                            <tr>
+                                <th>Duration (Secs)</th>
+                                <th style="width: 30%;">Sessions</th>
+                                <th style="width: 30%;">Views</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>0-30</td>
-                                    <td>2,250</td>
-                                    <td>4,250</td>
-                                </tr>
-                                <tr>
-                                    <td>31-60</td>
-                                    <td>1,501</td>
-                                    <td>2,050</td>
-                                </tr>
-                                <tr>
-                                    <td>61-120</td>
-                                    <td>750</td>
-                                    <td>1,600</td>
-                                </tr>
-                                <tr>
-                                    <td>121-240</td>
-                                    <td>540</td>
-                                    <td>1,040</td>
-                                </tr>
+                            <tr>
+                                <td>0-30</td>
+                                <td>2,250</td>
+                                <td>4,250</td>
+                            </tr>
+                            <tr>
+                                <td>31-60</td>
+                                <td>1,501</td>
+                                <td>2,050</td>
+                            </tr>
+                            <tr>
+                                <td>61-120</td>
+                                <td>750</td>
+                                <td>1,600</td>
+                            </tr>
+                            <tr>
+                                <td>121-240</td>
+                                <td>540</td>
+                                <td>1,040</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div> <!-- end table-responsive-->
@@ -461,15 +534,15 @@
 
 {% block extra_scripts %}
 
-    <!-- third party js -->
-    <!-- <script src="assets/js/vendor/chart.min.js"></script> -->
-    <script src="{% static 'msystem/assets/js/vendor/apexcharts.min.js' %}"></script>
-    <script src="{% static 'msystem/assets/js/vendor/jquery-jvectormap-1.2.2.min.js' %}"></script>
-    <script src="{% static 'msystem/assets/js/vendor/jquery-jvectormap-world-mill-en.js' %}"></script>
-    <!-- third party js ends -->
+<!-- third party js -->
+<!-- <script src="assets/js/vendor/chart.min.js"></script> -->
+<script src="{% static 'msystem/assets/js/vendor/apexcharts.min.js' %}"></script>
+<script src="{% static 'msystem/assets/js/vendor/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'msystem/assets/js/vendor/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- third party js ends -->
 
-    <!-- demo app -->
-    <script src="{% static 'msystem/assets/js/pages/demo.dashboard-analytics.js' %}"></script>
-    <!-- end demo js-->
+<!-- demo app -->
+<script src="{% static 'msystem/assets/js/pages/demo.dashboard-analytics.js' %}"></script>
+<!-- end demo js-->
 
 {% endblock extra_scripts %}

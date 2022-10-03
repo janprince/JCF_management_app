@@ -1,0 +1,87 @@
+{% extends 'msystem/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <button type="button" class="btn btn-danger mb-2 me-2">
+                        <i class="mdi mdi-account-plus me-1"></i> Add Client
+                    </button>
+                </div>
+                <h4 class="page-title">Add Employee</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <!-- Form row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="" id="form-row-preview">
+                        <form method="post" action="{% if employee %} {% url 'msystem:update_employee' employee.id %}{% else %} {% url 'msystem:add_employee' person.id %} {% endif %}" id="addClientForm" enctype="multipart/form-data" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" value="{{person.full_name}}" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Phone</label>
+                    <input class="form-control floating" type="tel" inputmode="numeric" pattern="[0-9+ ]*" value="{{person.phone}}" disabled>
+                    <span class="validity"></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Role<span class="text-danger">*</span></label>
+                    <input  class="form-control floating" name="role" {% if employee %} value="{{ employee.role }}" {% endif %}>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Salary</label>
+                    <input  class="form-control floating" type="number" name="salary" {% if employee %} value="{{ employee.salary }}" {% endif %}>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="col-form-label">Duties</label>
+                    <textarea  class="form-control floating" name="duties">{% if employee %} {{ employee.duties }} {% endif %}</textarea>
+                  </div>
+                </div>
+
+              </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-primary">{% if employee %}Update Employee {% else %} Add Employee {% endif %}</button>
+                            </div>
+                        </form>
+                    </div> <!-- end preview-->
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+
+</div> <!-- container -->
+
+{% endblock main_content %}
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}
