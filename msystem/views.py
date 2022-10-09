@@ -15,10 +15,12 @@ from django.db import IntegrityError
 def analytics(request):
     clients_count = Person.objects.filter(is_client=True).count()
     students_count = Person.objects.filter(is_student=True).count()
+    appointments_count = Appointment.objects.filter(done=False).count()
 
     context = {
         "client_count": clients_count,
         "student_count": students_count,
+        "appointment_count": appointments_count,
     }
     return render(request, "msystem/dash/analytics.html", context)
 
