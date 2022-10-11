@@ -239,7 +239,7 @@
                                                         {% else %}
                                                             <a href="{{ file.file.url }}" class="text-muted fw-bold">{{ file.file.name|slice:"11:20" }}...</a>
                                                         {% endif %}
-                                                        <p class="mb-0 font-13">2.3 MB</p>
+                                                        <p class="mb-0 font-13">{{ file.filesize }}</p>
                                                     </div>
                                                 </div> <!-- end row -->
                                             </div> <!-- end .p-2-->

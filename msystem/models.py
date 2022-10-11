@@ -42,6 +42,21 @@ class DataFile(models.Model):
         name, extension = os.path.splitext(self.file.name)
         return extension
 
+    @property
+    def filesize(self):
+        x = self.file.size
+        y = 512000
+        if x < y:
+            value = round(x / 1000, 2)
+            ext = ' kb'
+        elif x < y * 1000:
+            value = round(x / 1000000, 2)
+            ext = ' MB'
+        else:
+            value = round(x / 1000000000, 2)
+            ext = ' GB'
+        return str(value) + ext
+
 
 # JCF Representative
 class Rep(models.Model):
