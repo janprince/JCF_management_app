@@ -470,8 +470,11 @@ def login_view(request):
     if request.method == "POST":
         email = request.POST.get("emailaddress")
         password = request.POST.get("password")
-        user = User.objects.get(email=email)
-        user = authenticate(request, username=user.username, password=password)
+        try:
+            user = User.objects.get(email=email)
+            user = authenticate(request, username=user.username, password=password)
+        except:
+            user = None
         if user is not None:
             login(request, user)
             messages.success(request, "Login Successful")
