@@ -4,6 +4,8 @@ from .models import *
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ['id', "full_name", "gender", "phone", "country", "is_client", "is_student"]
+    list_filter = ('is_student',)
+    search_fields = ['full_name']
 
 
 class RepAdmin(admin.ModelAdmin):
