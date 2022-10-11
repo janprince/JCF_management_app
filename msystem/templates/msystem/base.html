@@ -1022,7 +1022,7 @@
                                role="button" aria-haspopup="false"
                                aria-expanded="false">
                                 <span class="account-user-avatar">
-                                              {% if request.user.username == "drjan" %}
+                                              {% if request.user.username == "drjan" or request.user.username == "JAN" %}
                                                 <img src="{% static 'msystem/assets/images/drjan.jpg' %}" alt="user-image" class="rounded-circle">
                                               {% else%}
                                                 <img src="{% static 'msystem/assets/images/profile.jpg' %}" alt="user-image" class="rounded-circle">
