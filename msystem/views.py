@@ -8,6 +8,7 @@ from .models import *
 import datetime
 from django.contrib import messages
 from django.db import IntegrityError
+from django.contrib.auth.models import  Group
 
 
 # =========================== Dashboards ========================================
@@ -102,6 +103,7 @@ def add_person(request):
         return render(request, "msystem/forms/add_client.html")
 
 
+# ========= DataFiles ===========
 def add_datafiles(request, person):
     # check if request object comes with any uploaded files
     if request.FILES:
@@ -209,7 +211,7 @@ def update_person(request, person_id):
 
 @login_required(login_url='/login/')
 def clients(request):
-    p = Person.objects.filter(is_client=True).order_by("id")
+    p = Person.objects.filter(is_client=True).order_by("-id")
 
     # if there's a search query, filter p
     if "q" in request.GET:
@@ -399,16 +401,25 @@ def mark_appointment(request, ap_id):
 # ================================ Employees ===================================
 @login_required(login_url='/login/')
 def employees(request):
-    emps = Employee.objects.all()
+    userGroup = Group.objects.get(user=request.user).name
+    if userGroup == 'admin':
+        emps = Employee.objects.all()
+        context = {
+            "employees": emps,
+        }
+    elif userGroup == 'staff':
+        notallowed = True
+        context = {
+            "notallowed": notallowed,
+        }
+
 
     # if there's a search query, filter p
     if "q" in request.GET:
         q = request.GET['q']
         emps = Employee.objects.filter(person__full_name__icontains=q).order_by("id")
 
-    context = {
-        "employees": emps,
-    }
+
     return render(request, "msystem/datatables/employees.html", context)
 
 

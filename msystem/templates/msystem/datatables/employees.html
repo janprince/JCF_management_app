@@ -1,4 +1,4 @@
-{% extends 'msystem/datatables/datatable_base.html' %}
+{% extends 'msystem/base.html' %}
 {% load static %}
 
 
@@ -25,9 +25,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
-                    <div class="" id="basic-datatable-preview">
-                        <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                    {% if employees %}
+                        <div class="" id="basic-datatable-preview">
+                        <table class="table mb-0">
                             <thead>
                             <tr>
                                 <th>Employee ID</th>
@@ -47,7 +47,7 @@
                                 <td>
                                     <!--                                    <i class="uil-user mr-3"></i>-->
                                     <a class="text-decoration-none text-body"
-                                       href="{% url 'msystem:client_profile' employee.person.id %}">{{ employee.person.full_name }}</a>
+                                       href="{% url 'msystem:client_profile' employee.person.id %}">{{employee.person.full_name }}</a>
                                     <!--                                    <span>{{ client.full_name }}</span>-->
                                 </td>
                                 <td>{{ employee.person.phone }}</td>
@@ -72,7 +72,11 @@
                             </tbody>
                         </table>
                     </div> <!-- end preview-->
-
+                    {% elif notallowed %}
+                        <div class="alert alert-danger" role="alert">
+                            <i class="dripicons-wrong me-2"></i> Sorry, You are <strong>not allowed</strong> to view this page
+                        </div>
+                    {% endif %}
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
