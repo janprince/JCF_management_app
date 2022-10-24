@@ -16,7 +16,7 @@
                     </button>
                 </div>
                 {% block page_title %}
-                <h4 class="page-title">Clients</h4>
+                <h4 class="page-title">Clients (Recently Added)</h4>
                 {% endblock page_title %}
             </div>
         </div>
@@ -34,11 +34,11 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                <th>Country</th>
-                                <th>Gender</th>
-                                <th>Student</th>
+                                <th class="d-none d-lg-table-cell">Country</th>
+                                <th class="d-none d-lg-table-cell">Gender</th>
+                                <th class="d-none d-lg-table-cell">Student</th>
                                 <th>Appointment</th>
-                                <th style="width: 125px;">Action</th>
+                                <th class="d-none d-lg-table-cell" style="width: 125px;">Action</th>
                             </tr>
                             </thead>
 
@@ -52,9 +52,9 @@
                                     <!--                                    <span>{{ client.full_name }}</span>-->
                                 </td>
                                 <td>{{ client.phone }}</td>
-                                <td>{{client.country}}</td>
-                                <td>{{ client.gender}}</td>
-                                <td>
+                                <td class="d-none d-lg-table-cell">{{client.country}}</td>
+                                <td class="d-none d-lg-table-cell">{{ client.gender}}</td>
+                                <td class="d-none d-lg-table-cell">
                                     {% if client.is_student %}
                                     <i class="mdi mdi-check-circle text-success"></i>
                                     {% else %}
@@ -67,7 +67,7 @@
                                         <i class="mdi mdi-pencil-box-multiple me-1"></i> Book
                                     </a>
                                 </td>
-                                <td>
+                                <td class="d-none d-lg-table-cell">
                                     <!-- Edit -->
                                     <a href="{% url 'msystem:update_person' client.id %}" class="action-icon"> <i
                                             class="mdi mdi-square-edit-outline"></i></a>
@@ -96,9 +96,9 @@
                     </div> <!-- end preview-->
 
                 </div> <!-- end card body-->
-                <div class="m-4">
-                    <strong>100 Clients Out Of .....</strong>
-                </div>
+<!--                <div class="m-4">-->
+<!--                    <strong>100 Clients Out Of .....</strong>-->
+<!--                </div>-->
             </div> <!-- end card -->
 
         </div><!-- end col-->
