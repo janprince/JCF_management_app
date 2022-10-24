@@ -37,7 +37,7 @@
                                 <th class="d-none d-lg-table-cell">Country</th>
                                 <th class="d-none d-lg-table-cell">Gender</th>
                                 <th class="d-none d-lg-table-cell">Student</th>
-                                <th>Appointment</th>
+                                <th class="d-none d-lg-table-cell">Appointment</th>
                                 <th class="d-none d-lg-table-cell" style="width: 125px;">Action</th>
                             </tr>
                             </thead>
@@ -61,7 +61,7 @@
                                     <i class="mdi mdi-close-circle text-danger"></i>
                                     {% endif %}
                                 </td>
-                                <td>
+                                <td class="d-none d-lg-table-cell" >
                                     <a href="{% url 'msystem:book_client' client.id %}" type="button"
                                        class="btn btn-secondary btn-sm">
                                         <i class="mdi mdi-pencil-box-multiple me-1"></i> Book
