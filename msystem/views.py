@@ -211,7 +211,7 @@ def update_person(request, person_id):
 
 @login_required(login_url='/login/')
 def clients(request):
-    p = Person.objects.filter(is_client=True).order_by()[:100]
+    p = Person.objects.filter(is_client=True).order_by("-id")[:100]
 
     # if there's a search query, filter p
     if "q" in request.GET:
