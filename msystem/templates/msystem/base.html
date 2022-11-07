@@ -809,8 +809,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
                             <form class="p-3" method="get" action="{% url 'msystem:clients' %}">
-                                <input type="text" class="form-control" placeholder="Search ..."
-                                       aria-label="Recipient's username" name="q">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username" name="q">
+                                    <button class="btn btn-primary" type="submit"><span class="mdi mdi-magnify search-icon"></span></button>
+                                </div>
                             </form>
                         </div>
                     </li>
