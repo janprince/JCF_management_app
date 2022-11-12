@@ -231,7 +231,7 @@ def client_profile(request, client_id):
 
     # get client's appointment due toady, if any;
     try:
-        p_appointment = p.appointments.get(done=False, date=date.today())
+        p_appointment = p.appointments.get(done=False, person=p)
     except:
         p_appointment = None
     print(p_appointment)
