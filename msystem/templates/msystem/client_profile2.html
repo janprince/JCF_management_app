@@ -173,11 +173,11 @@
                                 Request Information
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#timeline" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
-                                Remark / Solution
-                            </a>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a href="#timeline" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">-->
+<!--                                Remark / Solution-->
+<!--                            </a>-->
+<!--                        </li>-->
                         <li class="nav-item">
                             <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
                                 Data Files
@@ -185,6 +185,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
+
                         <div class="tab-pane active" id="aboutme">
 
                             <!-- Request Info -->
@@ -193,24 +194,99 @@
                                 <div><p class="">{{ client.request_info | linebreaks }}</p></div>
                             </div>
 
-                        </div> <!-- end tab-pane -->
-                        <!-- end request_info section content -->
-
-                        <div class="tab-pane show" id="timeline">
                             <!-- Remark -->
                             <div>
-                                <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Remarks</h5>
+                                <h5 class="mt-3 text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Remarks</h5>
                                 <div><p class="">{{ client.remark | linebreaks }}</p></div>
                             </div>
 
                             <!-- Solution -->
                             <div>
-                                <h5 class="mb-3 mt-4 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
+                                <h5 class="mt-3 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
                                     Solution</h5>
                                 <p class="">{{ client.solution | linebreaks }}</p>
                             </div>
-                        </div>
-                        <!-- end remark/solution content-->
+
+                            <hr class="my-4">
+
+                            {% if client.requests %}
+                            {% for request in client.requests.all %}
+                                <!-- Request Info -->
+                                <div>
+                                    <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Request Info</h5>
+                                    <div><p class="">{{ request.request_info | linebreaks }}</p></div>
+                                </div>
+
+                                <!-- Remark -->
+                                <div>
+                                    <h5 class="mt-3 text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Remarks</h5>
+                                    <div><p class="">{{ request.remark | linebreaks }}</p></div>
+                                </div>
+
+                                <!-- Solution -->
+                                <div>
+                                    <h5 class="mt-3 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
+                                        Solution</h5>
+                                    <p class="">{{ request.solution | linebreaks }}</p>
+                                </div>
+
+                                <hr class="my-4">
+                            {% endfor %}
+                            {% endif %}
+
+                            <div class="text-center">
+                                <button class="btn btn-primary" id="request_btn" onclick="hide(); this.style.display = 'none';">Add New Request</button>
+                            </div>
+
+                            <!-- Add new request form -->
+                            <div id="newRequestForm" style="display: none" class="">
+                                <h5 class="text-uppercase text-center mb-2 mt-4"><i class="mdi mdi-plus me-1"></i>Add New Request</h5>
+                                <form method="post" action="{% url 'msystem:add_request' client.id %}">
+                                    {% csrf_token %}
+
+                                    <!-- Request Info -->
+                                    <div class="mb-3">
+                                        <label for="textareaInfo" class="form-label">Request Information</label>
+                                        <textarea class="form-control" id="textareaInfo" rows="3" name="request_info" required></textarea>
+                                    </div>
+
+                                    <!-- Remark -->
+                                    <div class="mb-3">
+                                        <label for="textareaRemark" class="form-label">Dr. Jan's Remark</label>
+                                        <textarea class="form-control" id="textareaRemark" rows="3" name="remark"></textarea>
+                                    </div>
+
+                                    <!-- Solution -->
+                                    <div class="mb-3">
+                                        <label for="textareaSolution" class="form-label">Solution</label>
+                                        <textarea class="form-control" id="textareaSolution" rows="3" placeholder="Enter text here" name="solution"></textarea>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Add Request</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div> <!-- end tab-pane -->
+                        <!-- end request_info section content -->
+
+<!--                        <div class="tab-pane show" id="timeline">-->
+<!--                            &lt;!&ndash; Remark &ndash;&gt;-->
+<!--                            <div>-->
+<!--                                <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Remarks</h5>-->
+<!--                                <div><p class="">{{ client.remark | linebreaks }}</p></div>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash; Solution &ndash;&gt;-->
+<!--                            <div>-->
+<!--                                <h5 class="mb-3 mt-4 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>-->
+<!--                                    Solution</h5>-->
+<!--                                <p class="">{{ client.solution | linebreaks }}</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; end remark/solution content&ndash;&gt;-->
 
                         <div class="tab-pane" id="settings">
                             <!-- Data Files -->
@@ -286,6 +362,18 @@
 {% endblock main_content %}
 
 {% block extra_scripts %}
+<script>
+    function hide() {
+  var x = document.getElementById("newRequestForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+}
+</script>
+
 {% endblock extra_scripts %}
 
 

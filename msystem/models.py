@@ -95,3 +95,13 @@ class Appointment(models.Model):
     @property
     def is_today(self):
         return self.date == date.today()
+
+
+class Request(models.Model):
+    person = models.ForeignKey(Person, related_name="requests", on_delete=models.CASCADE)
+    request_info = models.TextField(blank=True)
+    remark = models.TextField(blank=True)
+    solution = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"Request: {self.person.full_name}"

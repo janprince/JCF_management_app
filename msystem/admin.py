@@ -20,6 +20,10 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ["id", 'person', 'role', 'salary']
 
 
+class RequestAdmin(admin.ModelAdmin):
+    list_display = ["id", 'person']
+
+
 class DataFileAdmin(admin.ModelAdmin):
     list_display = ["id", 'person', 'file']
 
@@ -30,3 +34,4 @@ admin.site.register(Rep, RepAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(DataFile, DataFileAdmin)
+admin.site.register(Request, RequestAdmin)

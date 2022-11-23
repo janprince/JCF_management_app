@@ -499,6 +499,39 @@ def login_view(request):
     return render(request, "msystem/login.html")
 
 
+def add_request(request, client_id):
+    person = Person.objects.get(id=client_id)
+    if request.method == "POST":
+        request_info = request.POST["request_info"]
+        remark = request.POST["remark"]
+        solution = request.POST["solution"]
+
+        r = Request(
+            person=person,
+            request_info=request_info,
+            remark=remark,
+            solution=solution,
+        )
+
+        r.save()
+
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
+
+
+def update_request(request, client_id, request_id):
+    if request.method == "POST":
+        request_info = request.POST["request_info"]
+        remark = request.POST["remark"]
+        solution = request.POST["solution"]
+
+        Request.objects.filter(id=request_id).update(
+            request_info=request_info,
+            remark=remark,
+            solution=solution
+        )
+
+    return HttpResponseRedirect("")
+
 def signup(request):
     return render(request, "msystem/register.html")
 
