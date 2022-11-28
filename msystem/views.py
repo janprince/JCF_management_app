@@ -98,7 +98,7 @@ def add_person(request):
 
         messages.success(request, "Record Created Successfully")
 
-        return HttpResponseRedirect(reverse("msystem:clients"))
+        return HttpResponseRedirect(reverse("msystem:client_profile", args=(p.id,)))
     else:
         return render(request, "msystem/forms/add_client.html")
 
