@@ -190,7 +190,7 @@ def update_person(request, person_id):
         # feedback
         messages.success(request, "Record Updated Successfully")
 
-        return HttpResponseRedirect(reverse("msystem:clients"))
+        return HttpResponseRedirect(reverse("msystem:client_profile", args=(person_id,)))
     else:
         # Get person
         person = Person.objects.get(id=person_id)
