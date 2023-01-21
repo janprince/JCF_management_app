@@ -14,6 +14,10 @@ class RepAdmin(admin.ModelAdmin):
 
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ['id', 'person', 'date', 'mode', "done"]
+    actions = ['mark_done']
+
+    def mark_done(self, request, queryset):
+        queryset.update(done=True)
 
 
 class EmployeeAdmin(admin.ModelAdmin):
