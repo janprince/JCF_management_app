@@ -296,12 +296,15 @@ def book_client(request, client_id):
         except:
             appointment_date = None
 
-        try:
-            a = Appointment(person=client, mode=mode, date=appointment_date)
-            a.save()
-        except IntegrityError:
-            messages.warning(request, "Appointment already exists.")
-            return HttpResponseRedirect(reverse("msystem:appointments"))
+        # try:
+        #     a = Appointment(person=client, mode=mode, date=appointment_date)
+        #     a.save()
+        # except IntegrityError:
+        #     messages.warning(request, "Appointment already exists.")
+        #     return HttpResponseRedirect(reverse("msystem:appointments"))
+
+        a = Appointment(person=client, mode=mode, date=appointment_date)
+        a.save()
 
         # feedback
         messages.success(request, "Appointment Booked Successfully")
