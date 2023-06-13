@@ -55,9 +55,6 @@ def add_person(request):
         religion = request.POST["religion"]
         gender = request.POST['gender']
         referral = request.POST['referral']
-        request_info = request.POST["request_info"]
-        remark = request.POST["remark"]
-        solution = request.POST["solution"]
         roles = request.POST.getlist("roles")
 
         # parse date
@@ -78,9 +75,6 @@ def add_person(request):
                    hometown=hometown,
                    referral=referral,
                    religion=religion,
-                   request_info=request_info,
-                   remark=remark,
-                   solution=solution
             )
 
         if 'is_student' in roles: p.is_student = True
@@ -96,6 +90,7 @@ def add_person(request):
         # add_datafiles
         add_datafiles(request, p)
 
+        # notification
         messages.success(request, "Record Created Successfully")
 
         return HttpResponseRedirect(reverse("msystem:client_profile", args=(p.id,)))
@@ -111,7 +106,6 @@ def add_datafiles(request, person):
         print(request.FILES)
         files = request.FILES.getlist('datafile')  # since upload could be multiple
         for file in files:
-            print(file)
             d = DataFile(person=person, file=file)
             d.save()
 
@@ -146,9 +140,6 @@ def update_person(request, person_id):
         religion = request.POST["religion"]
         gender = request.POST['gender']
         referral = request.POST['referral']
-        request_info = request.POST["request_info"]
-        remark = request.POST["remark"]
-        solution = request.POST["solution"]
         roles = request.POST.getlist("roles")
 
         # parse date
@@ -170,9 +161,6 @@ def update_person(request, person_id):
             country=country,
             hometown=hometown,
             religion=religion,
-            request_info=request_info,
-            remark=remark,
-            solution=solution
         )
         # Get person
         p = Person.objects.get(id=person_id)
@@ -204,7 +192,6 @@ def update_person(request, person_id):
             "update": True,
             "person": person,
             "dob": dob,
-
         }
         return render(request, "msystem/forms/add_client.html", context)
 
