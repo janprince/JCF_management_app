@@ -188,27 +188,6 @@
 
                         <div class="tab-pane active" id="aboutme">
 
-                            <!-- Request Info -->
-                            <div>
-                                <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Request Info</h5>
-                                <div><p class="">{{ client.request_info | linebreaks }}</p></div>
-                            </div>
-
-                            <!-- Remark -->
-                            <div>
-                                <h5 class="mt-3 text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Remarks</h5>
-                                <div><p class="">{{ client.remark | linebreaks }}</p></div>
-                            </div>
-
-                            <!-- Solution -->
-                            <div>
-                                <h5 class="mt-3 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
-                                    Solution</h5>
-                                <p class="">{{ client.solution | linebreaks }}</p>
-                            </div>
-
-                            <hr class="my-4">
-
                             {% if client.requests %}
                             {% for request in client.requests.all %}
                                 <!-- Request Info -->

@@ -1084,7 +1084,7 @@
                 <button class="button-menu-mobile open-left">
                     <i class="mdi mdi-menu"></i>
                 </button>
-                <div class="app-search dropdown d-none d-lg-block">
+                <div class="app-search d-none d-lg-block">
                     <form method="get" action="{% url 'msystem:clients' %}">
                         <div class="input-group">
                             <input type="text" class="form-control dropdown-toggle" placeholder="Search..."
@@ -1094,6 +1094,8 @@
                         </div>
                     </form>
 
+                    {% comment %}
+                    <!-- dropdown for the searchbar -->
                     <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
                         <!-- item-->
                         <div class="dropdown-header noti-title">
@@ -1118,6 +1120,7 @@
                             <span>Ignore This</span>
                         </a>
                     </div>
+                    {% endcomment %}
                 </div>
             </div>
             <!-- end Topbar -->
@@ -1178,7 +1181,7 @@
 </div>
 <!-- END wrapper -->
 
-{% comment %}
+
 <!-- Right Sidebar -->
 <div class="end-bar">
 
@@ -1212,7 +1215,7 @@
                 <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
             </div>
 
-
+            {% comment %}
             <!-- Width -->
             <h5 class="mt-4">Width</h5>
             <hr class="mt-1"/>
@@ -1269,6 +1272,7 @@
                 <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/"
                    class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
             </div>
+            {% endcomment %}
         </div> <!-- end padding-->
 
     </div>
@@ -1276,7 +1280,6 @@
 
 <div class="rightbar-overlay"></div>
 <!-- /End-bar -->
-{% endcomment %}
 
 
 <!-- bundle -->
