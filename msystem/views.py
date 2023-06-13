@@ -521,7 +521,10 @@ def add_request(request, client_id):
     return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
 
 
-def update_request(request, client_id, request_id):
+def update_request(request, request_id):
+    client_id = request.GET.get("client_id")
+    print(client_id)
+
     if request.method == "POST":
         request_info = request.POST["request_info"]
         remark = request.POST["remark"]
@@ -533,7 +536,22 @@ def update_request(request, client_id, request_id):
             solution=solution
         )
 
-    return HttpResponseRedirect("")
+        # notification
+        messages.success(request, "Request updated successfully")
+
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
+
+def delete_request(request, request_id):
+    client_id = request.GET.get("client_id")
+
+
+    r = Request.objects.get(id=request_id)
+    r.delete()
+
+    # notification
+    messages.success(request, "Request deleted successfully")
+
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
 
 def signup(request):
     return render(request, "msystem/register.html")

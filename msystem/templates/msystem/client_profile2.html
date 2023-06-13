@@ -190,26 +190,33 @@
 
                             {% if client.requests %}
                             {% for request in client.requests.all %}
+                            <form>
                                 <!-- Request Info -->
                                 <div>
                                     <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Request Info</h5>
-                                    <div><p class="">{{ request.request_info | linebreaks }}</p></div>
+                                    <div id="requestInfo{{request.id}}"><p class="">{{ request.request_info | linebreaks }}</p></div>
                                 </div>
 
                                 <!-- Remark -->
                                 <div>
                                     <h5 class="mt-3 text-uppercase"><i class="mdi mdi-briefcase me-1"></i>Remarks</h5>
-                                    <div><p class="">{{ request.remark | linebreaks }}</p></div>
+                                    <div id="remark{{request.id}}"><p class="">{{ request.remark | linebreaks }}</p></div>
                                 </div>
 
                                 <!-- Solution -->
                                 <div>
                                     <h5 class="mt-3 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
                                         Solution</h5>
-                                    <p class="">{{ request.solution | linebreaks }}</p>
+                                    <div id="solution{{request.id}}"><p class="">{{ request.solution | linebreaks }}</p></div>
                                 </div>
 
+                                <!-- modal button - edit request -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-request-id="{{request.id}}" data-client-id="{{client.id}}">
+                                    <i class="mdi mdi-clipboard-edit"></i>
+                                </button>
+
                                 <hr class="my-4">
+                            </form>
                             {% endfor %}
                             {% endif %}
 
@@ -353,6 +360,41 @@
 }
 </script>
 
+<script>
+    // script for update request modals
+    document.addEventListener("DOMContentLoaded", function() {
+        // get all buttons that invoke the modal
+        var modalTriggerButtons = document.querySelectorAll("[data-bs-toggle='modal']");
+
+        // get the modal fields
+        var textareaInfo2 = document.getElementById("textareaInfo2");
+        var textareaRemark2 = document.getElementById("textareaRemark2");
+        var textareaSolution2 = document.getElementById("textareaSolution2");
+
+        // add event listener for all buttons
+        modalTriggerButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var requestID = this.getAttribute("data-request-id");
+                var clientID = this.getAttribute("data-client-id");
+
+                // set the textarea value to the appropriate content
+                textareaInfo2.value = document.getElementById(`requestInfo${requestID}`).innerText;
+                textareaRemark2.value = document.getElementById(`remark${requestID}`).innerText;
+                textareaSolution2.value = document.getElementById(`solution${requestID}`).innerText;
+
+                // Get the updateform element
+                var myForm = document.getElementById("updateRequestForm");
+                // Set the action dynamically
+                myForm.action = `/clients/request/update/${requestID}?client_id=${clientID}`; // Replace with your desired URL
+
+                // Set the delete URL
+                var deleteBtn = document.getElementById("deleteButton");
+                deleteBtn.href = `/clients/request/delete/${requestID}?client_id=${clientID}`
+            });
+        });
+});
+</script>
+
 {% endblock extra_scripts %}
 
 
@@ -384,5 +426,49 @@
 {% endif %}
 
 <!--<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_client"><i class="fa fa-plus"></i> Add Client</a>-->
+
+
+<!-- modal for update request-->
+<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Update Request</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateRequestForm" action="" method="POST">
+                    {% csrf_token %}
+                    <!-- Request Info -->
+                    <div class="mb-3">
+                        <label for="textareaInfo2" class="form-label">Request Information</label>
+                        <textarea class="form-control" id="textareaInfo2" rows="5" form="updateRequestForm" name="request_info">{% if person.request_info %} {{ person.request_info}} {% endif %}</textarea>
+                    </div>
+
+                    <!-- Remark -->
+                    <div class="mb-3">
+                        <label for="textareaRemark2" class="form-label">Dr. Jan's Remark</label>
+                        <textarea class="form-control" id="textareaRemark2" rows="5" form="updateRequestForm" name="remark">{% if person.remark %} {{person.remark}} {% endif %}</textarea>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="mb-3">
+                        <label for="textareaSolution2" class="form-label">Solution</label>
+                        <textarea class="form-control" id="textareaSolution2" rows="5" placeholder="Enter text here" form="updateRequestForm" name="solution">{% if person.solution %} {{person.solution}} {% endif %}</textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div style="margin-right: auto" class="d-none">
+                            <a id="deleteButton" href="" class="btn btn-danger "><i class="mdi mdi-delete"></i></a>
+                        </div>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 {% endblock modals %}
