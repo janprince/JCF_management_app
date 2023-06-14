@@ -3,6 +3,6 @@ Django==4.2.2
 django-environ==0.8.1
 django-phonenumber-field==6.2.0
 phonenumbers==8.12.50
-sqlparse==0.4.2
+sqlparse==0.4.4
 typing_extensions==4.6.3
 tzdata==2022.1
