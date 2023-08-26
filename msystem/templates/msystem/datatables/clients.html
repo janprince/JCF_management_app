@@ -85,7 +85,7 @@
                                     </div>
 
                                     <!-- Delete  -->
-                                    <a data-bs-toggle="modal" data-bs-target="#warning-alert-modal" class="action-icon" data-link="{% url 'msystem:delete_client' client.id %}">
+                                    <a data-bs-toggle="modal" data-bs-target="#danger-alert-modal" data-client-name="{{ client.full_name }}" data-client-id="{{ client.id }}" class="action-icon d-none" data-link="{% url 'msystem:delete_client' client.id %}">
                                         <i class="mdi mdi-delete"></i>
                                     </a>
                                 </td>
@@ -104,28 +104,91 @@
         </div><!-- end col-->
     </div> <!-- end row-->
 
+    <!-- Pagination -->
+    <div class="row">
+        <div class="col-12">
+            <nav>
+                <ul class="pagination pagination-rounded mb-0 justify-content-end">
+                    <li class="page-item">
+                        {% if clients.has_previous %}
+                            <a class="page-link" href="?page={{ clients.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        {% else %}
+                            <a href="javascript: void(0);" class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        {% endif %}
+                    </li>
+
+
+                    {% for i in clients.paginator.page_range %}
+                        {% if clients.number == i %}
+                            <li class="page-item active"><a class="page-link" href="javascript: void(0);">{{ i }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+
+                    <li class="page-item">
+                        {% if clients.has_next %}
+                            <a class="page-link" href="?page={{ clients.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        {% else %}
+                            <a href="javascript: void(0);" class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        {% endif %}
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+
 </div> <!-- container -->
 
 <!-- Delete Alert Modal -->
-<div id="warning-alert-modal" class="modal fade" tabindex="-1" role="dialog"
-     aria-hidden="true">
+<div id="danger-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content modal-filled bg-danger">
             <div class="modal-body p-4">
                 <div class="text-center">
-                    <i class="dripicons-warning h1 text-warning"></i>
-                    <h4 class="mt-2">Delete Warning</h4>
-                    <p class="mt-3">Cras mattis consectetur purus sit amet
-                        fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-                        eget quam.</p>
-                    <a href="#" type="button" class="btn btn-warning my-2"
-                            data-bs-dismiss="modal">Continue
-                    </a>
+                    <i class="ri-close-circle-line h1"></i>
+                    <h4 class="mt-2">Warning!</h4>
+                    <p class="mt-3">You are deleting <strong id="clientName"></strong>. To proceed, click the button below.</p>
+                    <a href="#" id="modalDeleteButton" class="btn btn-light my-2">Continue</a>
                 </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
 {% endblock main_content %}
+
+{% block extra_scripts %}
+<script>
+    // script for moving data into the delete modak
+    document.addEventListener("DOMContentLoaded", function() {
+        // get all buttons that invoke the modal
+        var modalTriggerButtons = document.querySelectorAll("[data-bs-toggle='modal']");
+
+        // add event listener for all buttons
+        modalTriggerButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var clientID = this.getAttribute("data-client-id");
+                var clientName = this.getAttribute("data-client-name");
+
+                name_element = document.getElementById("clientName");
+                name_element.innerHTML = clientName;
+
+                // Set the delete URL
+                var deleteBtn = document.getElementById("modalDeleteButton");
+                deleteBtn.href = `/clients/delete/${clientID}`
+            });
+        });
+});
+</script>
+{% endblock extra_scripts %}

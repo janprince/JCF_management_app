@@ -1,0 +1,18 @@
+{% extends 'msystem/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <!-- Bootstrap Datepicker css -->
+    <link href="{% static 'msystem/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+
+
+
+{% block extra_scripts %}
+
+    <!-- Bootstrap Datepicker Plugin js -->
+    <script src="{% static 'msystem/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+
+    <!--  Select2 Plugin Js -->
+    <script src="{% static 'msystem/assets/vendor/select2/js/select2.min.js' %}"></script>
+{% endblock extra_scripts %}

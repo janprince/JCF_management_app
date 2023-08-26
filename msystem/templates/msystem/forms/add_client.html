@@ -1,8 +1,5 @@
-{% extends 'msystem/base.html' %}
+{% extends 'msystem/forms/form_base.html' %}
 {% load static %}
-
-{% block extra_css %}
-{% endblock extra_css %}
 
 
 {% block main_content %}
@@ -42,7 +39,7 @@
                                 <!-- Date of Birth -->
                                 <div class="mb-3 col-md-6 position-relative" id="datepicker1">
                                     <label class="form-label" for="datePicker">Date of Birth</label>
-                                    <input type="text" id="datePicker" data-date-format="dd/mm/yyyy" class="form-control" data-provide="datepicker" data-date-container="#datepicker1" name="date_of_birth" autocomplete="off" {% if dob %} value="{{dob}}" {% endif %}>
+                                    <input type="text" id="datePicker" data-date-format="dd/mm/yyyy" class="form-control" data-provide="datepicker" data-date-container="#datepicker1" data-date-autoclose="true" name="date_of_birth" autocomplete="off" {% if dob %} value="{{dob}}" {% endif %}>
                                 </div>
                             </div>
 
@@ -188,6 +185,3 @@
 </div> <!-- container -->
 
 {% endblock main_content %}
-
-{% block extra_scripts %}
-{% endblock extra_scripts %}

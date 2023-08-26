@@ -1,8 +1,5 @@
-{% extends 'msystem/base.html' %}
+{% extends 'msystem/forms/form_base.html' %}
 {% load static %}
-
-{% block extra_css %}
-{% endblock extra_css %}
 
 
 {% block main_content %}
@@ -69,7 +66,7 @@
                                         <label class="col-form-label" for="datePicker">Appointment Date</label>
                                         <input type="text" id="datePicker" data-date-format="dd/mm/yyyy"
                                                class="form-control" data-provide="datepicker"
-                                               data-date-container="#datepicker1" name="appointment_date" {% if appointment %} value="{{ap_date}}" {% endif %} required>
+                                               data-date-container="#datepicker1" name="appointment_date" {% if appointment %} value="{{ap_date}}" {% endif %} required autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -99,6 +96,3 @@
 </div> <!-- container -->
 
 {% endblock main_content %}
-
-{% block extra_scripts %}
-{% endblock extra_scripts %}

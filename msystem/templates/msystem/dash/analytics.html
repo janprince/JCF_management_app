@@ -190,15 +190,21 @@
 
 {% block extra_scripts %}
 
-<!-- third party js -->
-<!-- <script src="assets/js/vendor/chart.min.js"></script> -->
-<script src="{% static 'msystem/assets/js/vendor/apexcharts.min.js' %}"></script>
-<script src="{% static 'msystem/assets/js/vendor/jquery-jvectormap-1.2.2.min.js' %}"></script>
-<script src="{% static 'msystem/assets/js/vendor/jquery-jvectormap-world-mill-en.js' %}"></script>
-<!-- third party js ends -->
 
-<!-- demo app -->
-<script src="{% static 'msystem/assets/js/pages/demo.dashboard-analytics.js' %}"></script>
-<!-- end demo js-->
+    <!-- Daterangepicker js -->
+    <script src="{% static 'msystem/assets/vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'msystem/assets/vendor/daterangepicker/daterangepicker.js' %}"></script>
+
+    <!-- Charts js -->
+    <script src="{% static 'msystem/assets/vendor/chart.js/chart.min.js' %}"></script>
+    <script src="{% static 'msystem/assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+
+    <!-- Vector Map js -->
+    <script src="{% static 'msystem/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'msystem/assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js' %}"></script>
+
+    <!-- Analytics Dashboard App js -->
+    <script src="{% static 'msystem/assets/js/pages/demo.dashboard-analytics.js' %}"></script>
+
 
 {% endblock extra_scripts %}

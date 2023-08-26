@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -198,7 +199,12 @@ def update_person(request, person_id):
 
 @login_required(login_url='/login/')
 def clients(request):
-    p = Person.objects.filter(is_client=True).order_by("-id")[:100]
+    p = Person.objects.filter(is_client=True).order_by("-id")
+
+    # pagination
+    paginator = Paginator(p, 1)  # Show 10 contacts per page
+    page = request.GET.get('page')
+    p = paginator.get_page(page)
 
     # if there's a search query, filter p
     if "q" in request.GET:
@@ -268,7 +274,60 @@ def students(request):
     pass
 
 
-# ================================= Appointments =================================
+# =========================================== Requests ===========================================
+def add_request(request, client_id):
+    person = Person.objects.get(id=client_id)
+    if request.method == "POST":
+        request_info = request.POST["request_info"]
+        remark = request.POST["remark"]
+        solution = request.POST["solution"]
+
+        r = Request(
+            person=person,
+            request_info=request_info,
+            remark=remark,
+            solution=solution,
+        )
+
+        r.save()
+
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
+
+
+def update_request(request, request_id):
+    client_id = request.GET.get("client_id")
+    print(client_id)
+
+    if request.method == "POST":
+        request_info = request.POST["request_info"]
+        remark = request.POST["remark"]
+        solution = request.POST["solution"]
+
+        Request.objects.filter(id=request_id).update(
+            request_info=request_info,
+            remark=remark,
+            solution=solution
+        )
+
+        # notification
+        messages.success(request, "Request updated successfully")
+
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
+
+
+def delete_request(request, request_id):
+    client_id = request.GET.get("client_id")
+
+    r = Request.objects.get(id=request_id)
+    r.delete()
+
+    # notification
+    messages.success(request, "Request deleted successfully")
+
+    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
+
+
+# ========================================= Appointments ===========================================
 @login_required(login_url='/login/')
 def book_client(request, client_id):
     client = Person.objects.get(id=client_id)
@@ -388,7 +447,7 @@ def mark_appointment(request, ap_id):
     return HttpResponseRedirect(reverse("msystem:appointments"))
 
 
-# ================================ Employees ===================================
+# =========================================== Employees ============================================
 @login_required(login_url='/login/')
 def employees(request):
     userGroup = Group.objects.get(user=request.user).name
@@ -466,7 +525,7 @@ def update_employee(request, emp_id):
     return render(request, "msystem/forms/add_employee.html", context)
 
 
-# ========================= Accounts Management ================================
+# =========================================== Accounts Management ====================================
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get("emailaddress")
@@ -488,57 +547,6 @@ def login_view(request):
             return render(request, "msystem/login.html", context=context)
     return render(request, "msystem/login.html")
 
-
-def add_request(request, client_id):
-    person = Person.objects.get(id=client_id)
-    if request.method == "POST":
-        request_info = request.POST["request_info"]
-        remark = request.POST["remark"]
-        solution = request.POST["solution"]
-
-        r = Request(
-            person=person,
-            request_info=request_info,
-            remark=remark,
-            solution=solution,
-        )
-
-        r.save()
-
-    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
-
-
-def update_request(request, request_id):
-    client_id = request.GET.get("client_id")
-    print(client_id)
-
-    if request.method == "POST":
-        request_info = request.POST["request_info"]
-        remark = request.POST["remark"]
-        solution = request.POST["solution"]
-
-        Request.objects.filter(id=request_id).update(
-            request_info=request_info,
-            remark=remark,
-            solution=solution
-        )
-
-        # notification
-        messages.success(request, "Request updated successfully")
-
-    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
-
-def delete_request(request, request_id):
-    client_id = request.GET.get("client_id")
-
-
-    r = Request.objects.get(id=request_id)
-    r.delete()
-
-    # notification
-    messages.success(request, "Request deleted successfully")
-
-    return HttpResponseRedirect(reverse("msystem:client_profile", args=(client_id,)))
 
 def signup(request):
     return render(request, "msystem/register.html")
