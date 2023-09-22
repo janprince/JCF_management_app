@@ -4,13 +4,17 @@
 
     <head>
         <meta charset="utf-8"/>
-        <title>{% block title %} JCF {% endblock title %}</title>
+        <title>{% block title %} JCF Portal {% endblock title %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
         <meta content="Jan Cosmic Foundation" name="author"/>
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'msystem/assets/images/favicon.ico' %}">
+        <link rel="shortcut icon" href="{% static 'msystem/assets/images/favicon/favicon.ico' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'msystem/assets/images/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'msystem/assets/images/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'msystem/assets/images/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'msystem/assets/images/favicon/site.webmanifest' %}">
 
         {% block extra_css %}
         {% endblock extra_css %}
@@ -362,7 +366,7 @@
                             <li class="dropdown">
                                 <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="{% static 'msystem/assets/images/users/avatar-1.jpg' %}" alt="user-image" width="32" class="rounded-circle">
+                                        <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" alt="user-image" width="32" class="rounded-circle">
                                     </span>
                                     <span class="d-lg-flex flex-column gap-1 d-none">
                                         <h5 class="my-0">Dorothy Boison</h5>
@@ -417,20 +421,20 @@
                     <!-- Brand Logo Light -->
                     <a href="index-2.html" class="logo logo-light">
                         <span class="logo-lg">
-                            <img src="{% static 'msystem/assets/images/logo.png' %}" alt="logo">
+                            <img src="{% static 'msystem/assets/images/JCF.png' %}" alt="logo">
                         </span>
                         <span class="logo-sm">
-                            <img src="{% static 'msystem/assets/images/logo-sm.png' %}" alt="small logo">
+                            <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" alt="small logo">
                         </span>
                     </a>
 
                     <!-- Brand Logo Dark -->
                     <a href="index-2.html" class="logo logo-dark">
                         <span class="logo-lg">
-                            <img src="{% static 'msystem/assets/images/logo-dark.png' %}" alt="dark logo">
+                            <img src="{% static 'msystem/assets/images/JCF-dark.png' %}" alt="dark logo">
                         </span>
                         <span class="logo-sm">
-                            <img src="{% static 'msystem/assets/images/logo-dark-sm.png' %}" alt="small logo">
+                            <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" alt="small logo">
                         </span>
                     </a>
 
@@ -918,7 +922,7 @@
             <!-- Theme Settings -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="theme-settings-offcanvas">
                 <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
-                    <h5 class="text-white m-0">Theme Settings</h5>
+                    <h5 class="text-white m-0">Page Settings</h5>
                     <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
 
