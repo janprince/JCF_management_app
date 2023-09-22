@@ -15,6 +15,9 @@
         {% block extra_css %}
         {% endblock extra_css %}
 
+        <!-- Plugin css -->
+        <link rel="stylesheet" href="{% static 'msystem/assets/vendor/jquery-toast-plugin/jquery.toast.min.css' %}">
+
         <!-- Theme Config Js -->
         <script src="{% static 'msystem/assets/js/hyper-config.js' %}"></script>
 
@@ -362,7 +365,7 @@
                                         <img src="{% static 'msystem/assets/images/users/avatar-1.jpg' %}" alt="user-image" width="32" class="rounded-circle">
                                     </span>
                                     <span class="d-lg-flex flex-column gap-1 d-none">
-                                        <h5 class="my-0">Dominic Keller</h5>
+                                        <h5 class="my-0">Dorothy Boison</h5>
                                         <h6 class="my-0 fw-normal">Founder</h6>
                                     </span>
                                 </a>
@@ -1603,9 +1606,11 @@
             <!-- Vendor js -->
             <script src="{% static 'msystem/assets/js/vendor.min.js' %}"></script>
 
+            <!-- Notification Toast js-->
+            <script src="{% static 'msystem/assets/vendor/jquery-toast-plugin/jquery.toast.min.js' %}"></script>
 
-            <!-- notification toasts js -->
-            <script src="assets/js/pages/demo.toastr.js"></script>
+            <!-- Toastr Demo js -->
+            <script src="{% static 'msystem/assets/js/pages/demo.toastr.js' %}"></script>
             <!-- -->
 
             {% if messages %}
