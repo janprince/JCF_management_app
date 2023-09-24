@@ -125,7 +125,7 @@
                     {% for i in clients.paginator.page_range %}
                         {% if clients.number == i %}
                             <li class="page-item active"><a class="page-link" href="javascript: void(0);">{{ i }}</a></li>
-                        {% else %}
+                        {% elif clients.number == i|add:"1" or clients.number == i|add:"-1"%}
                             <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
                         {% endif %}
                     {% endfor %}

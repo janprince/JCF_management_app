@@ -202,7 +202,7 @@ def clients(request):
     p = Person.objects.filter(is_client=True).order_by("-id")
 
     # pagination
-    paginator = Paginator(p, 1)  # Show 10 contacts per page
+    paginator = Paginator(p, 100)  # Show 10 contacts per page
     page = request.GET.get('page')
     p = paginator.get_page(page)
 
