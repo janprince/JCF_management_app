@@ -1,5 +1,20 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
+
+
+class Profile(models.Model):
+    role_choices = [
+        ("admin", "Admin"),
+        ("administrator", "Administrator"),
+        ("secretary", "Secretary"),
+    ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=255)
+    role = models.CharField(max_length=255, choices=role_choices)
+
+    def __str__(self):
+        return f"{self.user.username}"
 
 
 # Person
@@ -21,6 +36,7 @@ class Person(models.Model):
     referral = models.CharField(max_length=255, blank=True)
     is_client = models.BooleanField(blank=True, default=True)
     is_student = models.BooleanField(default=False)
+    is_advanced_student = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ["full_name", "phone"]

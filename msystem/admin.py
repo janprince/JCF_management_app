@@ -8,6 +8,10 @@ class PersonAdmin(admin.ModelAdmin):
     search_fields = ['full_name']
 
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'role']
+
+
 class RepAdmin(admin.ModelAdmin):
     list_display = ['id', 'person', 'country']
 
@@ -39,3 +43,4 @@ admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(DataFile, DataFileAdmin)
 admin.site.register(Request, RequestAdmin)
+admin.site.register(Profile, ProfileAdmin)

@@ -40,15 +40,17 @@
             <div class="card widget-flat">
                 <div class="card-body">
                     <div class="float-end">
-                        <i class="mdi mdi-book-account-outline widget-icon bg-danger rounded-circle text-white"></i>
+                        <i class="mdi mdi-book-account-outline widget-icon bg-info rounded-circle text-white"></i>
                     </div>
                     <h5 class="text-muted fw-normal mt-0" title="Revenue">Pending Appointments</h5>
                     <h3 class="mt-3 mb-3">{{ appointment_count }}</h3>
+                    {% comment %}
                     <p class="mb-0 text-muted">
                                             <span class="badge bg-info me-1">
                                                 <i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
                         <span class="text-nowrap">Since last month</span>
                     </p>
+                    {% endcomment %}
                 </div>
             </div>
         </div> <!-- end col-->
@@ -57,15 +59,17 @@
             <div class="card widget-flat">
                 <div class="card-body">
                     <div class="float-end">
-                        <i class="mdi mdi-pulse widget-icon"></i>
+                        <i class="mdi mdi-account-multiple widget-icon"></i>
                     </div>
-                    <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
-                    <h3 class="mt-3 mb-3">+ 30.56%</h3>
+                    <h5 class="text-muted fw-normal mt-0" title="Consultees">Consultees</h5>
+                    <h3 class="mt-3 mb-3">{{client_count}}</h3>
+                    {% comment %}
                     <p class="mb-0 text-muted">
                                             <span class="text-success me-2">
                                                 <i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
                         <span class="text-nowrap">Since last month</span>
                     </p>
+                    {% endcomment %}
                 </div>
             </div>
         </div> <!-- end col-->
@@ -76,13 +80,15 @@
                     <div class="float-end">
                         <i class="mdi mdi-account-multiple widget-icon bg-white text-success"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Clients</h6>
+                    <h6 class="text-uppercase mt-0" title="Customers">Data</h6>
                     <h3 class="mt-3 mb-3">{{client_count}}</h3>
+                    {% comment %}
                     <p class="mb-0">
-                                            <span class="badge badge-light-lighten me-1">
+                                            <span class="badge bg-white bg-opacity-10 me-1">
                                                 <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
                         <span class="text-nowrap">Since last month</span>
                     </p>
+                    {% endcomment %}
                 </div>
             </div>
         </div> <!-- end col-->
@@ -91,97 +97,99 @@
             <div class="card widget-flat bg-primary text-white">
                 <div class="card-body">
                     <div class="float-end">
-                        <i class="mdi mdi-school-outline widget-icon bg-light-lighten rounded-circle text-white"></i>
+                        <i class="mdi mdi-school-outline widget-icon bg-white rounded-circle text-primary"></i>
                     </div>
                     <h5 class="fw-normal mt-0" title="Revenue">Students</h5>
                     <h3 class="mt-3 mb-3 text-white">{{student_count}}</h3>
+                    {% comment %}
                     <p class="mb-0">
                                             <span class="badge bg-info me-1">
                                                 <i class="mdi mdi-arrow-up-bold"></i> 17.26%</span>
                         <span class="text-nowrap">Since last month</span>
                     </p>
+                    {% endcomment %}
                 </div>
             </div>
         </div> <!-- end col-->
     </div>
 
-    <div class="row">
-        <div class="col-xl-3 col-lg-4">
-            <div class="card tilebox-one">
-                <div class="card-body">
-                    <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Clients</h6>
-                    <h2 class="my-2">{{ client_count }}</h2>
-                    <p class="mb-0 text-muted">
-                        <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span>
-                        <span class="text-nowrap">Since last month</span>
-                    </p>
-                </div> <!-- end card-body-->
-            </div>
-            <!--end card-->
+<!--    <div class="row">-->
+<!--        <div class="col-xl-3 col-lg-4">-->
+<!--            <div class="card tilebox-one">-->
+<!--                <div class="card-body">-->
+<!--                    <i class='uil uil-users-alt float-end'></i>-->
+<!--                    <h6 class="text-uppercase mt-0">Clients</h6>-->
+<!--                    <h2 class="my-2">{{ client_count }}</h2>-->
+<!--                    <p class="mb-0 text-muted">-->
+<!--                        <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span>-->
+<!--                        <span class="text-nowrap">Since last month</span>-->
+<!--                    </p>-->
+<!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;end card&ndash;&gt;-->
 
-            <div class="card tilebox-one">
-                <div class="card-body">
-                    <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Students</h6>
-                    <h2 class="my-2">{{student_count}}</h2>
-                    <p class="mb-0 text-muted">
-                        <span class="text-danger me-2"><span class="mdi mdi-arrow-down-bold"></span> 1.08%</span>
-                        <span class="text-nowrap">Since previous week</span>
-                    </p>
-                </div> <!-- end card-body-->
-            </div>
-            <!--end card-->
+<!--            <div class="card tilebox-one">-->
+<!--                <div class="card-body">-->
+<!--                    <i class='uil uil-users-alt float-end'></i>-->
+<!--                    <h6 class="text-uppercase mt-0">Students</h6>-->
+<!--                    <h2 class="my-2">{{student_count}}</h2>-->
+<!--                    <p class="mb-0 text-muted">-->
+<!--                        <span class="text-danger me-2"><span class="mdi mdi-arrow-down-bold"></span> 1.08%</span>-->
+<!--                        <span class="text-nowrap">Since previous week</span>-->
+<!--                    </p>-->
+<!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;end card&ndash;&gt;-->
 
-            <div class="card cta-box overflow-hidden">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i
-                                    class="mdi mdi-arrow-right"></i></h3>
-                        </div>
-                        <img class="ms-3" src="assets/images/email-campaign.svg" width="92"
-                             alt="Generic placeholder image">
-                    </div>
-                </div>
-                <!-- end card-body -->
-            </div>
-        </div> <!-- end col -->
-
-        <div class="col-xl-9 col-lg-8">
-            <div class="card card-h-100">
-                <div class="card-body">
-<!--                    <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">-->
-<!--                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
-<!--                        Property HY1xx is not receiving hits. Either your site is not receiving any sessions or it is-->
-<!--                        not tagged correctly.-->
+<!--            <div class="card cta-box overflow-hidden">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="d-flex align-items-center">-->
+<!--                        <div>-->
+<!--                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i-->
+<!--                                    class="mdi mdi-arrow-right"></i></h3>-->
+<!--                        </div>-->
+<!--                        <img class="ms-3" src="assets/images/email-campaign.svg" width="92"-->
+<!--                             alt="Generic placeholder image">-->
 <!--                    </div>-->
-                    <ul class="nav float-end d-none d-lg-flex">
-                        <li class="nav-item">
-                            <a class="nav-link text-muted" href="#">Today</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-muted" href="#">7d</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">15d</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-muted" href="#">1m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-muted" href="#">1y</a>
-                        </li>
-                    </ul>
-                    <h4 class="header-title mb-3">Sessions Overview</h4>
+<!--                </div>-->
+<!--                &lt;!&ndash; end card-body &ndash;&gt;-->
+<!--            </div>-->
+<!--        </div> &lt;!&ndash; end col &ndash;&gt;-->
 
-                    <div dir="ltr">
-                        <div id="sessions-overview" class="apex-charts mt-3" data-colors="#0acf97"></div>
-                    </div>
-                </div> <!-- end card-body-->
-            </div> <!-- end card-->
-        </div>
-    </div>
+<!--        <div class="col-xl-9 col-lg-8">-->
+<!--            <div class="card card-h-100">-->
+<!--                <div class="card-body">-->
+<!--&lt;!&ndash;                    <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        Property HY1xx is not receiving hits. Either your site is not receiving any sessions or it is&ndash;&gt;-->
+<!--&lt;!&ndash;                        not tagged correctly.&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <ul class="nav float-end d-none d-lg-flex">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link text-muted" href="#">Today</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link text-muted" href="#">7d</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link active" href="#">15d</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link text-muted" href="#">1m</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link text-muted" href="#">1y</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                    <h4 class="header-title mb-3">Sessions Overview</h4>-->
+
+<!--                    <div dir="ltr">-->
+<!--                        <div id="sessions-overview" class="apex-charts mt-3" data-colors="#0acf97"></div>-->
+<!--                    </div>-->
+<!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end card&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
 
 </div>
 <!-- container -->

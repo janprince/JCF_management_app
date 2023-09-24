@@ -35,6 +35,14 @@
     {% block body %}
     <body>
 
+<!--            &lt;!&ndash; Pre-loader &ndash;&gt;-->
+<!--            <div id="preloader">-->
+<!--                <div id="status">-->
+<!--                    <div class="bouncing-loader"><div ></div><div ></div><div ></div></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; End Preloader&ndash;&gt;-->
+
             <!-- Begin page -->
             <div class="wrapper">
 
@@ -369,8 +377,8 @@
                                         <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" alt="user-image" width="32" class="rounded-circle">
                                     </span>
                                     <span class="d-lg-flex flex-column gap-1 d-none">
-                                        <h5 class="my-0">Dorothy Boison</h5>
-                                        <h6 class="my-0 fw-normal">Founder</h6>
+                                        <h5 class="my-0">{{ user.get_full_name }}</h5>
+                                        <h6 class="my-0 fw-normal">{{ user.profile.role|capfirst }}</h6>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
@@ -510,7 +518,7 @@
                             <li class="side-nav-item">
                                 <a href="{% url 'msystem:students' %}" class="side-nav-link">
                                     <i class="uil-book-reader"></i>
-                                    <span> Students </span>
+                                    <span> Seekers </span>
                                 </a>
                             </li>
 
@@ -532,6 +540,8 @@
                                     </ul>
                                 </div>
                             </li>
+
+                            {% comment %}
 
                             <li class="side-nav-title">Apps</li>
 
@@ -833,18 +843,27 @@
                                 </div>
                             </li>
 
+                            {% endcomment %}
 
+
+                            {% comment %}
                             <!-- Help Box -->
                             <div class="help-box text-white text-center">
                                 <a href="javascript: void(0);" class="float-end close-btn text-white">
                                     <i class="mdi mdi-close"></i>
                                 </a>
-                                <img src="{% static 'msystem/assets/images/svg/help-icon.svg' %}" height="90" alt="Helper Icon Image" />
+                                <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" height="90" alt="Helper Icon Image" />
                                 <h5 class="mt-3">Unlimited Access</h5>
                                 <p class="mb-3">Upgrade to plan to get access to unlimited reports</p>
                                 <a href="javascript: void(0);" class="btn btn-secondary btn-sm">Upgrade</a>
                             </div>
                             <!-- end Help Box -->
+                            {% endcomment %}
+
+                            <!-- Logo -->
+<!--                            <div class="text-center mt-5">-->
+<!--                                <img style="opacity: 25%" src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" height="90" alt="Logo" />-->
+<!--                            </div>-->
 
 
                         </ul>
