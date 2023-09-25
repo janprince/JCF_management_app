@@ -2,9 +2,8 @@
 {% load static %}
 
 {% block extra_css %}
-<!-- third party css -->
-<link href="{% static 'msystem/assets/css/vendor/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
-<!-- third party css end -->
+<link href="{% static 'msystem/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet"
+      type="text/css">
 {% endblock extra_css %}
 
 {% block main_content %}
@@ -35,161 +34,508 @@
     </div>
     <!-- end page title -->
 
+<!--    <div class="row">-->
+<!--        <div class="col-xxl-3 col-sm-6">-->
+<!--            <div class="card widget-flat">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="float-end">-->
+<!--                        <i class="mdi mdi-book-account-outline widget-icon bg-info rounded-circle text-white"></i>-->
+<!--                    </div>-->
+<!--                    <h5 class="text-muted fw-normal mt-0" title="Revenue">Pending Appointments</h5>-->
+<!--                    <h3 class="mt-3 mb-3">{{ appointment_count }}</h3>-->
+<!--                    {% comment %}-->
+<!--                    <p class="mb-0 text-muted">-->
+<!--                                            <span class="badge bg-info me-1">-->
+<!--                                                <i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>-->
+<!--                        <span class="text-nowrap">Since last month</span>-->
+<!--                    </p>-->
+<!--                    {% endcomment %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div> &lt;!&ndash; end col&ndash;&gt;-->
+
+<!--        <div class="col-xxl-3 col-sm-6">-->
+<!--            <div class="card widget-flat">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="float-end">-->
+<!--                        <i class="mdi mdi-account-multiple widget-icon"></i>-->
+<!--                    </div>-->
+<!--                    <h5 class="text-muted fw-normal mt-0" title="Consultees">Consultees</h5>-->
+<!--                    <h3 class="mt-3 mb-3">{{client_count}}</h3>-->
+<!--                    {% comment %}-->
+<!--                    <p class="mb-0 text-muted">-->
+<!--                                            <span class="text-success me-2">-->
+<!--                                                <i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>-->
+<!--                        <span class="text-nowrap">Since last month</span>-->
+<!--                    </p>-->
+<!--                    {% endcomment %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div> &lt;!&ndash; end col&ndash;&gt;-->
+
+<!--        <div class="col-xxl-3 col-sm-6">-->
+<!--            <div class="card widget-flat bg-success text-white">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="float-end">-->
+<!--                        <i class="mdi mdi-account-multiple widget-icon bg-white text-success"></i>-->
+<!--                    </div>-->
+<!--                    <h6 class="text-uppercase mt-0" title="Customers">Data</h6>-->
+<!--                    <h3 class="mt-3 mb-3">{{client_count}}</h3>-->
+<!--                    {% comment %}-->
+<!--                    <p class="mb-0">-->
+<!--                                            <span class="badge bg-white bg-opacity-10 me-1">-->
+<!--                                                <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>-->
+<!--                        <span class="text-nowrap">Since last month</span>-->
+<!--                    </p>-->
+<!--                    {% endcomment %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div> &lt;!&ndash; end col&ndash;&gt;-->
+
+<!--        <div class="col-xxl-3 col-sm-6">-->
+<!--            <div class="card widget-flat bg-primary text-white">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="float-end">-->
+<!--                        <i class="mdi mdi-school-outline widget-icon bg-white rounded-circle text-primary"></i>-->
+<!--                    </div>-->
+<!--                    <h5 class="fw-normal mt-0" title="Revenue">Students</h5>-->
+<!--                    <h3 class="mt-3 mb-3 text-white">{{student_count}}</h3>-->
+<!--                    {% comment %}-->
+<!--                    <p class="mb-0">-->
+<!--                                            <span class="badge bg-info me-1">-->
+<!--                                                <i class="mdi mdi-arrow-up-bold"></i> 17.26%</span>-->
+<!--                        <span class="text-nowrap">Since last month</span>-->
+<!--                    </p>-->
+<!--                    {% endcomment %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div> &lt;!&ndash; end col&ndash;&gt;-->
+<!--    </div>-->
+
     <div class="row">
-        <div class="col-xxl-3 col-sm-6">
-            <div class="card widget-flat">
-                <div class="card-body">
-                    <div class="float-end">
-                        <i class="mdi mdi-book-account-outline widget-icon bg-info rounded-circle text-white"></i>
-                    </div>
-                    <h5 class="text-muted fw-normal mt-0" title="Revenue">Pending Appointments</h5>
-                    <h3 class="mt-3 mb-3">{{ appointment_count }}</h3>
-                    {% comment %}
-                    <p class="mb-0 text-muted">
-                                            <span class="badge bg-info me-1">
-                                                <i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
-                        <span class="text-nowrap">Since last month</span>
-                    </p>
-                    {% endcomment %}
-                </div>
-            </div>
-        </div> <!-- end col-->
+        <div class="col-12">
+            <div class="card widget-inline">
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card rounded-0 shadow-none m-0">
+                                <div class="card-body text-center">
+                                    <i class="ri-briefcase-line text-muted font-24"></i>
+                                    <h3><span>29</span></h3>
+                                    <p class="text-muted font-15 mb-0">Total Projects</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="col-xxl-3 col-sm-6">
-            <div class="card widget-flat">
-                <div class="card-body">
-                    <div class="float-end">
-                        <i class="mdi mdi-account-multiple widget-icon"></i>
-                    </div>
-                    <h5 class="text-muted fw-normal mt-0" title="Consultees">Consultees</h5>
-                    <h3 class="mt-3 mb-3">{{client_count}}</h3>
-                    {% comment %}
-                    <p class="mb-0 text-muted">
-                                            <span class="text-success me-2">
-                                                <i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-                        <span class="text-nowrap">Since last month</span>
-                    </p>
-                    {% endcomment %}
-                </div>
-            </div>
-        </div> <!-- end col-->
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card rounded-0 shadow-none m-0 border-start border-light">
+                                <div class="card-body text-center">
+                                    <i class="ri-list-check-2 text-muted font-24"></i>
+                                    <h3><span>715</span></h3>
+                                    <p class="text-muted font-15 mb-0">Total Tasks</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="col-xxl-3 col-sm-6">
-            <div class="card widget-flat bg-success text-white">
-                <div class="card-body">
-                    <div class="float-end">
-                        <i class="mdi mdi-account-multiple widget-icon bg-white text-success"></i>
-                    </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Data</h6>
-                    <h3 class="mt-3 mb-3">{{client_count}}</h3>
-                    {% comment %}
-                    <p class="mb-0">
-                                            <span class="badge bg-white bg-opacity-10 me-1">
-                                                <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
-                        <span class="text-nowrap">Since last month</span>
-                    </p>
-                    {% endcomment %}
-                </div>
-            </div>
-        </div> <!-- end col-->
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card rounded-0 shadow-none m-0 border-start border-light">
+                                <div class="card-body text-center">
+                                    <i class="ri-group-line text-muted font-24"></i>
+                                    <h3><span>31</span></h3>
+                                    <p class="text-muted font-15 mb-0">Members</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="col-xxl-3 col-sm-6">
-            <div class="card widget-flat bg-primary text-white">
-                <div class="card-body">
-                    <div class="float-end">
-                        <i class="mdi mdi-school-outline widget-icon bg-white rounded-circle text-primary"></i>
-                    </div>
-                    <h5 class="fw-normal mt-0" title="Revenue">Students</h5>
-                    <h3 class="mt-3 mb-3 text-white">{{student_count}}</h3>
-                    {% comment %}
-                    <p class="mb-0">
-                                            <span class="badge bg-info me-1">
-                                                <i class="mdi mdi-arrow-up-bold"></i> 17.26%</span>
-                        <span class="text-nowrap">Since last month</span>
-                    </p>
-                    {% endcomment %}
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card rounded-0 shadow-none m-0 border-start border-light">
+                                <div class="card-body text-center">
+                                    <i class="ri-line-chart-line text-muted font-24"></i>
+                                    <h3><span>93%</span> <i class="mdi mdi-arrow-up text-success"></i></h3>
+                                    <p class="text-muted font-15 mb-0">Productivity</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- end row -->
                 </div>
-            </div>
+            </div> <!-- end card-box-->
         </div> <!-- end col-->
     </div>
 
-<!--    <div class="row">-->
-<!--        <div class="col-xl-3 col-lg-4">-->
-<!--            <div class="card tilebox-one">-->
-<!--                <div class="card-body">-->
-<!--                    <i class='uil uil-users-alt float-end'></i>-->
-<!--                    <h6 class="text-uppercase mt-0">Clients</h6>-->
-<!--                    <h2 class="my-2">{{ client_count }}</h2>-->
-<!--                    <p class="mb-0 text-muted">-->
-<!--                        <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span>-->
-<!--                        <span class="text-nowrap">Since last month</span>-->
-<!--                    </p>-->
-<!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
-<!--            </div>-->
-<!--            &lt;!&ndash;end card&ndash;&gt;-->
+    <div class="row">
+        <div class="col-xxl-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="header-title">Monthly Progress</h4>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" style="">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Today</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Yesterday</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Last Week</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Last Month</a>
+                        </div>
+                    </div>
+                </div>
 
-<!--            <div class="card tilebox-one">-->
-<!--                <div class="card-body">-->
-<!--                    <i class='uil uil-users-alt float-end'></i>-->
-<!--                    <h6 class="text-uppercase mt-0">Students</h6>-->
-<!--                    <h2 class="my-2">{{student_count}}</h2>-->
-<!--                    <p class="mb-0 text-muted">-->
-<!--                        <span class="text-danger me-2"><span class="mdi mdi-arrow-down-bold"></span> 1.08%</span>-->
-<!--                        <span class="text-nowrap">Since previous week</span>-->
-<!--                    </p>-->
-<!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
-<!--            </div>-->
-<!--            &lt;!&ndash;end card&ndash;&gt;-->
+                <div class="card-body pt-0">
+                    <div class="table-responsive mt-n2">
+                        <table class="table table-centered table-hover table-nowrap mb-0">
+                            <thead>
+                            <tr>
+                                <th scope="col">Employees Name</th>
+                                <th scope="col">Eamil Address</th>
+                                <th scope="col">Project Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img class="rounded-circle" src="assets/images/users/avatar-1.jpg"
+                                                 alt="Avtar image" width="31">
+                                        </div>
+                                        <div class="flex-grow-1 ms-2">
+                                            Adam Baldwin
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>AdamNBaldwin@dayrep.com</td>
+                                <td>Admin Dashboard</td>
+                                <td>
+                                    <span class="badge bg-primary-lighten text-primary">In Progress</span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="font-18 text-info me-2"
+                                       data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit"
+                                       data-bs-original-title="Edit"><i class="uil uil-pen"></i></a>
+                                    <a href="javascript:void(0);" class="font-18 text-danger" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i
+                                            class="uil uil-trash"></i></a>
+                                </td>
+                            </tr> <!-- end tr -->
 
-<!--            <div class="card cta-box overflow-hidden">-->
-<!--                <div class="card-body">-->
-<!--                    <div class="d-flex align-items-center">-->
-<!--                        <div>-->
-<!--                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i-->
-<!--                                    class="mdi mdi-arrow-right"></i></h3>-->
-<!--                        </div>-->
-<!--                        <img class="ms-3" src="assets/images/email-campaign.svg" width="92"-->
-<!--                             alt="Generic placeholder image">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; end card-body &ndash;&gt;-->
-<!--            </div>-->
-<!--        </div> &lt;!&ndash; end col &ndash;&gt;-->
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img class="rounded-circle" src="assets/images/users/avatar-2.jpg"
+                                                 alt="Avtar image" width="31">
+                                        </div>
+                                        <div class="flex-grow-1 ms-2">
+                                            Peter Wallace
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>PeterGWallace@dayrep.com</td>
+                                <td>Landing Page</td>
+                                <td>
+                                    <span class="badge bg-success-lighten text-success">Completed</span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="font-18 text-info me-2"
+                                       data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit"
+                                       data-bs-original-title="Edit"><i class="uil uil-pen"></i></a>
+                                    <a href="javascript:void(0);" class="font-18 text-danger" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i
+                                            class="uil uil-trash"></i></a>
+                                </td>
+                            </tr> <!-- end tr -->
 
-<!--        <div class="col-xl-9 col-lg-8">-->
-<!--            <div class="card card-h-100">-->
-<!--                <div class="card-body">-->
-<!--&lt;!&ndash;                    <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>&ndash;&gt;-->
-<!--&lt;!&ndash;                        Property HY1xx is not receiving hits. Either your site is not receiving any sessions or it is&ndash;&gt;-->
-<!--&lt;!&ndash;                        not tagged correctly.&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    <ul class="nav float-end d-none d-lg-flex">-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link text-muted" href="#">Today</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link text-muted" href="#">7d</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link active" href="#">15d</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link text-muted" href="#">1m</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link text-muted" href="#">1y</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                    <h4 class="header-title mb-3">Sessions Overview</h4>-->
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img class="rounded-circle" src="assets/images/users/avatar-3.jpg"
+                                                 alt="Avtar image" width="31">
+                                        </div>
+                                        <div class="flex-grow-1 ms-2">
+                                            Jacob Dunn
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>JacobEDunn@dayrep.com</td>
+                                <td>Logo Design</td>
+                                <td>
+                                    <span class="badge bg-warning-lighten text-warning">Pending</span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="font-18 text-info me-2"
+                                       data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit"
+                                       data-bs-original-title="Edit"><i class="uil uil-pen"></i></a>
+                                    <a href="javascript:void(0);" class="font-18 text-danger" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i
+                                            class="uil uil-trash"></i></a>
+                                </td>
+                            </tr> <!-- end tr -->
 
-<!--                    <div dir="ltr">-->
-<!--                        <div id="sessions-overview" class="apex-charts mt-3" data-colors="#0acf97"></div>-->
-<!--                    </div>-->
-<!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
-<!--            </div> &lt;!&ndash; end card&ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img class="rounded-circle" src="assets/images/users/avatar-4.jpg"
+                                                 alt="Avtar image" width="31">
+                                        </div>
+                                        <div class="flex-grow-1 ms-2">
+                                            Terry Adams
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>TerryCAdams@dayrep.com</td>
+                                <td>Client Project</td>
+                                <td>
+                                    <span class="badge bg-primary-lighten text-primary">In Progress</span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="font-18 text-info me-2"
+                                       data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit"
+                                       data-bs-original-title="Edit"><i class="uil uil-pen"></i></a>
+                                    <a href="javascript:void(0);" class="font-18 text-danger" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i
+                                            class="uil uil-trash"></i></a>
+                                </td>
+                            </tr> <!-- end tr -->
+
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img class="rounded-circle" src="assets/images/users/avatar-5.jpg"
+                                                 alt="Avtar image" width="31">
+                                        </div>
+                                        <div class="flex-grow-1 ms-2">
+                                            Jason Stovall
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>JasonJStovall@armyspy.com</td>
+                                <td>Figma Work</td>
+                                <td>
+                                    <span class="badge bg-warning-lighten text-warning">Pending</span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="font-18 text-info me-2"
+                                       data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit"
+                                       data-bs-original-title="Edit"><i class="uil uil-pen"></i></a>
+                                    <a href="javascript:void(0);" class="font-18 text-danger" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i
+                                            class="uil uil-trash"></i></a>
+                                </td>
+                            </tr> <!-- end tr -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+        <div class="col-md-6 col-xxl-3">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="header-title">Task Status</h4>
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Today</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Yesterday</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Last Week</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Last Month</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body pt-2">
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="flex-shrink-0">
+                                <i class="mdi mdi-file-edit widget-icon bg-primary-lighten text-primary"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                                <h5 class="my-0 fw-semibold">Running Project</h5>
+                            </div>
+                            <h5 class="my-0">145/160</h5>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar" role="progressbar" style="width: 91%" aria-valuenow="91"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="flex-shrink-0">
+                                <i class="mdi mdi-account-multiple widget-icon bg-success-lighten text-success"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                                <h5 class="my-0 fw-semibold">Active Clients</h5>
+                            </div>
+                            <h5 class="my-0">40/85</h5>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 47%"
+                                 aria-valuenow="47" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="flex-shrink-0">
+                                <i class="mdi mdi-account-multiple-plus widget-icon bg-danger-lighten text-danger"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                                <h5 class="my-0 fw-semibold">New Request</h5>
+                            </div>
+                            <h5 class="my-0">68%</h5>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 68%" aria-valuenow="68"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="flex-shrink-0">
+                                <i class="mdi mdi-emoticon-happy widget-icon bg-info-lighten text-info"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-2">
+                                <h5 class="my-0 fw-semibold">Happy Clients</h5>
+                            </div>
+                            <h5 class="my-0">48/50</h5>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 90%" aria-valuenow="90"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+        <div class="col-md-6 col-xxl-3">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="header-title">Calendar</h4>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Today</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Yesterday</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Last Week</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Last Month</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body px-2 pb-2 pt-0 mt-n2">
+                    <div data-provide="datepicker-inline" data-date-today-highlight="true"
+                         class="calendar-widget"></div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div>
+
+    <!--    <div class="row">-->
+    <!--        <div class="col-xl-3 col-lg-4">-->
+    <!--            <div class="card tilebox-one">-->
+    <!--                <div class="card-body">-->
+    <!--                    <i class='uil uil-users-alt float-end'></i>-->
+    <!--                    <h6 class="text-uppercase mt-0">Clients</h6>-->
+    <!--                    <h2 class="my-2">{{ client_count }}</h2>-->
+    <!--                    <p class="mb-0 text-muted">-->
+    <!--                        <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span>-->
+    <!--                        <span class="text-nowrap">Since last month</span>-->
+    <!--                    </p>-->
+    <!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+    <!--            </div>-->
+    <!--            &lt;!&ndash;end card&ndash;&gt;-->
+
+    <!--            <div class="card tilebox-one">-->
+    <!--                <div class="card-body">-->
+    <!--                    <i class='uil uil-users-alt float-end'></i>-->
+    <!--                    <h6 class="text-uppercase mt-0">Students</h6>-->
+    <!--                    <h2 class="my-2">{{student_count}}</h2>-->
+    <!--                    <p class="mb-0 text-muted">-->
+    <!--                        <span class="text-danger me-2"><span class="mdi mdi-arrow-down-bold"></span> 1.08%</span>-->
+    <!--                        <span class="text-nowrap">Since previous week</span>-->
+    <!--                    </p>-->
+    <!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+    <!--            </div>-->
+    <!--            &lt;!&ndash;end card&ndash;&gt;-->
+
+    <!--            <div class="card cta-box overflow-hidden">-->
+    <!--                <div class="card-body">-->
+    <!--                    <div class="d-flex align-items-center">-->
+    <!--                        <div>-->
+    <!--                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i-->
+    <!--                                    class="mdi mdi-arrow-right"></i></h3>-->
+    <!--                        </div>-->
+    <!--                        <img class="ms-3" src="assets/images/email-campaign.svg" width="92"-->
+    <!--                             alt="Generic placeholder image">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                &lt;!&ndash; end card-body &ndash;&gt;-->
+    <!--            </div>-->
+    <!--        </div> &lt;!&ndash; end col &ndash;&gt;-->
+
+    <!--        <div class="col-xl-9 col-lg-8">-->
+    <!--            <div class="card card-h-100">-->
+    <!--                <div class="card-body">-->
+    <!--&lt;!&ndash;                    <div class="alert alert-warning alert-dismissible fade show mb-3" role="alert">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        Property HY1xx is not receiving hits. Either your site is not receiving any sessions or it is&ndash;&gt;-->
+    <!--&lt;!&ndash;                        not tagged correctly.&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+    <!--                    <ul class="nav float-end d-none d-lg-flex">-->
+    <!--                        <li class="nav-item">-->
+    <!--                            <a class="nav-link text-muted" href="#">Today</a>-->
+    <!--                        </li>-->
+    <!--                        <li class="nav-item">-->
+    <!--                            <a class="nav-link text-muted" href="#">7d</a>-->
+    <!--                        </li>-->
+    <!--                        <li class="nav-item">-->
+    <!--                            <a class="nav-link active" href="#">15d</a>-->
+    <!--                        </li>-->
+    <!--                        <li class="nav-item">-->
+    <!--                            <a class="nav-link text-muted" href="#">1m</a>-->
+    <!--                        </li>-->
+    <!--                        <li class="nav-item">-->
+    <!--                            <a class="nav-link text-muted" href="#">1y</a>-->
+    <!--                        </li>-->
+    <!--                    </ul>-->
+    <!--                    <h4 class="header-title mb-3">Sessions Overview</h4>-->
+
+    <!--                    <div dir="ltr">-->
+    <!--                        <div id="sessions-overview" class="apex-charts mt-3" data-colors="#0acf97"></div>-->
+    <!--                    </div>-->
+    <!--                </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+    <!--            </div> &lt;!&ndash; end card&ndash;&gt;-->
+    <!--        </div>-->
+    <!--    </div>-->
 
 </div>
 <!-- container -->
@@ -199,20 +545,16 @@
 {% block extra_scripts %}
 
 
-    <!-- Daterangepicker js -->
-    <script src="{% static 'msystem/assets/vendor/daterangepicker/moment.min.js' %}"></script>
-    <script src="{% static 'msystem/assets/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!-- Daterangepicker js -->
+<script src="{% static 'msystem/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
 
-    <!-- Charts js -->
-    <script src="{% static 'msystem/assets/vendor/chart.js/chart.min.js' %}"></script>
-    <script src="{% static 'msystem/assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+<script src="{% static 'msystem/assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
 
-    <!-- Vector Map js -->
-    <script src="{% static 'msystem/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
-    <script src="{% static 'msystem/assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- Charts js -->
+<script src="{% static 'msystem/assets/vendor/chart.js/chart.min.js' %}"></script>
 
-    <!-- Analytics Dashboard App js -->
-    <script src="{% static 'msystem/assets/js/pages/demo.dashboard-analytics.js' %}"></script>
+<!-- CRM Management Dashboard App js -->
+<script src="{% static 'msystem/assets/js/pages/demo.crm-management.js' %}"></script>
 
 
 {% endblock extra_scripts %}

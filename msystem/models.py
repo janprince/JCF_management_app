@@ -8,8 +8,10 @@ class Profile(models.Model):
         ("admin", "Admin"),
         ("administrator", "Administrator"),
         ("secretary", "Secretary"),
+        ("media_operations", "Media Operations")
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
     phone = models.CharField(max_length=255)
     role = models.CharField(max_length=255, choices=role_choices)
 
@@ -118,3 +120,34 @@ class Request(models.Model):
 
     def __str__(self):
         return f"Request: {self.person.full_name}"
+
+
+# ========================== Media ========================================
+class MediaTopic(models.Model):
+    type_choices = [
+        ("lecture", "Lecture"),
+        ("interview", "interview"),
+        ("live", "Live"),
+        ("documentary", "Documentary"),
+        ("promotional", "Promotional")
+    ]
+
+    status_choices = [
+        ("pending", "Pending"),
+        ("archive", "Archive"),
+        ("published", "Published")
+    ]
+
+    language_choices = [
+        ("english", "English"),
+        ("twi", "Twi"),
+    ]
+
+    topic = models.CharField(max_length=255, unique=True)
+    type = models.CharField(max_length=50, choices=type_choices, default="lecture")
+    language = models.CharField(max_length=50, default="english")
+    status = models.CharField(max_length=50, choices=status_choices, default="pending")
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.topic}"

@@ -525,6 +525,11 @@ def update_employee(request, emp_id):
     return render(request, "msystem/forms/add_employee.html", context)
 
 
+# =========================================== Media ============================================
+def media_dashboard(request):
+    return render(request, "msystem/dash/media.html")
+
+
 # =========================================== Accounts Management ====================================
 def login_view(request):
     if request.method == "POST":

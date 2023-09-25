@@ -29,6 +29,8 @@ urlpatterns = [
     path("clients/request/update/<int:request_id>", views.update_request, name="update_request"),
     path("clients/request/delete/<int:request_id>", views.delete_request, name="delete_request"),
 
+    path("media/analtics/", views.media_dashboard, name="media_dashboard"),
+
     path("login/", views.login_view, name='login'),
     path("logout/", views.logout_view, name='logout'),
 ]
