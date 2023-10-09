@@ -36,6 +36,10 @@ class DataFileAdmin(admin.ModelAdmin):
     list_display = ["id", 'person', 'file']
 
 
+class MediaTopicAdmin(admin.ModelAdmin):
+    list_display = ["id", 'topic', 'type', 'language', 'status']
+
+
 # Register your models here.
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Rep, RepAdmin)
@@ -44,3 +48,4 @@ admin.site.register(Appointment, AppointmentAdmin)
 admin.site.register(DataFile, DataFileAdmin)
 admin.site.register(Request, RequestAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(MediaTopic, MediaTopicAdmin)

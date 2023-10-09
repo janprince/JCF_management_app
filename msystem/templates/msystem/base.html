@@ -54,22 +54,22 @@
                             <!-- Topbar Brand Logo -->
                             <div class="logo-topbar">
                                 <!-- Logo light -->
-                                <a href="index-2.html" class="logo-light">
+                                <a href="{% url 'msystem:index' %}" class="logo-light">
                                     <span class="logo-lg">
-                                        <img src="{% static 'msystem/assets/images/logo.png' %}" alt="logo">
+                                        <img src="{% static 'msystem/assets/images/JCF.png' %}" alt="logo">
                                     </span>
                                     <span class="logo-sm">
-                                        <img src="{% static 'msystem/assets/images/logo-sm.png' %}" alt="small logo">
+                                        <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" alt="small logo">
                                     </span>
                                 </a>
 
                                 <!-- Logo Dark -->
-                                <a href="index-2.html" class="logo-dark">
+                                <a href="{% url 'msystem:index' %}" class="logo-dark">
                                     <span class="logo-lg">
-                                        <img src="assets/images/logo-dark.png" alt="dark logo">
+                                        <img src="{% static 'msystem/assets/images/JCF-dark.png' %}" alt="small logo">
                                     </span>
                                     <span class="logo-sm">
-                                        <img src="assets/images/logo-dark-sm.png" alt="small logo">
+                                        <img src="{% static 'msystem/assets/images/JCF-logo-sm.png' %}" alt="small logo">
                                     </span>
                                 </a>
                             </div>
@@ -164,7 +164,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
                                     <form class="p-3" method="get" action="{% url 'msystem:clients' %}">
-                                        <input type="search" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                        <input type="search" class="form-control" name="q" placeholder="Search ..." aria-label="Recipient's username">
                                     </form>
                                 </div>
                             </li>

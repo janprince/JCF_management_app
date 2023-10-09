@@ -4,6 +4,9 @@
 {% block extra_css %}
 <link href="{% static 'msystem/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet"
       type="text/css">
+<!-- Plugin css -->
+    <link rel="stylesheet" href="{% static 'msystem/assets/vendor/daterangepicker/daterangepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'msystem/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}">
 {% endblock extra_css %}
 
 {% block main_content %}
@@ -543,10 +546,10 @@
 {% endblock main_content %}
 
 {% block extra_scripts %}
-
-
-<!-- Daterangepicker js -->
 <script src="{% static 'msystem/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+<!-- Daterangepicker js -->
+<script src="{% static 'msystem/assets/vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'msystem/assets/vendor/daterangepicker/daterangepicker.js' %}"></script>
 
 <script src="{% static 'msystem/assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
 
@@ -555,6 +558,9 @@
 
 <!-- CRM Management Dashboard App js -->
 <script src="{% static 'msystem/assets/js/pages/demo.crm-management.js' %}"></script>
+
+<!-- Analytics Dashboard App js -->
+<script src="{% static 'msystem/assets/js/pages/demo.dashboard-analytics.js' %}"></script>
 
 
 {% endblock extra_scripts %}

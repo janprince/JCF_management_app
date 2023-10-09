@@ -126,7 +126,7 @@ class Request(models.Model):
 class MediaTopic(models.Model):
     type_choices = [
         ("lecture", "Lecture"),
-        ("interview", "interview"),
+        ("interview", "Interview"),
         ("live", "Live"),
         ("documentary", "Documentary"),
         ("promotional", "Promotional")

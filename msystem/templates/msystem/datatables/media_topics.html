@@ -1,0 +1,147 @@
+{% extends 'msystem/datatables/datatable_base.html' %}
+{% load static %}
+
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <a href="javascript:void(0);" type="button" class="btn btn-info mb-2 me-2" data-bs-toggle="modal"
+                       data-bs-target="#CreateProject">
+                        <i class="mdi mdi-account-plus me-1"></i> Add Topic
+                    </a>
+                </div>
+                <h4 class="page-title">Media Topics</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="" id="">
+
+                        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                            <thead>
+                            <tr>
+                                <th>Topic</th>
+                                <th>Type</th>
+                                <th>Language</th>
+                                <th>Status</th>
+                                <th style="width: 125px;">Action</th>
+                            </tr>
+                            </thead>
+
+
+                            <tbody>
+                            {% for topic in media_topics %}
+                            <tr>
+                                <td>{{ topic.topic }}</td>
+                                <td>{{ topic.type }}</td>
+                                <td>{{ topic.language }}</td>
+                                <td>
+                                    {% if topic.status == 'pending' %}
+                                    <h5 class="my-0"><span class="badge badge-warning-lighten">Pending</span></h5>
+                                    {% elif topic.status == 'archive' %}
+                                    <h5 class="my-0"><span class="badge badge-danger-lighten">Archive</span></h5>
+                                    {% elif topic.status == 'published' %}
+                                    <h5 class="my-0"><span class="badge badge-success-lighten">Published</span></h5>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                            class="mdi mdi-square-edit-outline"></i></a>
+                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                            class="mdi mdi-delete"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div> <!-- end preview-->
+
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div> <!-- end row-->
+
+</div> <!-- container -->
+
+{% endblock main_content %}
+
+{% block modals %}
+<!-- Modal -->
+<div class="modal fade" id="CreateProject" tabindex="-1" aria-labelledby="CreateProjectLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'msystem:media_topics' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CreateProjectLabel">Add New Topic</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-3">
+
+
+                    <div class="mb-3">
+                        <label for="topic" class="form-label">Topic</label>
+                        <input type="text" class="form-control" id="topic" placeholder="Add project name..."
+                               name="topic">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="type_" class="form-label">Type</label>
+                        <select class="form-select" id="type_" name="type">
+                            <option value="lecture">Lecture</option>
+                            <option value="interview">Interview</option>
+                            <option value="live">Live</option>
+                            <option value="documentary">Documentary</option>
+                            <option value="promotional">Promotional</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lang" class="form-label">Language</label>
+                        <select class="form-select" id="lang" name="language">
+                            <option value="english">English</option>
+                            <option value="twi">Twi</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status_" class="form-label">Status</label>
+                        <select class="form-select" id="status_" name="status">
+                            <option value="pending">Pending</option>
+                            <option value="archive">Archive</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" rows="4" name="description"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock modals %}

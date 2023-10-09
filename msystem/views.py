@@ -530,6 +530,30 @@ def media_dashboard(request):
     return render(request, "msystem/dash/media.html")
 
 
+def media_topics(request):
+    if request.method == "POST":
+        topic = request.POST["topic"]
+        type = request.POST["type"]
+        language = request.POST["language"]
+        status = request.POST["status"]
+        description = request.POST["description"]
+
+        m = MediaTopic(topic=topic, type=type, language=language, status=status, description=description)
+        m.save()
+
+        # feedback
+        messages.success(request, "Media Topic Added")
+
+        return HttpResponseRedirect(reverse("msystem:media_topics"))
+
+    media_t = MediaTopic.objects.all()
+    context = {
+        "media_topics": media_t,
+    }
+    return render(request, "msystem/datatables/media_topics.html", context=context)
+
+
+
 # =========================================== Accounts Management ====================================
 def login_view(request):
     if request.method == "POST":
